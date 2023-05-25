@@ -28,8 +28,8 @@
     console.log(lineHeightPx)
 
     var animationTimings = {
-      IntroF: 0.3,
-      IntroS: 0.3,
+      IntroF: 0.9,
+      IntroS: 0.5,
       IntroT: 0.3,
     }
 
