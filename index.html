@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torus</title>
+    <!-- <link rel="icon" type="image/png" href="assets/favicon.png"> -->
+<link href='https://fonts.googleapis.com/css?family=Roboto Mono' rel='stylesheet'>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue@2.6.14/dist/vue.js"></script>
+
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="containers.css">
+
+</head>
+<body>
+<div id="app">
+    <div class="container">
+        <div id="point"></div>
+        <pre id="d" ref="d" class="unselectable" 
+            @mousedown="e => torusAnim && torusClick(e)" 
+            @mousemove="e => torusAnim && torusMove(e)">                                                               
+                                                                                   
+                                                                             
+                                                                                   
+                                                                                   
+                          $$$@@@@@@@@@@$$                                          
+                        ##$$$$$$$$@@@@@@@@@@$$$                                    
+                       **#####$$$$$$$$$$$@$$$@$$$$$$#                              
+                      =!!*****######$$$$$$$$$$$$$$$$$$$$#                          
+                      =!=!!********##########$$$$$$$$$$$$$##                       
+                      :;;==!!=*!*********#####################*                    
+                       ~::;;======!!!!!!************##*#####****                   
+                        ,-~:::;;======!!!!!!!!!*!*!!************!                  
+                         ..,-~~::::;;;;;=======!!!!!!!!!!!!!!!!!!=                 
+                            ...,--~~~~:::;;;;;==;================;                 
+                               ....,,--~-~~::::::;;:;;;;;;;;;;;;;:                 
+                                   ......,-----~~~~~::~::::::::~~                  
+                                        ........,,,-,---------,.                   
+                                              ................                     
+                                                                                   
+                                                                                   
+                                                                                   
+        </pre>
+    </div>
+    <div id="second" class="container" >
+      <div class="grid-container" @mousedown="animateIntro">
+        <div class="grid-item cell-1">&nbsp;Aleksandr<br> &nbsp;Dumarevskii</div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item cell-6">
+            Привет, хочу работать. <br>
+            Я умею во фронт. Могу и сайт сверстать, и любую анимацию вам сделать. Поддержку могу. <br>
+            Могу вам бекэнды писать. Апи могу сделать. <br>
+            Из послужного списка: я в Яндекс-поиске батрачил. Код писал, релизы выкатывал, ночью от звонков вскакивал.<br>
+            Еще в IT-кооперативе числюсь. Для разных НКО сайты делаю. Увидите что-то социально-полезное -- возможно, я руку приложил. <br>
+            Ну еще помаленечку -- кому бота напишу, кому карту на сайт бахну. <br>
+            Ах да, я еще в опенсорс коммиты коммичу. 
+        </div>
+        <div class="grid-item cell-7">
+          <image-loader ref="profile_img" src="./photo.jpg" class="profile-image">
+          </image-loader>
+        </div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+        <div class="grid-item cell-11">Cell 11</div>
+        <div class="grid-item cell-12">Вот тут игрушка будет. В следующем релизе</div>
+        <div class="grid-item"></div>
+        <div class="grid-item cell-14">
+          <pre class="contact-tg">tg: @AChekhonte</pre>
+          <pre class="contact-email">e-mail: sahdoum@gmail.com</pre>
+        </div>
+        <div class="grid-item"></div>
+        <div class="grid-item"></div>
+      </div>
+    </div>
+
+</div>
+
+    <script src="torus.js"></script>
+    <script src="components/ImageLoader-component.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+

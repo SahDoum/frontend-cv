@@ -1,0 +1,193 @@
+
+  :root {
+    --letter-spacing: 1px;
+    --name_text_size: 30px;
+    --contacts-text-size: 20px;
+    --contacts-font-weight: 400;
+    --contacts-margin: 0;
+    --name-padding: 0;
+
+
+    --easeInCubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    --easeOutCubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+    --easeInOutCubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+    --easeOutBack: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --easeOutBackMore: cubic-bezier(0.175, 0.885, 0.385, 1.85);
+    --easeOutQuart: cubic-bezier(0.25, 1, 0.5, 1);
+    --easeOutQuad: cubic-bezier(0.5, 1, 0.89, 1);
+    --easeMenu: cubic-bezier(0.2, 0.6, 0.4, 1);
+  }
+  /* Define the container styles */
+  body {
+  font-family: 'Roboto Mono';
+  letter-spacing: var(--letter-spacing);
+  padding: 0;
+  margin: 0;
+  font-size: var(--text-size);
+  }
+  .container {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 25% 25% 25% 25%;
+    width: 100%;
+    height: 100%;
+    -transition: all 0.4s ease;
+    background-color: var(--dark-color);
+  }
+
+  .grid-item {
+    display: flex;
+    position: relative;
+
+    background-color: var(--light-color);
+    color: var(--dark-color);
+
+    font-size: 20px;
+    
+    -transition: all 0.4s var(--easeOutCubic);
+
+    overflow: hidden;
+    margin: 1px;
+
+  }
+
+  .cell-1 {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: var(--name_text_size);
+    padding-left: var(--name-padding);
+    -transition: all 0.4s var(--easeOutCubic);
+    padding-top: 5px;
+    z-index: 1;
+    overflow: visible;
+    transition: all 0.5s var(--easeOutCubic);
+    -transition: padding-left 0.4s var(--easeOutCubic);
+  }
+
+  .cell-6 {
+    grid-column: 2;
+    grid-row: 2;
+    padding: 5px;
+
+    overflow: scroll;
+
+  }
+
+  .cell-7 {
+    grid-column: 3;
+    grid-row: 2;
+  }
+
+  .cell-11 {
+    grid-column: 3;
+    grid-row: 3;
+  }
+
+  .cell-12 {
+    grid-column: 4;
+    grid-row: 3;
+  }
+
+  .cell-14 {
+    grid-column: 2;
+    grid-row: 4;
+    font-weight: var(--contacts-font-weight);
+    overflow: visible;
+    z-index: 1;
+    padding: 5px;
+  }
+
+  .contact-tg {
+    position: absolute;
+    margin: 0;
+    top: 0;
+    left: 0;
+    margin-top: var(--contacts-margin);
+
+    font-size: var(--contacts-text-size);
+    transition: all 0.2s ease;
+  }
+  .contact-email {
+    position: absolute;
+
+    margin: 0;
+    bottom: var(--contacts-margin);
+    right: 0;
+    font-size: var(--contacts-text-size);
+
+    transition: all 0.2s ease;
+  }
+
+  .profile-image {
+    position: relative;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+
+  .animate-intro-first {
+    animation: intro-animation-first var(--animation-intro-f) ease-in-out forwards;
+  }
+
+  .animate-intro-second {
+    animation: intro-animation-second var(--animation-intro-s) ease-in-out forwards;
+  }
+
+  .animate-intro-third {
+    animation: intro-animation-third var(--animation-intro-t) ease-in-out forwards;
+  }
+
+  /* Keyframes for animation */
+  @keyframes intro-animation-first {
+    to {
+      grid-template-columns: 75% 10% 10% 5%;
+      grid-template-rows: 50% 10% 15% 25%;
+      --name_text_size: 80px;
+    }
+  }
+
+  /* Keyframes for animation */
+  @keyframes intro-animation-second {
+    from {
+      grid-template-columns: 75% 10% 10% 5%;
+      grid-template-rows: 50% 10% 15% 25%;
+      --name_text_size: 80px;
+    }
+    to {
+      grid-template-columns: 5% 60% 25% 10%;
+      grid-template-rows: 15% 35% 10% 40%;
+      --name_text_size: 38px;
+      --contacts-text-size: 30px;
+      --contacts-margin2: 5vh;
+      --contacts-font-weight 900;
+    }
+  }
+  /* Keyframes for animation */
+  @keyframes intro-animation-third {
+    from {
+      grid-template-columns: 5% 60% 25% 10%;
+      grid-template-rows: 15% 35% 10% 40%;
+      --contacts-text-size: 30px;
+      --name_text_size: 38px;
+
+      --contacts-margin2: 5vh;
+      --contacts-font-weight 900;
+    }
+    to {
+      --contacts-margin2: 0;
+      --contacts-text-size: 20px;
+      --contacts-font-weight 400;
+      grid-template-columns: 5% 60% 25% 10%;
+      grid-template-rows: 15% 70% calc(15% - calc(3*var(--contacts-text-size))) calc(3*var(--contacts-text-size));
+
+      --first-cell-text-size: 80px;
+      --name_text_size: 38px;
+      --name-padding: 5vw;
+    }
+  }
