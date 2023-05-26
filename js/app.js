@@ -1,19 +1,21 @@
 ;(function () {
 
 
+// console.log(Vue)
+// console.log(Vue.createApp)
+
 var app = new Vue({
   el: '#app',
     data: {
-      status: 0, // o -- torus, 1 -- next
-      startSecondAnimation: false,
+      status: 0, // 0 -- torus, 1 -- cv, 2 -- pong
       torusAnim: true,
     },
   methods: {
-    torusClick: function(event) {
-      console.log(this.torusAnim);
+    torusClick: async function(event) {
       if (!torus_click()) {
         this.torusAnim = false;
         this.slideToNextScreen();
+        await new Promise(r => setTimeout(r, 300));
         anim1();
       }
     },
@@ -23,6 +25,8 @@ var app = new Vue({
     },
 
     animateIntro: async function(event) {
+      if (status != 0) return;
+      status = 1;
       var gridContainer = this.$el.querySelector('.grid-container');
       gridContainer.classList.add('animate-intro-first');
       await new Promise(r => setTimeout(r, _animationTimings["IntroF"]*1000+500));
@@ -34,6 +38,18 @@ var app = new Vue({
       this.$refs.profile_img.startLoader();
     },
 
+    zoomPong: async function(event) {
+      if (status != 1) return;
+      console.log("zoomPong");
+      var gridContainer = this.$el.querySelector('.grid-container');
+      var scoreboard = this.$el.querySelector('.scoreboard');
+      gridContainer.classList.add('animate-pong-zoom');
+      this.$refs.profile_img.revertLoader();
+      await new Promise(r => setTimeout(r, _animationTimings["IntroT"]*1000+500));
+      scoreboard.classList.add('visible');
+
+    },
+
     slideToNextScreen: function() {
       const secondContainer = document.getElementById("second");
       if (secondContainer) {
@@ -43,19 +59,12 @@ var app = new Vue({
           behavior: "smooth",
         });
       }
-      // pauseTorus();
-    },
-
-    secondAnimation: async function() {
-      // console.log("anom")
-      // this.startSecondAnimation = true;
-
-      // await new Promise(r => setTimeout(r, 1000));
-      // console.log(this.$refs.profile_img);
-      // this.$refs.profile_img.startLoader();
     }
-
+    
   }
 });
+
+
+window.app = app;
 
 })()

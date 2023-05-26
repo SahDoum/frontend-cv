@@ -1,9 +1,7 @@
 !function(e,t){
 
 //import Vue from "vue";
-
 //Vue.component("image-loader", () => import("./components/ImageLoade.vue"));
-
 
 Vue.component("image-loader", {
   template: `
@@ -40,36 +38,31 @@ Vue.component("image-loader", {
       threshold: 0,
     };
 
-    console.log(this.bitmap);
-
-
     this.canvas = document.createElement("canvas");
     this.ctx = this.canvas.getContext("2d");
 
 
     let f = this.drawCanvas;
     this.$refs.image.onload = function() {
-      console.log(this);
-      f(53);
+      f(41);
     }
 
     // const observer = new IntersectionObserver(this.handleIntersection, options);
     // observer.observe(this.$refs.image);
   },
   methods: {
-    handleIntersection: function(entries) {
-      const entry = entries[0];
-      if (entry.isIntersecting) {
-        this.startLoader();
-      }
-    },
+    // handleIntersection: function(entries) {
+    //   const entry = entries[0];
+    //   if (entry.isIntersecting) {
+    //     this.startLoader();
+    //   }
+    // },
+
     startLoader: async function() {
-      console.log("start");
       // this.$refs.bitmap.style.display = "none";
       this.$refs.canvas.style.display = "block";
 
-      for (j = 53; j > 0; j-=4) {
-        console.log("log", j);
+      for (j = 41; j > 0; j-=4) {
         this.drawCanvas(j);
         // return;
         await new Promise(r => setTimeout(r, 20));
@@ -78,8 +71,16 @@ Vue.component("image-loader", {
 
       this.$refs.canvas.style.display = "none";
       this.$refs.image.style.display = "block";
+    },
+
+    revertLoader: function() {
+      this.drawCanvas(41);
+
+      this.$refs.canvas.style.display = "block";
+      this.$refs.image.style.display = "none";
 
     },
+
     drawCanvas(rate) {
       const image = this.$refs.image;
       const intermediateCanvas = this.canvas;

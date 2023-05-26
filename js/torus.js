@@ -197,7 +197,8 @@ function createParticles() {
           //b[o]="coikekecocococ"[par.type];
       }
     } 
-    b.splice(cursorCoords, cursor_states[cursor_state][1].length, cursor_states[cursor_state][1])
+    if (cursor_state >= 0)
+      b.splice(cursorCoords, cursor_states[cursor_state][1].length, cursor_states[cursor_state][1])
     pretag.innerHTML = b.join("");
   };
 

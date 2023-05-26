@@ -1,4 +1,3 @@
-
   :root {
     --letter-spacing: 1px;
     --name_text_size: 60px;
@@ -8,6 +7,7 @@
     --name-padding: 0;
 
     --test-scale: 0.33;
+    --font-size: 20px;
 
     --easeInCubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
     --easeOutCubic: cubic-bezier(0.215, 0.61, 0.355, 1);
@@ -19,13 +19,7 @@
     --easeMenu: cubic-bezier(0.2, 0.6, 0.4, 1);
   }
   /* Define the container styles */
-  body {
-  font-family: 'Roboto Mono';
-  letter-spacing: var(--letter-spacing);
-  padding: 0;
-  margin: 0;
-  font-size: var(--text-size);
-  }
+
   .container {
     position: relative;
     height: 100vh;
@@ -34,8 +28,10 @@
 
   .out-container {
     display: grid;
-    grid-template-columns: 2% 4% 22% 22% 22% 22% 4% 2%;
-    grid-template-rows: 2% 4% 22% 22% 22% 22% 4% 2%;
+    -grid-template-columns: 2% 4% 22% 22% 22% 22% 4% 2%;
+    -grid-template-rows: 2% 4% 22% 22% 22% 22% 4% 2%;
+    grid-template-columns: 0% 2% 24% 24% 24% 24% 2% 0%;
+    grid-template-rows: 0% 2% 24% 24% 24% 24% 2% 0%;
     width: 100%;
     height: 100%;
     background-color: var(--dark-color);
@@ -61,11 +57,10 @@
 
     background-color: var(--light-color);
     color: var(--dark-color);
-
-    font-size: 20px;
+    font-size: var(--font-size);
     
     overflow: hidden;
-    margin: 1px;
+    margin: 0.5px;
   }
 
   .cell-1 {
@@ -150,13 +145,23 @@
     height: 100% !important;
   }
 
+  .scoreboard {
+    position: relative;
+    background-color: red;
+    width: 100%;
+    height: 400px;
+    margin-top: -400px;
+  }
+
+  .scoreboard.visible {
+    margin-top: 0;
+    transition: margin-top 0.5s cubic-bezier(1,1.73,0,.61);
+  }
 
   .animate-intro-first {
     --test-scale: 1;
     grid-template-columns: 75% 10% 10% 5%;
     grid-template-rows: 50% 10% 15% 25%;
-
-    -animation: intro-animation-first var(--animation-intro-f) var(--easeOutCubic) forwards;
   }
 
   .animate-intro-second {
@@ -166,8 +171,6 @@
 
     grid-template-columns: 5% 60% 25% 10%;
     grid-template-rows: 15% 35% 10% 40%;
-
-    -animation: intro-animation-second var(--animation-intro-s) ease-in-out forwards;
   }
 
   .animate-intro-third {
@@ -177,37 +180,13 @@
     grid-template-rows: 15% 70% calc(15% - calc(3*var(--contacts-text-size))) calc(3*var(--contacts-text-size));
 
     --name-padding: 5vw;
-
-    -animation: intro-animation-third var(--animation-intro-t) ease-in-out forwards;
   }
 
-  /* Keyframes for animation */
-  @keyframes intro-animation-first {
-    to {
-    }
-  }
-
-  /* Keyframes for animation */
-  @keyframes intro-animation-second {
-    from {
-      grid-template-columns: 75% 10% 10% 5%;
-      grid-template-rows: 50% 10% 15% 25%;
-    }
-    to {
-      --contacts-margin2: 5vh;
-    }
-  }
-  /* Keyframes for animation */
-  @keyframes intro-animation-third {
-    from {
-      grid-template-columns: 5% 60% 25% 10%;
-      grid-template-rows: 15% 35% 10% 40%;
-      --name_text_size: 38px;
-      --contacts-text-size: 30px;
-      --contacts-margin2: 5vh;
-      --contacts-font-weight 900;
-    }
-    to {
-      --contacts-margin2: 0;
-    }
+  .animate-pong-zoom {
+    grid-template-columns: 5% 5% 15% 75%;
+    grid-template-rows: 5% 10% 80% 5%;
+    --font-size: 5px;
+    --name_text_size: 20px;
+    --contacts-text-size: 10px;
+    --name-padding: 15vh;
   }
