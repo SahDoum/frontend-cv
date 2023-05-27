@@ -1,24 +1,32 @@
-!function(e,t){
-
-//import Vue from "vue";
-//Vue.component("image-loader", () => import("./components/ImageLoade.vue"));
-
-Vue.component("image-loader", {
-  template: `
+<template>
   <div class="image-canvas-container">
     <img v-if="bitmap!==null" ref="bitmap" :src=bitmap>
-    <canvas ref="canvas" style="position: relative; width:100%; height: 100%;"></canvas>
+    <canvas ref="canvas"></canvas>
     <img
       ref="image"
       :src="imageSrc"
       alt="Image"
       class="img-main"
-      style="position: relative; width:100%; height: 100%; display: none"
-      
     />
   </div>
-`,
-  
+</template>
+
+<style scoped>
+  img {
+    position: relative; 
+    width:100%; 
+    height: 100%; 
+    display: none;
+  }
+  canvas {
+     position: relative; 
+     width:100%; 
+     height: 100%;
+  }
+</style>
+
+<script>
+export default {
   props: {
     src: {},
     bitmap: {
@@ -26,12 +34,16 @@ Vue.component("image-loader", {
     }, 
   },
   data: function() {
+    console.log("data")
     return {
       imageSrc: this.src,
       isLoading: false,
+      canvas: null,
     };
   },
   mounted: function() {
+
+    console.log("mounted")
     const options = {
       root: null,
       rootMargin: '0px',
@@ -41,28 +53,17 @@ Vue.component("image-loader", {
     this.canvas = document.createElement("canvas");
     this.ctx = this.canvas.getContext("2d");
 
-
     let f = this.drawCanvas;
     this.$refs.image.onload = function() {
       f(41);
     }
-
-    // const observer = new IntersectionObserver(this.handleIntersection, options);
-    // observer.observe(this.$refs.image);
   },
   methods: {
-    // handleIntersection: function(entries) {
-    //   const entry = entries[0];
-    //   if (entry.isIntersecting) {
-    //     this.startLoader();
-    //   }
-    // },
-
     startLoader: async function() {
       // this.$refs.bitmap.style.display = "none";
       this.$refs.canvas.style.display = "block";
 
-      for (j = 41; j > 0; j-=4) {
+      for (var j = 41; j > 0; j-=4) {
         this.drawCanvas(j);
         // return;
         await new Promise(r => setTimeout(r, 20));
@@ -78,7 +79,6 @@ Vue.component("image-loader", {
 
       this.$refs.canvas.style.display = "block";
       this.$refs.image.style.display = "none";
-
     },
 
     drawCanvas(rate) {
@@ -90,7 +90,6 @@ Vue.component("image-loader", {
 
       intermediateCanvas.width = image.width/rate;
       intermediateCanvas.height = image.height/rate;
-
       intermediateCtx.clearRect(0, 0, intermediateCanvas.width, intermediateCanvas.height);
 
       intermediateCtx.imageSmoothingEnabled = !1;
@@ -107,19 +106,5 @@ Vue.component("image-loader", {
 
     },
   },
-});
-
-
-// Export the library
-if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
-  module.exports = Vue;
-} else {
-  if (typeof define === 'function' && define.amd) {
-    define([], function() {
-      return Vue;
-    });
-  } else {
-    t.Vue = Vue;
-  }
-}
-}(window, window);
+};
+</script>

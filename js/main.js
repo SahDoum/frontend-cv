@@ -3,7 +3,6 @@
   var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
 
   function onResize() {
-    console.log("ONRES")
     var width = innerWidth
     var height = innerHeight
     charWidth = 10
@@ -22,10 +21,6 @@
     //   var fontSize = Math.floor(charWidth / 0.6 - 0.3)
     // }
     var letterSpacing = (charWidth / 0.6 - fontSize) * 0.6
-
-    console.log(height)
-    console.log(rows)
-    console.log(lineHeightPx)
 
     var animationTimings = {
       IntroF: 0.9,
