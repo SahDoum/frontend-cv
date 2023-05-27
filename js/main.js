@@ -23,9 +23,7 @@
     var letterSpacing = (charWidth / 0.6 - fontSize) * 0.6
 
     var animationTimings = {
-      IntroF: 0.9,
-      IntroS: 0.5,
-      IntroT: 0.3,
+      main: 0.6,
     }
 
     html.style = `

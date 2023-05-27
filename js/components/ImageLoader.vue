@@ -34,25 +34,15 @@ export default {
     }, 
   },
   data: function() {
-    console.log("data")
+    let canvas = document.createElement("canvas");
     return {
       imageSrc: this.src,
       isLoading: false,
-      canvas: null,
+      canvas: canvas,
+      ctx: canvas.getContext("2d"),
     };
   },
   mounted: function() {
-
-    console.log("mounted")
-    const options = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0,
-    };
-
-    this.canvas = document.createElement("canvas");
-    this.ctx = this.canvas.getContext("2d");
-
     let f = this.drawCanvas;
     this.$refs.image.onload = function() {
       f(41);
@@ -90,8 +80,8 @@ export default {
 
       intermediateCanvas.width = image.width/rate;
       intermediateCanvas.height = image.height/rate;
-      intermediateCtx.clearRect(0, 0, intermediateCanvas.width, intermediateCanvas.height);
 
+      intermediateCtx.clearRect(0, 0, intermediateCanvas.width, intermediateCanvas.height);
       intermediateCtx.imageSmoothingEnabled = !1;
       intermediateCtx.webkitImageSmoothingEnabled = !1;
       intermediateCtx.drawImage(image, 0,0, image.width/rate, image.height/rate);

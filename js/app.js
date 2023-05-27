@@ -42,11 +42,11 @@ var app = Vue.createApp({
       status = 1;
       var gridContainer = this.$refs.gridContainer;
       gridContainer.classList.add('animate-intro-first');
-      await new Promise(r => setTimeout(r, _animationTimings["IntroF"]*1000+500));
+      await new Promise(r => setTimeout(r, _animationTimings["main"]*1000+500));
       gridContainer.classList.add('animate-intro-second');
-      await new Promise(r => setTimeout(r, _animationTimings["IntroS"]*1000+1000));
+      await new Promise(r => setTimeout(r, _animationTimings["main"]*1000+1000));
       gridContainer.classList.add('animate-intro-third');
-      await new Promise(r => setTimeout(r, _animationTimings["IntroT"]*1000+500));
+      await new Promise(r => setTimeout(r, _animationTimings["main"]*1000+500));
       
       this.$refs.profile_img.startLoader();
     },

@@ -111,10 +111,10 @@ function createParticles() {
             //  sA*sB -sA*cB cA
 
     var light = lightCalc(position[0], position[1]);
-    for(var j=0;j<6.28*torus_mul;j+=0.01) { // j <=> theta
+    for(var j=0;j<6.28*torus_mul;j+=0.03) { // j <=> theta
       var cp=Math.cos(j),sp=Math.sin(j);
       var prerow = [cp*cB+sp*c3, cp*sB-sp*c4, sp*cA];
-      for(i=0;i<6.28*5/5;i+=0.01) {   // i <=> phi
+      for(i=0;i<6.28*5/5;i+=0.03) {   // i <=> phi
         var st=Math.sin(i),ct=Math.cos(i);
 
             // var prematrix = [prerow, [-cA*sB*st, cA*cB*st, sA*st]];

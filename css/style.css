@@ -36,7 +36,7 @@ body {
   letter-spacing: var(--letter-spacing);
   padding: 0;
   margin: 0;
-  font-family: var(--font-family-serif);
+  font-family: var(--font-family-monospace);
 }
 
 .unselectable {
