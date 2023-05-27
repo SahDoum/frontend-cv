@@ -71,7 +71,7 @@
                 </div>
                 <div class="grid-item cell-11">
                     <div class="scoreboard" ref="scoreboard">
-
+                        Placeholder for Scoreboard
                     </div>
                 </div>
                 <div class="grid-item cell-12" @mousedown="zoomPong">Вот тут игрушка будет. В следующем релизе</div>
@@ -155,6 +155,11 @@
         </div>
     </div>
 
+    <div id="third" class="container pong-container-hide" @mouseup="startPong" @mousemove="e => pongStart && movePong(e)">
+        <pong ref="pong" id="pong"></pong>
+    </div>
+
+
 </div>
 
     <script src="js/torus.js"></script>
@@ -183,6 +188,9 @@
         const { loadModule } = window['vue3-sfc-loader'];
         app.component("image-loader", 
             Vue.defineAsyncComponent( () => loadModule("./js/components/ImageLoader.vue", options) ) 
+            );
+        app.component("pong", 
+            Vue.defineAsyncComponent( () => loadModule("./js/components/Pong.vue", options) ) 
             );
 
         app.mount("#app");

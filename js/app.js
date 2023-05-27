@@ -6,12 +6,24 @@ var app = Vue.createApp({
     return {
       status: 0, // 0 -- torus, 1 -- cv, 2 -- pong
       torusAnim: true,
+      pongStart: false,
     }
   },
   mounted() {
-    //this.$refs.d.$emit("mousemove", this.torusMove);
   },
   methods: {
+    startPong: function(event) {
+      this.pongStart = true;
+      this.$refs.pong.start();
+    },
+
+    movePong: function(event) {
+      var rect = document.getElementById('canvas').getBoundingClientRect()
+      var x = event.clientX - rect.left;
+      var y = event.clientY - rect.top;
+      this.$refs.pong.move(x, y);
+    },
+
     torusClick: async function(event) {
       if (!torus_click()) {
         this.torusAnim = false;
@@ -49,9 +61,21 @@ var app = Vue.createApp({
       await new Promise(r => setTimeout(r, _animationTimings["IntroT"]*1000+500));
       scoreboard.classList.add('visible');
 
+      await new Promise(r => setTimeout(r, 1000));
+      const thirdContainer = document.getElementById("third");
+      thirdContainer.classList.remove("pong-container-hide");
+      if (thirdContainer) {
+        const scrollTop = thirdContainer.offsetTop;
+        window.scrollTo({
+          top: scrollTop,
+          behavior: "smooth",
+        });
+      }
+
+      this.startPong()
     },
 
-    slideToNextScreen: function() {
+    slideToNextScreen: async function() {
       const secondContainer = document.getElementById("second");
       if (secondContainer) {
         const scrollTop = secondContainer.offsetTop;
@@ -60,6 +84,8 @@ var app = Vue.createApp({
           behavior: "smooth",
         });
       }
+      await new Promise(r => setTimeout(r, 1500));
+      this.animateIntro();
     }
     
   }

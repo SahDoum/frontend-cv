@@ -190,3 +190,8 @@
     --contacts-text-size: 10px;
     --name-padding: 15vh;
   }
+
+.pong-container-hide {
+  height: 0 !important;
+  overflow: hidden;
+}
