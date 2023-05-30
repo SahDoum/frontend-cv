@@ -108,6 +108,20 @@
   .cell-12 {
     grid-column: 4;
     grid-row: 3;
+    flex-wrap: wrap;
+    padding: auto;  
+    align-content: center;
+    line-height: 100%;
+    cursor: help;
+  }
+
+  .cell-12 > span {
+    margin: auto;
+  }
+
+  .cell-12:hover {
+    color: var(--light-color);
+    background-color: var(--dark-color);
   }
 
   .cell-14 {
@@ -225,7 +239,7 @@
 .out-container-pong {
   display: grid;
   grid-template-columns: 2% 26% 22% 22% 26% 2%;
-  grid-template-rows: 2% 4% 24% 23% 23% 23% 1%;
+  grid-template-rows: 2% 4% 13% 14% 26% 40% 1%;
   width: 100%;
   height: 100%;
   background-color: var(--dark-color);
@@ -245,6 +259,7 @@
     grid-column: 3 / 6;
     grid-row: 2;
     background-color: var(--dark-color);
+    color: var(--light-color);
     border-bottom: 2px solid var(--light-color);
 
 }

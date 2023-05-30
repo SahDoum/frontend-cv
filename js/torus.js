@@ -2,7 +2,7 @@
 
 const point = document.getElementById('point'); // Replace 'point' with the ID of your element
 
-position = [0, 1];
+position = [0, 200];
 const pointRect = {
   left: 40*16,
   top: 24*16
@@ -10,11 +10,11 @@ const pointRect = {
 const R1 = 2.5;
 const Dist = 4.5;
 
-var cursorCoords = 5;
+var cursorCoords = Math.ceil(window._cols*2.5) - 8;
 var torus_mul = 1;
 var particles = new Set();
 var tmr1 = undefined;
-var A=1, B=1;
+var A=0.8, B=0.3;
 var pretag;
 
 var cursor_states = [
@@ -39,7 +39,7 @@ function lightCalc(x, y) {
   if (magnitude === 0) {
     return [0, 0, -1]; // To handle zero-length vectors
   }
-  const normalizedVector = [x / magnitude, y / magnitude, -1];
+  const normalizedVector = [x / magnitude, y / magnitude, -3];
   return normalizedVector;
 }
 
@@ -111,10 +111,10 @@ function createParticles() {
             //  sA*sB -sA*cB cA
 
     var light = lightCalc(position[0], position[1]);
-    for(var j=0;j<6.28*torus_mul;j+=0.03) { // j <=> theta
+    for(var j=0;j<6.28*torus_mul;j+=0.01) { // j <=> theta
       var cp=Math.cos(j),sp=Math.sin(j);
       var prerow = [cp*cB+sp*c3, cp*sB-sp*c4, sp*cA];
-      for(i=0;i<6.28*5/5;i+=0.03) {   // i <=> phi
+      for(var i=0;i<6.28*5/5;i+=0.01) {   // i <=> phi
         var st=Math.sin(i),ct=Math.cos(i);
 
             // var prematrix = [prerow, [-cA*sB*st, cA*cB*st, sA*st]];
@@ -157,6 +157,7 @@ function createParticles() {
             {
               var N=0|(8*(dot(normal, light)));
               z[o]=D;
+              N = Math.ceil(N/2.5)
               b[o]=".,^~:;!+&$#@"[N>0?(N<12?N:11):0];
               //  ".,^~:;+!&$#@" custom
               //  ".,-~:;=!*#$@" default 
