@@ -2,7 +2,27 @@
   <div class="canvas-holder">
     <canvas id="canvas" ref="canvas"></canvas>
   </div>
+
 </template>
+
+</script>
+
+<style scoped>
+
+.canvas-holder {
+  position: relative;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  align-content: center;
+}
+
+canvas {
+}
+
+</style>
 
 <script>
 
@@ -14,7 +34,7 @@ window.requestAnimFrame = (function(){
     window.oRequestAnimationFrame      || 
     window.msRequestAnimationFrame     ||  
     function( callback ){
-      return window.setTimeout(callback, 1000 / 60);
+      return window.setTimeout(callback, 1000 / 120);
     };
 })();
 
@@ -35,7 +55,7 @@ class Playground {
   }
 
   draw(ctx) {
-    ctx.fillStyle = "black";
+    ctx.fillStyle = "#ACDA54"//"#9ACD32"//"white";//"#ACE1AF";
     ctx.fillRect(0, 0, this.width, this.height);
   }
 }
@@ -46,10 +66,29 @@ class Paddle {
     this.y = y; // it's paddle center
     this.width = w;
     this.height = h;
+    this.moveDelta = 25;
   }
 
-  moveByBot(balls) {
-    this.x = balls[0].x;
+  moveByBot(balls, mainBall) {
+    var destX = mainBall.x;
+    if (mainBall.vy > 0) {
+      var curr = 10000000; // VEEEERRYYYY BIIIG
+      balls.forEach(b => {
+        if (b.vy < 0 && b.y < curr) {
+          curr = b.y;
+          destX = b.x;
+        }
+      });
+    }
+    if (destX > this.x) {
+      var delta = Math.min(destX - this.x, this.moveDelta);
+      this.x += delta;
+    }
+
+    if (destX < this.x) {
+      var delta = Math.min(this.x - destX, this.moveDelta);
+      this.x -= delta;
+    }
   }
 
   moveByMouse(x, y) {
@@ -59,19 +98,43 @@ class Paddle {
   draw(ctx) {
     ctx.fillStyle = "green";
     ctx.fillRect(this.x - this.width/2, this.y - this.height/2, this.width, this.height);
+    ctx.fillStyle = "white";
+    ctx.fillRect(this.x - this.width/2 + 1, this.y - this.height/2 + 1, this.width - 2, this.height - 2);
   }
 }
 
+
+var ball_img = new Image();
+ball_img.src = "./src/pongball.svg";
+
+var pravki_img = new Image();
+pravki_img.src = "./src/pravkiball.svg";
+
+var intr_img = new Image();
+intr_img.src = "./src/intrestingball.svg";
+
+var deadline_img = new Image();
+deadline_img.src = "./src/deadlineball.svg";
+
 class Ball {
-  constructor(x, y, vx, vy, color) {
+  constructor(x, y, vx, vy, state) {
     this.x = x;
     this.y = y;
     this.vx = vx;
     this.vy = vy;
 
-    this.r = 10;
+    this.r = 20;
 
-    this.color = color;
+    this.state = state; // 0 -- common, 1 -- pravki, 2 -- intresting free projусе, 3 -- deadline
+    if (state == 1) {
+      this.image = pravki_img;
+    } else if (state == 2) {
+      this.image = intr_img;
+    } else if (state == 3) {
+      this.image = deadline_img;
+    } else {
+      this.image = ball_img;
+    }
   }
 
   move() {
@@ -91,8 +154,10 @@ class Ball {
   }
 
   collideWithWalls(playground) {
-    if (this.y < 0 || this.y > playground.height)
-      return true;
+    if (this.y < 0) 
+      return 2;
+    if (this.y > playground.height)
+      return 1;
     if (this.x <= this.r) {
       this.vx = -this.vx;
       this.x = this.r;
@@ -109,7 +174,6 @@ class Ball {
     var dx = Math.abs(this.x - paddle.x);
     var dy = Math.abs(this.y - paddle.y);
     if (dx <= this.r + paddle.width/2 && dy <=this.r + paddle.height/2) {
-      console.log("COLLIDE");
       this.bounce(paddle);
       return true;
     }
@@ -117,11 +181,7 @@ class Ball {
   }
 
   draw(ctx) {
-    ctx.beginPath();
-    //ctx.fillRect(this.x - this.r, 0, this.width, this.height);
-    ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
-    ctx.fillStyle = this.color;
-    ctx.fill();
+    ctx.drawImage(this.image, this.x - this.r, this.y - this.r, this.r*2, this.r*2);
 
   }
 
@@ -131,11 +191,24 @@ class Particle {
   // ToDo;
 }
 
+var events = [
+  [0, "Спасибо, что согласились на проект, Александр!"],
+  [1, "Александр, высылаю вам правки!"],
+  [1, "Очень приятно с вами работать, давайте поправим еще тут!"],
+  [2, "Санёк, дружище, мы тут сервис запускаем. Да 15 минут туда-сюда"],
+  [1, "Адександр, в сафари на айфонах полосочка белая появляется..."],
+  [1, "Александр, у вас тут критическая бага. Срочно поправьте"],
+  [2, "Санёк, сайту сохранения водонапорных башен липецкой области нужен сайт!"],
+  [2, "Здравствуйте, а что это строчка делает, вы два года назад добавили?"],
+  [3, "Адександр, завтра ДЕДЛАЙН! У вас все готово?"],
+];
+
 class Game {
-  constructor(width, height, canvas) {
+  constructor(width, height, canvas, parent) {
     this.state = 0;
-    this.canvas = canvas;
     this.loop;
+    this.canvas = canvas;
+    this.parent = parent;
 
     this.score = 0;
     this.lives = 3;
@@ -143,14 +216,15 @@ class Game {
     this.width = width;
     this.height = height;
 
-    var pw = 200;
+    var pw = 150;
     var ph = 8;
     this.playground = new Playground(width, height);
-    this.paddle = new Paddle(width/2, height - ph/2, pw, ph);
-    this.botPaddle = new Paddle(width/2, ph/2, pw, ph);
+    this.paddle = new Paddle(width/2, height - ph/2 - 4, 180, ph);
+    this.botPaddle = new Paddle(width/2, ph/2 + 4, 250, ph);
 
-    this.balls = [ new Ball(width/2, height/2, 2, 4, "green")
-      ];
+    this.balls;// = new Set();
+    this.mainBall;
+
 
     // ToDo: particles
   }
@@ -160,7 +234,19 @@ class Game {
     this.state = 1;
     this.lives = 3;
     this.score = 0;
+
+    this.event = 0;
+    this.parent.printLine(events[0][1])
+
+    this.balls = new Set();
+    this.mainBall = new Ball(this.width/2, 40, 4, 6, 0)
+    this.balls.add(this.mainBall);
     this.animloop();
+  }
+
+  restart() {
+    this.mainBall = new Ball(this.width/2, 40, 4, 8, 0);
+    this.balls = new Set([ this.mainBall]);
   }
 
   stop() {
@@ -174,44 +260,87 @@ class Game {
     this.update();
   }
 
+  // game logic here
   update() {
-    this.botPaddle.moveByBot(this.balls);
+    this.botPaddle.moveByBot(this.balls, this.mainBall);
     this.balls.forEach(ball => {
       ball.move();
 
       if(ball.collideWithPaddle(this.paddle)) {
-        this.score += 1;
+        this.updateScore(ball);
       }
       ball.collideWithPaddle(this.botPaddle);
-      if(ball.collideWithWalls(this.playground)) {
-        this.lose();
+      var collide;
+      if(collide = ball.collideWithWalls(this.playground)) {
+        if (collide == 1)
+          this.lose(ball);
+        if (collide == 2)
+          this.win(ball);
+        this.balls.delete(ball);
         return;
       }
     });
   }
 
-  lose() {
-    this.lives -= 1;
-    console.log(this.lives)
-    if(this.lives < 0)
-      this.gameOver();
-    this.restart();
+  updateScore(ball) {
+    this.score += 1;
+
+    // increase speed
+    if(this.score % 7 == 3) {
+      if(Math.abs(this.mainBall.vx) < 15) {
+        this.mainBall.vx += (this.mainBall.vx < 0) ? -1 : 1;
+        this.mainBall.vy += (this.mainBall.vy < 0) ? -2 : 2;
+      }
+    }
+
+    if(this.score % 6 == 2) {
+      this.event += 1;
+      if (this.event >= events.length) {
+        this.gameWon();
+        return;
+      }
+      var ballType = events[this.event][0];
+      var message = events[this.event][1];
+      this.balls.add(new Ball(this.width/2, 40, 2, 4, ballType))
+      this.parent.printLine(message)
+    }
   }
 
-  restart() {
-    this.balls = [ new Ball(this.width/2, this.height/2, 4, 8, "green")
-    ];
+  lose(ball) {
+    if (ball.state == 0) this.lives -= 1;
+    if (ball.state == 1) this.lives -= 1;
+    if (ball.state == 3) this.lives -= 2;
+    if(this.lives < 0)
+      this.gameOver();
+
+    if (ball.state == 0) this.restart();
+  }
+
+  win(ball) {
+    if (ball.state == 0) this.restart();
   }
 
   gameOver() {
     this.stop();
 
     var ctx = this.canvas.getContext("2d");
-    ctx.fillStlye = "red";
-    ctx.font = "16px Arial, sans-serif";
+    ctx.textStlye = "red";
+    ctx.font = "32px Roboto Mono, monospace";
     ctx.textAlign = "center";
     ctx.textBaseline = "top";
-    ctx.fillText("GAME OVER", this.width/2, this.height/2);
+    ctx.fillText("ВЫГОРАНИЕ!", this.width/2, this.height/2);
+    this.state = 0;
+  }
+
+  gameWon() {
+    this.stop();
+
+    var ctx = this.canvas.getContext("2d");
+    ctx.textStlye = "red";
+    ctx.font = "32px Roboto Mono, monospace";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "top";
+    ctx.fillText("ПРОЕКТ СДАН (можно лечить выгорание)!", this.width/2, this.height/2);
     this.state = 0;
   }
 
@@ -224,19 +353,20 @@ class Game {
       ball.draw(ctx);
     });
 
-    ctx.fillStlye = "#ff0000";
-    ctx.textStlye = "white";
     ctx.font = "32px Arial, sans-serif";
     ctx.textAlign = "left";
     ctx.textBaseline = "top";
     var mytext = "❤"
+    ctx.fillStyle = "red";
+
     ctx.fillText(mytext.repeat(this.lives), this.width - 100, 20);
 
 
-    ctx.fillStlye = "white";
     ctx.font = "16px Arial, sans-serif";
     ctx.textAlign = "left";
     ctx.textBaseline = "top";
+    ctx.fillStyle = "black";
+
     ctx.fillText("Score: " + this.score, 20, 20 );
   }
 
@@ -250,24 +380,21 @@ class Game {
 export default {
   props: {
     width: {
-      default: 900
+      default: window.innerWidth*0.7,
     },
     height: {
-      default: window.innerHeight
+      default: window.innerHeight*0.93,
     },
   },
   data: function() {
     return {
-      width: this.width,
-      height: this.height,
+      pongLineHandler: null,
     }
   },
   mounted: function() {
-    //this.$refs.canvas
-    console.log(this.width, this.height);
     this.$refs.canvas.width = this.width;
     this.$refs.canvas.height = this.height;
-    this.game = new Game(this.width, this.height, this.$refs.canvas);
+    this.game = new Game(this.width, this.height, this.$refs.canvas, this);
   },
   methods: {
     start() {
@@ -275,25 +402,14 @@ export default {
     },
     move(x, y) {
       this.game.mouseEvent(x, y);
+    },
+    printLine(string) {
+      if (this.pongLineHandler) {
+        this.pongLineHandler(string);
+      }
+    },
+    setPongLineHandler(handler) {
+      this.pongLineHandler = handler;
     }
   }
 };
-</script>
-
-<style scoped>
-
-.canvas-holder {
-  position: relative;
-  padding-left: 0;
-  padding-right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  align-content: center;
-  width: 900px;
-}
-
-canvas {
-}
-
-</style>

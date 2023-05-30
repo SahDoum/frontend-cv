@@ -7,6 +7,8 @@ var app = Vue.createApp({
       status: 0, // 0 -- torus, 1 -- cv, 2 -- pong
       torusAnim: true,
       pongStart: false,
+      pongLine: "",
+      pongTmr: null,
     }
   },
   mounted() {
@@ -14,7 +16,34 @@ var app = Vue.createApp({
   methods: {
     startPong: function(event) {
       this.pongStart = true;
+      this.$refs.pong.setPongLineHandler(this.printPongLine);
       this.$refs.pong.start();
+    },
+
+    printPongLine: function(string) {
+      var tmr = this.pongTmr;
+      var self = this;
+      if (tmr) clearInterval(tmr);
+
+      var word_write = function() {
+        if (self.pongLine.length == string.length) {
+          clearInterval(tmr);
+          return;
+        }
+        self.pongLine = string.substr(0, self.pongLine.length + 1);
+      }
+
+      var word_erase = function() {
+        if (self.pongLine.length == 0) {
+          clearInterval(tmr);
+          tmr = setInterval(word_write, 30);
+          return;
+        }
+        self.pongLine = self.pongLine.slice(0, -1);
+      }
+
+      tmr = setInterval(word_erase, 20);
+
     },
 
     movePong: function(event) {
@@ -37,7 +66,7 @@ var app = Vue.createApp({
       updateCursor(event);
     },
 
-    animateIntro: async function(event) {
+    animateIntro: async function(event) {      
       if (status != 0) return;
       status = 1;
       var gridContainer = this.$refs.gridContainer;
@@ -53,17 +82,17 @@ var app = Vue.createApp({
 
     zoomPong: async function(event) {
       if (status != 1) return;
-      console.log("zoomPong");
-      var gridContainer = this.$refs.gridContainer;
-      var scoreboard = this.$refs.scoreboard;
-      gridContainer.classList.add('animate-pong-zoom');
-      this.$refs.profile_img.revertLoader();
-      await new Promise(r => setTimeout(r, _animationTimings["IntroT"]*1000+500));
-      scoreboard.classList.add('visible');
+      // console.log("zoomPong");
+      // var gridContainer = this.$refs.gridContainer;
+      // var scoreboard = this.$refs.scoreboard;
+      // gridContainer.classList.add('animate-pong-zoom');
+      // this.$refs.profile_img.revertLoader();
+      // await new Promise(r => setTimeout(r, _animationTimings["IntroT"]*1000+500));
+      // scoreboard.classList.add('visible');
 
-      await new Promise(r => setTimeout(r, 1000));
+      // await new Promise(r => setTimeout(r, 1500));
       const thirdContainer = document.getElementById("third");
-      thirdContainer.classList.remove("pong-container-hide");
+      thirdContainer.classList.remove("pong-container-hidden");
       if (thirdContainer) {
         const scrollTop = thirdContainer.offsetTop;
         window.scrollTo({
@@ -84,7 +113,7 @@ var app = Vue.createApp({
           behavior: "smooth",
         });
       }
-      await new Promise(r => setTimeout(r, 1500));
+      await new Promise(r => setTimeout(r, 750));
       this.animateIntro();
     }
     
