@@ -30,31 +30,49 @@
             @mousedown="e => torusAnim && torusClick(e)" 
             @mousemove="e => torusAnim && torusMove(e)">                                                               
                                                                                    
-                                                                             
-                                                                                   
-                                                                                   
-                          $$$@@@@@@@@@@$$                                          
-                        ##$$$$$$$$@@@@@@@@@@$$$                                    
-                       **#####$$$$$$$$$$$@$$$@$$$$$$#                              
-                      =!!*****######$$$$$$$$$$$$$$$$$$$$#                          
-                      =!=!!********##########$$$$$$$$$$$$$##                       
-                      :;;==!!=*!*********#####################*                    
-                       ~::;;======!!!!!!************##*#####****                   
-                        ,-~:::;;======!!!!!!!!!*!*!!************!                  
-                         ..,-~~::::;;;;;=======!!!!!!!!!!!!!!!!!!=                 
-                            ...,--~~~~:::;;;;;==;================;                 
-                               ....,,--~-~~::::::;;:;;;;;;;;;;;;;:                 
-                                   ......,-----~~~~~::~::::::::~~                  
-                                        ........,,,-,---------,.                   
-                                              ................                     
-                                                                                   
-                                                                                   
-                                                                                   
+                                                                                                                                               
+                                                                                                                                               
+                                                                CLICK(4)                                                                       
+                                                                                                                                               
+                                                                                                                                               
+                                                                                                                                               
+                                                                                                                                               
+                                                                                                                                               
+                                                                                                                                               
+                                                                                                                                               
+                                                                                                                                               
+                                                        ,^^^~~:::;;;;;;;::^.                                                                   
+                                                   ^^~~~~::::;;!!++&&&&&&&&++!;:^                                                              
+                                                ^~~~~~~~:::::;!!+&&&$$######$&&+!!;~,                                                          
+                                              ~:::~~~~~~~~~:::;!+&&$###@@@####$&&+!;;:~                                                        
+                                            ::::::~~~^^^^^^^^~:!+&&$#@@@@@@@##$&&+!!;;::~^                                                     
+                                           :::::::~~^^^^,,.,,,:;!+&$###@@@@@##$&+!!;;:::::~^                                                   
+                                          ;;;:::::~~^^,,......^:;;      !&$$$$&&;:::~~~~~~~~~                                                  
+                                         !!;;;::::~~^^,.......,             ;!!!~^^^^^^^^^~~~~~                                                
+                                        !!!!;;;:::~~^^,,......                 ~.......,,^^^~~::                                               
+                                        !!!!!;;;:::~~^^,.......                 ........,,^^~~:::                                              
+                                       +++!!!!;;;:::~~^^,,........              .........,,^~~:::                                              
+                                       +++++!!!!;;;:::~~^^,,.........         ...........^^^~~::;;                                             
+                                       &&&++++!!!!;;::::~~^^,,..........................,^^~~::;;!                                             
+                                       &&&&&&+++!!!!;;;:::~~^^^,,,....................,^^^~~::;;!!                                             
+                                        &&&&&&&+++!!!!!;;::::~~~^^^^,,,,........,,,,^^^^~~:::;!!!+                                             
+                                        $$$&&&&&&++++!!!!!;;;:::::~~~~^^^^^^^^^^^^^~~~::::;;!!!+++                                             
+                                         $$$$$&&&&&&++++!!!!!!;;;;::::::::~~~~:::::::::;;;!!!+++&&                                             
+                                         $$$$$$$$$&&&&&&++++!!!!!!!;;;;;;;;;;;;;;;;;;!!!!!!++&&&&                                              
+                                          ####$#$$$$$&&&&&&&++++++!!!!!!!!!!!!!!!!!!!!++++&&&&&&&                                              
+                                           #######$$$$$$$$&&&&&&&&&++++++++++++++++++&&&&&&&$&$$                                               
+                                             ###########$$$$$$$&&&&&&&&&&&&&&&&&&&&&&&&$$$&$$$#                                                
+                                               ################$$$$$$$$$$$$$$$$$$$$$$$$$$$$##                                                  
+                                                 @@@########################$#######$$######                                                   
+                                                   @@@@@@################################                                                      
+                                                      @@@@@@@@@@@@###############@@@@@@                                                        
+                                                          @@@@@@@@@@@@@@@@@@@@@@@@@                                                            
+                                                                  @@@@@@@@@                                                                                                                                       
         </pre>
     </div>
     <div id="second" class="container" >
-        <div class="out-container">
-            <div class="grid-container" @mousedown="animateIntro" ref="gridContainer">
+        <div class="out-container-cv">
+            <div class="grid-container-cv" @mousedown="animateIntro" ref="gridContainer">
                 <div class="grid-item cell-1"><span>&nbsp;Aleksandr<br> &nbsp;Dumarevskii</span></div>
                 <div class="grid-item cell-6">
                     Привет, хочу работать. <br>
@@ -154,9 +172,43 @@
 
         </div>
     </div>
-
-    <div id="third" class="container pong-container-hide" @mouseup="startPong" @mousemove="e => pongStart && movePong(e)">
-        <pong ref="pong" id="pong"></pong>
+    <div id="third" class="container pong-container-hidden" >
+        <div class="out-container-pong">
+            <div class="grid-item pong-cell">
+                <pong ref="pong" id="pong" @mouseup="startPong" @mousemove="e => pongStart && movePong(e)">
+                </pong>
+            </div>
+            <div class="grid-item control-cell"></div>
+            <div class="grid-item event-cell"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+            <div class="grid-item"></div>
+        </div>
     </div>
 
 
