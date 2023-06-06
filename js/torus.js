@@ -8,7 +8,7 @@ const pointRect = {
   top: 24*16
 };
 const R1 = 2.5;
-const Dist = 4.5;
+var Dist = 4.5;
 
 var cursorCoords = Math.ceil(window._cols*2.5) - 8;
 var torus_mul = 1;
@@ -19,12 +19,12 @@ var pretag;
 
 var cursor_states = [
   [0, "CLICK LAST TIME!"],
-  [0.1, "YEAH, GREAT, COOL, YOU ARE THE BEST <3"],
-  [0.66, "NOT LIKE THIS!"],
-  [0.33, "OOOPS... TRY AGAIN"],
-  [0.25, "CLICK(ONE MORE!)"],
-  [0.5, "CLICK(2)"],
-  [0.75, "CLICK(3)"],
+  [0.75, "YEAH, GREAT, COOL, YOU ARE THE BEST <3", 4.5],
+  [1, "NOT LIKE THIS!", 10],
+  [1, "OOOPS... TRY AGAIN"],
+  [0.1, "CLICK(ONE MORE!)"],
+  [0.33, "CLICK(2)"],
+  [0.66, "CLICK(3)"],
   [1, "CLICK(4)"],
 ];
 
@@ -70,6 +70,9 @@ function createParticles() {
       return false;
     }
     torus_mul = cursor_states[cursor_state][0];
+    if (cursor_states[cursor_state].length > 2) {
+      Dist = cursor_states[cursor_state][2];
+    }
     updateCursor({clientX: position[0] + pointRect.left, clientY: position[1] + pointRect.top});
     for (var i = 0; i < 40; i++)
       particles.add(createParticles());

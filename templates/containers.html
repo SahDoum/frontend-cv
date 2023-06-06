@@ -33,7 +33,7 @@
     --myBack: cubic-bezier(.87,0,.18,1.4);
     --myTest: cubic-bezier(.33,0,1,.66);
 
-    --myTransition: var(--myEase);//var(--myEaseInOut);
+    --myTransition: var(--easeInOutCubic);//var(--myEaseInOut);
     --myTime: 0.66s;
     --myFamily: 'Redaction 20';
 
@@ -158,12 +158,12 @@
 
 
 .first-step > .grid-container {
-    grid-template-columns: 98% 1% auto;
+    grid-template-columns: 94% 3% auto;
     grid-template-rows: min-content auto 3% 3%;
 }
 
 .first-step > .grid-container > .name-item {
-  font-size: 15.7vw;
+  font-size: 15.2vw;
   line-height: 12vw;
   padding-right: 0;
 }
@@ -176,29 +176,26 @@
 .first-step > .grid-container > .image-item > img {
     height: 10vh;
     width: 2vw;
-
 }
 
 .second-step > .grid-container {
   grid-template-columns: 94% 3% auto;
   grid-template-rows: min-content auto 15% 35%; //10vh auto 15% 35%;
   transition: all var(--myTime) var(--myTransition);
-
-
 }
 
 .second-step > .grid-container > .name-item {
-  font-size: 10vh;
-  line-height: 9vh;
+  font-size: 9vh;
+  line-height: 8vh;
   
-  padding-right: calc(94vw - 67vh); // cell width - text width
+  padding-right: calc(94vw - 60vh); // cell width - text width
   overflow: visible;
   
   z-index: 1;
 }
 
 .second-step > .grid-container > .name-item > p {
-  max-height: 8.5vh;
+  max-height: 7.5vh;
 }
 
 .second-step > .grid-container > .contact-item > div {
@@ -248,7 +245,7 @@
 <div class="container">
 
   <div class="grid-container">
-    <div class="grid-item name-item"><p>ALEXANDRDUMAREVSKIY</p></div>
+    <div class="grid-item name-item"><p>ALEXANDR&nbsp;&nbsp;DUMAREVSKIY</p></div>
     <div class="grid-item contact-item">
       <div>
         tg: @achekhonte<br>ig:&nbsp;@sahdoum
@@ -279,35 +276,48 @@
   <script>
     // JavaScript code to trigger the animation on mouse click
     const gridContainer = document.querySelector('.container');
+    const nameItem = document.querySelector('.name-item');
+    const contactItem = document.querySelector('.contact-item');
 
 
     gridContainer.addEventListener('click', async () => {
 
       document.documentElement.style.setProperty('--myTime', '1s');
       gridContainer.classList.add('first-step');
-      await new Promise(r => setTimeout(r, 1000/4));
 
-      document.body.style.fontFamily = "'Redaction 35',sans-serif";
-      await new Promise(r => setTimeout(r, 1000/4));
+      await new Promise(r => setTimeout(r, 200));
+      nameItem.style.fontFamily = "'Redaction 35',sans-serif";
+      await new Promise(r => setTimeout(r, 200));
+      nameItem.style.fontFamily = "'Redaction 20',sans-serif";
+      await new Promise(r => setTimeout(r, 200));
+      nameItem.style.fontFamily = "'Redaction 10',sans-serif";
+      await new Promise(r => setTimeout(r, 200));
+      nameItem.style.fontFamily = "'Redaction',sans-serif";
+      await new Promise(r => setTimeout(r, 200));
 
-      document.body.style.fontFamily = "'Redaction 20',sans-serif";
-      await new Promise(r => setTimeout(r, 1000/4*2 + 300));
 
-      // document.documentElement.style.setProperty('--myTransition', 'var(--myEaseOut)');
+      await new Promise(r => setTimeout(r, 350));
       document.documentElement.style.setProperty('--myTime', '1s');
 
       gridContainer.classList.add('second-step');
-      await new Promise(r => setTimeout(r, 1000/4));
-      document.body.style.fontFamily = "'Redaction 10',sans-serif";
-      await new Promise(r => setTimeout(r, 1000/4*3 + 300));
+
+      await new Promise(r => setTimeout(r, 600));
+      contactItem.style.fontFamily = "'Redaction 35',sans-serif";
+      await new Promise(r => setTimeout(r, 100));
+      contactItem.style.fontFamily = "'Redaction 20',sans-serif";
+      await new Promise(r => setTimeout(r, 100));
+      contactItem.style.fontFamily = "'Redaction 10',sans-serif";
+      await new Promise(r => setTimeout(r, 100));
+      contactItem.style.fontFamily = "'Redaction',sans-serif";
+      
+      await new Promise(r => setTimeout(r, 500));
+
 
 
 
       document.documentElement.style.setProperty('--myTransition', 'var(--myBack)');
-      document.documentElement.style.setProperty('--myTime', '1s');
       gridContainer.classList.add('third-step');
       await new Promise(r => setTimeout(r, 660 + 0));
-      document.body.style.fontFamily = "'Redaction 10',sans-serif";
       document.getElementsByTagName('body')[0].style.fontFamily = "'Redaction',sans-serif";
     });
 

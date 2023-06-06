@@ -13,10 +13,9 @@
   position: relative;
   padding-left: 0;
   padding-right: 0;
-  margin-left: auto;
-  margin-right: auto;
   display: block;
   align-content: center;
+  width: fit-content;
 }
 
 canvas {
@@ -28,7 +27,7 @@ canvas {
 
   // RequestAnimFrame: a browser API for getting smooth animations
 window.requestAnimFrame = (function(){
-  return  window.requestAnimationFrame       || 
+  return  window.requestAnimationFrame || 
     window.webkitRequestAnimationFrame || 
     window.mozRequestAnimationFrame    || 
     window.oRequestAnimationFrame      || 
@@ -39,11 +38,11 @@ window.requestAnimFrame = (function(){
 })();
 
 window.cancelRequestAnimFrame = ( function() {
-  return window.cancelAnimationFrame          ||
-    window.webkitCancelRequestAnimationFrame    ||
-    window.mozCancelRequestAnimationFrame       ||
-    window.oCancelRequestAnimationFrame     ||
-    window.msCancelRequestAnimationFrame        ||
+  return window.cancelAnimationFrame         ||
+    window.webkitCancelRequestAnimationFrame ||
+    window.mozCancelRequestAnimationFrame    ||
+    window.oCancelRequestAnimationFrame      ||
+    window.msCancelRequestAnimationFrame     ||
     clearTimeout
 } )();
 
@@ -55,7 +54,7 @@ class Playground {
   }
 
   draw(ctx) {
-    ctx.fillStyle = "#ACDA54"//"#9ACD32"//"white";//"#ACE1AF";
+    ctx.fillStyle = "white";//"#25292F";//"#ACDA54"//"#9ACD32"//"white";//"#ACE1AF";
     ctx.fillRect(0, 0, this.width, this.height);
   }
 }
@@ -219,8 +218,8 @@ class Game {
     var pw = 150;
     var ph = 8;
     this.playground = new Playground(width, height);
-    this.paddle = new Paddle(width/2, height - ph/2 - 4, 180, ph);
-    this.botPaddle = new Paddle(width/2, ph/2 + 4, 250, ph);
+    this.paddle = new Paddle(width/2, height - ph/2 - 4, 100, ph);
+    this.botPaddle = new Paddle(width/2, ph/2 + 4, 150, ph);
 
     this.balls;// = new Set();
     this.mainBall;
@@ -230,7 +229,9 @@ class Game {
   }
 
   start() {
+    console.log("HELLO")
     if (this.state == 1) return;
+
     this.state = 1;
     this.lives = 3;
     this.score = 0;
@@ -241,6 +242,8 @@ class Game {
     this.balls = new Set();
     this.mainBall = new Ball(this.width/2, 40, 4, 6, 0)
     this.balls.add(this.mainBall);
+
+    console.log("HELLO")
     this.animloop();
   }
 
@@ -284,6 +287,7 @@ class Game {
 
   updateScore(ball) {
     this.score += 1;
+    this.parent.updateScore(this.score);
 
     // increase speed
     if(this.score % 7 == 3) {
@@ -377,18 +381,23 @@ class Game {
 }
 
 
+//
+// VUE part
+//
+
 export default {
   props: {
     width: {
-      default: window.innerWidth*0.7,
+      default: window.innerHeight*0.62,
     },
     height: {
-      default: window.innerHeight*0.93,
+      default: window.innerHeight*0.94,
     },
   },
   data: function() {
     return {
       pongLineHandler: null,
+      pongScoreHandler: null,
     }
   },
   mounted: function() {
@@ -408,8 +417,17 @@ export default {
         this.pongLineHandler(string);
       }
     },
+    updateScore(score) {
+      if (this.pongScoreHandler) {
+        this.pongScoreHandler(score);
+      }
+
+    },
     setPongLineHandler(handler) {
       this.pongLineHandler = handler;
+    },
+    setPongScoreHandler(handler) {
+      this.pongScoreHandler = handler;
     }
   }
 };

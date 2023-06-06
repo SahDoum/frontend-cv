@@ -16,15 +16,7 @@
     }
 
     var fontSize = charWidth / 0.6 - 0.9
-    // if (isSafari) {
-    //   console.log("SAFARI")
-    //   var fontSize = Math.floor(charWidth / 0.6 - 0.3)
-    // }
     var letterSpacing = (charWidth / 0.6 - fontSize) * 0.6
-
-    var animationTimings = {
-      main: 0.6,
-    }
 
     html.style = `
       --cols: ${cols};
@@ -36,9 +28,6 @@
       --screen-height: ${screen.availHeight};
       --half-rows: ${Math.floor(rows / 2)};
       --vh-height: ${height * 0.01}px;
-      --animation-intro-f: ${animationTimings.IntroF}s;
-      --animation-intro-s: ${animationTimings.IntroS}s;
-      --animation-intro-t: ${animationTimings.IntroT}s;
     `
 
     window._charWidth = charWidth
@@ -46,7 +35,6 @@
     window._rows = rows
     window._cols = cols
     window._lineHeight = lineHeightPx
-    window._animationTimings = animationTimings;
   }
   if (!('ontouchstart' in window)) {
     window.addEventListener('resize', onResize)

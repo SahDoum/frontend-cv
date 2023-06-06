@@ -4,20 +4,52 @@ var app = Vue.createApp({
   el: '#app',
   data() {
     return {
-      status: 0, // 0 -- torus, 1 -- cv, 2 -- pong
+      status: 0, // 0 -- torus, 1 -- cv, 2 -- pong, 3 -- cv-slide-down
       torusAnim: true,
       pongStart: false,
       pongLine: "",
+      pongScore: 0,
       pongTmr: null,
     }
   },
   mounted() {
+
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 1.0,
+    };
+
+    const observer = new IntersectionObserver(this.handleIntersection, options);
+    observer.observe(document.querySelector("#intro"));
   },
   methods: {
+
+    handleIntersection: function(entries, observer) {
+
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          let elem = entry.target;
+
+          if (entry.isIntersecting) {
+            console.log("Intersection!");
+            this.animateIntro();
+          }
+        }
+      });
+    },
+
+    // Pong handlers 
+
     startPong: function(event) {
       this.pongStart = true;
       this.$refs.pong.setPongLineHandler(this.printPongLine);
+      this.$refs.pong.setPongScoreHandler(this.printPongScore);
       this.$refs.pong.start();
+    },
+
+    printPongScore: function(score) {
+      this.pongScore = score;
     },
 
     printPongLine: function(string) {
@@ -53,6 +85,10 @@ var app = Vue.createApp({
       this.$refs.pong.move(x, y);
     },
 
+    // End pong handlers
+
+    // Torus handlers
+
     torusClick: async function(event) {
       if (!torus_click()) {
         this.torusAnim = false;
@@ -66,56 +102,92 @@ var app = Vue.createApp({
       updateCursor(event);
     },
 
+    // End totus handlers
+
+    // Intro animation
+
     animateIntro: async function(event) {      
       if (status != 0) return;
       status = 1;
-      var gridContainer = this.$refs.gridContainer;
-      gridContainer.classList.add('animate-intro-first');
-      await new Promise(r => setTimeout(r, _animationTimings["main"]*1000+500));
-      gridContainer.classList.add('animate-intro-second');
-      await new Promise(r => setTimeout(r, _animationTimings["main"]*1000+1000));
-      gridContainer.classList.add('animate-intro-third');
-      await new Promise(r => setTimeout(r, _animationTimings["main"]*1000+500));
+
+      const introContainer = document.querySelector('#intro');
+      const nameItem = document.querySelector('.name-item');
+      const contactItem = document.querySelector('.contact-item');
+      const howButton = document.querySelector('#how-button');
+
+      await new Promise(r => setTimeout(r, 100));
+
+      document.documentElement.style.setProperty('--myTime', '.6s');
+      introContainer.classList.add('first-step');
+
+      // update font
+      await new Promise(r => setTimeout(r, 350));
+      nameItem.style.fontFamily = "'Redaction 35',sans-serif";
+      await new Promise(r => setTimeout(r, 50));
+      nameItem.style.fontFamily = "'Redaction 20',sans-serif";
+      await new Promise(r => setTimeout(r, 50));
+      nameItem.style.fontFamily = "'Redaction 10',sans-serif";
+      await new Promise(r => setTimeout(r, 50));
+      nameItem.style.fontFamily = "'Redaction',sans-serif";
+      await new Promise(r => setTimeout(r, 200));
+
+      //document.documentElement.style.setProperty('--myTime', '.65s');
+      //document.documentElement.style.setProperty('--myTransition', 'var(--myEaseOut)');
+
+
+      // update font
+
+      introContainer.classList.add('second-step');
+      await new Promise(r => setTimeout(r, 350));
+      contactItem.style.fontFamily = "'Redaction 35',sans-serif";
+      await new Promise(r => setTimeout(r, 50));
+      contactItem.style.fontFamily = "'Redaction 20',sans-serif";
+      await new Promise(r => setTimeout(r, 50));
+      contactItem.style.fontFamily = "'Redaction 10',sans-serif";
+      await new Promise(r => setTimeout(r, 50));
+      contactItem.style.fontFamily = "'Redaction',sans-serif";
+      await new Promise(r => setTimeout(r, 150));
+
+      // document.documentElement.style.setProperty('--myTransition', 'var(--myBack)');
+      introContainer.classList.add('third-step');
+      await new Promise(r => setTimeout(r, 400));
+      howButton.classList.remove('hidden');
+      await new Promise(r => setTimeout(r, 200));
       
       this.$refs.profile_img.startLoader();
+      //await new Promise(r => setTimeout(r, 150));
+      // await new Promise(r => setTimeout(r, 300));
     },
 
-    zoomPong: async function(event) {
-      if (status != 1) return;
-      // console.log("zoomPong");
-      // var gridContainer = this.$refs.gridContainer;
-      // var scoreboard = this.$refs.scoreboard;
-      // gridContainer.classList.add('animate-pong-zoom');
-      // this.$refs.profile_img.revertLoader();
-      // await new Promise(r => setTimeout(r, _animationTimings["IntroT"]*1000+500));
-      // scoreboard.classList.add('visible');
-
-      // await new Promise(r => setTimeout(r, 1500));
-      const thirdContainer = document.getElementById("third");
-      thirdContainer.classList.remove("pong-container-hidden");
-      if (thirdContainer) {
-        const scrollTop = thirdContainer.offsetTop;
-        window.scrollTo({
-          top: scrollTop,
-          behavior: "smooth",
-        });
-      }
-
-      this.startPong()
-    },
+    // End intro animation
 
     slideToNextScreen: async function() {
-      const secondContainer = document.getElementById("second");
-      if (secondContainer) {
-        const scrollTop = secondContainer.offsetTop;
+      const secondLine = document.getElementById("second-line");
+      if (secondLine) {
+        const scrollTop = secondLine.offsetTop;
         window.scrollTo({
           top: scrollTop,
           behavior: "smooth",
         });
       }
-      await new Promise(r => setTimeout(r, 750));
-      this.animateIntro();
-    }
+    },
+
+
+    skipAnimation: async function() {
+
+    },
+
+    startTransit: async function() {
+
+    },
+
+    slideToPong: async function() {
+      const row = document.querySelector(".containers-row");
+      const pong = document.getElementById("pong-container");
+      row.classList.add("show-pong");
+      pong.scrollIntoView({ behavior: "smooth",});
+      this.startPong();
+    },
     
   }
 });

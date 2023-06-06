@@ -18,199 +18,55 @@
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/containers.css">
+    <link rel="stylesheet" href="css/intro.css">
 
     <script src="js/main.js"></script>
 
 </head>
 <body>
 <div id="app">
-    <div class="container">
-        <div id="point"></div>
+    <div id="torus" class="container">
         <pre id="d" ref="d" class="unselectable" 
             @mousedown="e => torusAnim && torusClick(e)" 
-            @mousemove="e => torusAnim && torusMove(e)">                                                               
-                                                                                   
-                                                                                                                                               
-                                                                                                                                               
-                                                                CLICK(4)                                                                       
-                                                                                                                                               
-                                                                                                                                               
-                                                                                                                                               
-                                                                                                                                               
-                                                                                                                                               
-                                                                                                                                               
-                                                                                                                                               
-                                                                                                                                               
-                                                        ,^^^~~:::;;;;;;;::^.                                                                   
-                                                   ^^~~~~::::;;!!++&&&&&&&&++!;:^                                                              
-                                                ^~~~~~~~:::::;!!+&&&$$######$&&+!!;~,                                                          
-                                              ~:::~~~~~~~~~:::;!+&&$###@@@####$&&+!;;:~                                                        
-                                            ::::::~~~^^^^^^^^~:!+&&$#@@@@@@@##$&&+!!;;::~^                                                     
-                                           :::::::~~^^^^,,.,,,:;!+&$###@@@@@##$&+!!;;:::::~^                                                   
-                                          ;;;:::::~~^^,,......^:;;      !&$$$$&&;:::~~~~~~~~~                                                  
-                                         !!;;;::::~~^^,.......,             ;!!!~^^^^^^^^^~~~~~                                                
-                                        !!!!;;;:::~~^^,,......                 ~.......,,^^^~~::                                               
-                                        !!!!!;;;:::~~^^,.......                 ........,,^^~~:::                                              
-                                       +++!!!!;;;:::~~^^,,........              .........,,^~~:::                                              
-                                       +++++!!!!;;;:::~~^^,,.........         ...........^^^~~::;;                                             
-                                       &&&++++!!!!;;::::~~^^,,..........................,^^~~::;;!                                             
-                                       &&&&&&+++!!!!;;;:::~~^^^,,,....................,^^^~~::;;!!                                             
-                                        &&&&&&&+++!!!!!;;::::~~~^^^^,,,,........,,,,^^^^~~:::;!!!+                                             
-                                        $$$&&&&&&++++!!!!!;;;:::::~~~~^^^^^^^^^^^^^~~~::::;;!!!+++                                             
-                                         $$$$$&&&&&&++++!!!!!!;;;;::::::::~~~~:::::::::;;;!!!+++&&                                             
-                                         $$$$$$$$$&&&&&&++++!!!!!!!;;;;;;;;;;;;;;;;;;!!!!!!++&&&&                                              
-                                          ####$#$$$$$&&&&&&&++++++!!!!!!!!!!!!!!!!!!!!++++&&&&&&&                                              
-                                           #######$$$$$$$$&&&&&&&&&++++++++++++++++++&&&&&&&$&$$                                               
-                                             ###########$$$$$$$&&&&&&&&&&&&&&&&&&&&&&&&$$$&$$$#                                                
-                                               ################$$$$$$$$$$$$$$$$$$$$$$$$$$$$##                                                  
-                                                 @@@########################$#######$$######                                                   
-                                                   @@@@@@################################                                                      
-                                                      @@@@@@@@@@@@###############@@@@@@                                                        
-                                                          @@@@@@@@@@@@@@@@@@@@@@@@@                                                            
-                                                                  @@@@@@@@@                                                                                                                                       
+            @mousemove="e => torusAnim && torusMove(e)">
         </pre>
     </div>
-    <div id="second" class="container" >
-        <div class="out-container-cv">
-            <div class="grid-container-cv" @mousedown="animateIntro" ref="gridContainer">
-                <div class="grid-item cell-1"><span>&nbsp;Aleksandr<br> &nbsp;Dumarevskii</span></div>
-                <div class="grid-item cell-6">
-                    Привет, хочу работать. <br>
-                    Я умею во фронт. Могу и сайт сверстать, и любую анимацию вам сделать. Поддержку могу. <br>
-                    Могу вам бекэнды писать. Апи могу сделать. <br>
-                    Из послужного списка: я в Яндекс-поиске батрачил. Код писал, релизы выкатывал, ночью от звонков вскакивал.<br>
-                    Еще в IT-кооперативе числюсь. Для разных НКО сайты делаю. Увидите что-то социально-полезное -- возможно, я руку приложил. <br>
-                    Ну еще помаленечку -- кому бота напишу, кому карту на сайт бахну. <br>
-                    Ах да, я еще в опенсорс коммиты коммичу. 
+    <div id="second-line" class="containers-row container">
+        <div id="intro" class="container">
+            <div class="grid-container">
+                <div class="grid-item name-item"><p>ALEXANDR&nbsp;&nbsp;DUMAREVSKIY</p></div>
+                <div class="grid-item contact-item">
+                  <div>
+                    tg: @achekhonte<br>ig:&nbsp;@sahdoum<br>
+                    <div id="how-button" class="hidden" @mouseup="slideToPong">process...</div>
+                  </div>
                 </div>
-                <div class="grid-item cell-7">
-                  <image-loader ref="profile_img" src="./src/profile.jpg" class="profile-image">
-                  </image-loader>
+                <div class="grid-item image-item">
+                    <image-loader ref="profile_img" src="./src/profile2.jpg" class="profile-image">
+                    </image-loader>
                 </div>
-                <div class="grid-item cell-11">
-                    <div class="scoreboard" ref="scoreboard">
-                        Placeholder for Scoreboard
-                    </div>
-                </div>
-                <div class="grid-item cell-12" @mousedown="zoomPong">
-                    <span>Процесс</span>
-                </div>
-                <div class="grid-item cell-14">
-                  <span class="contact-tg">tg: @AChekhonte</span>
-                  <span class="contact-email">e-mail: sahdoum@gmail.com</span>
-                </div>
+
                 <div class="grid-item"></div>
                 <div class="grid-item"></div>
                 <div class="grid-item"></div>
+
                 <div class="grid-item"></div>
                 <div class="grid-item"></div>
                 <div class="grid-item"></div>
-                <div class="grid-item"></div>
+
                 <div class="grid-item"></div>
                 <div class="grid-item"></div>
                 <div class="grid-item"></div>
             </div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
+        </div>
+        <div id="pong-container" class="container">
+            <pong ref="pong" id="pong" @mouseup="startPong" @mousemove="e => pongStart && movePong(e)">
+            </pong>
+            <div id="pong-line">{{ pongLine }}</div>
+            <div id="pong-score">{{ pongScore }}</div>
 
         </div>
-    </div>
-    <div id="third" class="container pong-container-hidden" >
-        <div class="out-container-pong">
-            <div class="grid-item pong-cell">
-                <pong ref="pong" id="pong" @mouseup="startPong" @mousemove="e => pongStart && movePong(e)">
-                </pong>
-            </div>
-            <div class="grid-item control-cell"></div>
-            <div class="grid-item event-cell">{{ pongLine }}</div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-        </div>
+        
     </div>
 
 
