@@ -8,7 +8,7 @@ const pointRect = {
   top: 24*16
 };
 const R1 = 2.5;
-var Dist = 4.5;
+var Dist = 4;
 
 var cursorCoords = Math.ceil(window._cols*2.5) - 8;
 var torus_mul = 1;
@@ -35,11 +35,11 @@ function dot(a, b) {
 }
 
 function lightCalc(x, y) {
-  var magnitude = (x*x+y*y)/400; // no use of sqrt for perfomance
+  var magnitude = Math.sqrt(x*x+y*y);///3200; // no use of sqrt for perfomance
   if (magnitude === 0) {
     return [0, 0, -1]; // To handle zero-length vectors
   }
-  const normalizedVector = [x / magnitude, y / magnitude, -3];
+  const normalizedVector = [x / magnitude, y / magnitude, -1];
   return normalizedVector;
 }
 
@@ -87,8 +87,8 @@ function createParticles() {
 
     var b=[];
     var z=[];
-    A += 0.03;
-    B += 0.02;
+    A += 0.075;
+    B += 0.04;
     var cA=Math.cos(A), sA=Math.sin(A),
         cB=Math.cos(B), sB=Math.sin(B);
     for(var k=0;k<L*H;k++) {
@@ -160,7 +160,7 @@ function createParticles() {
             {
               var N=0|(8*(dot(normal, light)));
               z[o]=D;
-              N = Math.ceil(N/2.5)
+              N = Math.ceil(N)
               b[o]=".,^~:;!+&$#@"[N>0?(N<12?N:11):0];
               //  ".,^~:;+!&$#@" custom
               //  ".,-~:;=!*#$@" default 
