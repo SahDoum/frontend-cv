@@ -10,7 +10,6 @@
 
   --myTransition: cubic-bezier(1,-0.01,.03,1.33); //var(--easeInOutCubic);
   --myTime: 0.66s;
-  --myFamily: 'Redaction 20';
 }
 
 .grid-container {
@@ -38,7 +37,8 @@
   background-color: white;
   color: var(--dark-color);
   position: relative;
-
+  font-style: normal;
+  font-weight: 500;
   transition: all var(--myTime) var(--myTransition);
 }
 
@@ -128,8 +128,8 @@
 
 .image-item > .profile-image {
   position: absolute;
-  right: 1vw;
-  bottom: 1vh;
+  right: 8vw;
+  bottom: 7vh;
   z-index: 1;
 
   height: 70vh;

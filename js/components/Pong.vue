@@ -216,10 +216,10 @@ class Game {
     this.height = height;
 
     var pw = 150;
-    var ph = 8;
+    var ph = 20;
     this.playground = new Playground(width, height);
-    this.paddle = new Paddle(width/2, height - ph/2 - 4, 100, ph);
-    this.botPaddle = new Paddle(width/2, ph/2 + 4, 150, ph);
+    this.paddle = new Paddle(width/2, height - ph/2 - 10, 100, ph);
+    this.botPaddle = new Paddle(width/2, ph/2 + 10, 150, ph);
 
     this.balls;// = new Set();
     this.mainBall;
@@ -240,7 +240,7 @@ class Game {
     this.parent.printLine(events[0][1])
 
     this.balls = new Set();
-    this.mainBall = new Ball(this.width/2, 40, 4, 6, 0)
+    this.mainBall = new Ball(this.width/2, 60, 4, 6, 0)
     this.balls.add(this.mainBall);
 
     console.log("HELLO")
@@ -248,7 +248,7 @@ class Game {
   }
 
   restart() {
-    this.mainBall = new Ball(this.width/2, 40, 4, 8, 0);
+    this.mainBall = new Ball(this.width/2, 60, 4, 8, 0);
     this.balls = new Set([ this.mainBall]);
   }
 
@@ -305,7 +305,7 @@ class Game {
       }
       var ballType = events[this.event][0];
       var message = events[this.event][1];
-      this.balls.add(new Ball(this.width/2, 40, 2, 4, ballType))
+      this.balls.add(new Ball(this.width/2, 60, 2, 4, ballType))
       this.parent.printLine(message)
     }
   }
@@ -366,12 +366,12 @@ class Game {
     ctx.fillText(mytext.repeat(this.lives), this.width - 100, 20);
 
 
-    ctx.font = "16px Arial, sans-serif";
-    ctx.textAlign = "left";
-    ctx.textBaseline = "top";
-    ctx.fillStyle = "black";
+    // ctx.font = "16px Arial, sans-serif";
+    // ctx.textAlign = "left";
+    // ctx.textBaseline = "top";
+    // ctx.fillStyle = "black";
 
-    ctx.fillText("Score: " + this.score, 20, 20 );
+    // ctx.fillText("Score: " + this.score, 20, 20 );
   }
 
   mouseEvent(x, y) {

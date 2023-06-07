@@ -1,8 +1,12 @@
 :root {
+  /*
   --font-family-serif: "Georgia", serif;
   --font-family-sans-serif: Blanco,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol, Averta,Helvetica,Arial,sans-serif;
   --x: "helvetica neue", Helvetica Neue, 'Calibri', sans-serif;
+  */
   --font-family-monospace: "Roboto Mono", 'Ubuntu Mono',monospace;
+
+                                                
 
   --dark-color: #25292F;
   --light-color: #DBDCE8;
