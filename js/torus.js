@@ -1,20 +1,17 @@
-;(function () {
-
-const point = document.getElementById('point'); // Replace 'point' with the ID of your element
-
-position = [0, 200];
+let position = [0, 200];
 const pointRect = {
   left: 40*16,
   top: 24*16
 };
 const R1 = 2.5;
-var Dist = 4;
+var Dist = 5;
 
 var cursorCoords = Math.ceil(window._cols*2.5) - 8;
 var torus_mul = 1;
 var particles = new Set();
-var tmr1 = undefined;
+var animTmr = undefined;
 var A=0.8, B=0.3;
+var final = 0;
 var pretag;
 
 var cursor_states = [
@@ -53,8 +50,8 @@ function createParticles() {
       x: startX + Math.random()*30-15,
       y: startY + Math.random()*20-10,
       z: Dist + Math.random()*20-10,
-      vx: Math.random()*2-1,
-      vy: Math.random()*2-1.5,
+      vx: Math.random()*5-2.5,
+      vy: Math.random()*3-2.5,
       vz: Math.random()-0.5,
       status: 30,
       type: Math.floor(Math.random() * 10),
@@ -62,22 +59,6 @@ function createParticles() {
 
     return par;
   }
-
-  function torus_click() {
-    cursor_state-=1;
-    if (cursor_state < 0) {
-      torus_mul = 0;
-      return false;
-    }
-    torus_mul = cursor_states[cursor_state][0];
-    if (cursor_states[cursor_state].length > 2) {
-      Dist = cursor_states[cursor_state][2];
-    }
-    updateCursor({clientX: position[0] + pointRect.left, clientY: position[1] + pointRect.top});
-    for (var i = 0; i < 40; i++)
-      particles.add(createParticles());
-    return true;
-  };
 
   var asciiframe=function() {
     const L = window._cols;
@@ -87,8 +68,8 @@ function createParticles() {
 
     var b=[];
     var z=[];
-    A += 0.075;
-    B += 0.04;
+    A += 0.06;
+    B += 0.032;
     var cA=Math.cos(A), sA=Math.sin(A),
         cB=Math.cos(B), sB=Math.sin(B);
     for(var k=0;k<L*H;k++) {
@@ -161,7 +142,7 @@ function createParticles() {
               var N=0|(8*(dot(normal, light)));
               z[o]=D;
               N = Math.ceil(N)
-              b[o]=".,^~:;!+&$#@"[N>0?(N<12?N:11):0];
+              b[o]=".,-~:;=!*#$@"[N>0?(N<12?N:11):0];
               //  ".,^~:;+!&$#@" custom
               //  ".,-~:;=!*#$@" default 
               //  ".lcuovsxwmag" letters
@@ -200,27 +181,44 @@ function createParticles() {
           b[o]="cooikiekccooikiekc"[par.type];
           //b[o]="coikekecocococ"[par.type];
       }
-    } 
-    if (cursor_state >= 0)
-      b.splice(cursorCoords, cursor_states[cursor_state][1].length, cursor_states[cursor_state][1])
+    }
+
+    if (torus_mul == 0 && final < 0.45) {
+      final += 0.001;
+      var dX = Math.ceil(final*L);
+      var dY = Math.ceil(final*H);
+      for (var x = -dX; x <= dX; x++) {
+        for (var y = -dY; y <= dY; y++) {
+          var o=(x+startX)+L*(y+startY);
+          b[o]='@';
+        }
+      }
+    }
+
+    if (cursor_state >= 0) {
+      let state = cursor_states[cursor_state][1];
+      b.splice(cursorCoords, state.length, '<span style="color:#6d9cbe;">' + state + '</span>');
+      // b.splice(cursorCoords + window._cols - state.length - 2, state.length + 2, ' '.repeat(state.length + 2));
+      // b.splice(cursorCoords - window._cols - 1, state.length + 2, ' '.repeat(state.length + 2));
+      // b.splice(cursorCoords, cursor_states[cursor_state][1].length, cursor_states[cursor_state][1])
+
+      // b.splice(cursorCoords + window._cols, cursor_states[cursor_state][1].length, ' '*cursor_states[cursor_state][1].length)
+    }
     pretag.innerHTML = b.join("");
   };
 
-  anim1 = function() {
-    if(tmr1 === undefined) {
-      tmr1 = setInterval(asciiframe, 50);
-    } else {
-      clearInterval(tmr1);
-      tmr1 = undefined;
-    }
-  };
+export function startAnim() {
+  if(animTmr === undefined) {
+    animTmr = setInterval(asciiframe, 50);
+  } 
+};
 
-var _onload = function() {
+export function _onload() {
   pretag = document.getElementById('d');
-  anim1();
+  startAnim();
 }
 
-updateCursor = function(event) {
+export function updateCursor(event) {
   const mouseX = event.clientX - pointRect.left;
   const mouseY = event.clientY - pointRect.top;  
   position = [mouseX, mouseY];
@@ -232,16 +230,58 @@ updateCursor = function(event) {
   cursorCoords=x+window._cols*y;
 };
 
-// _onload();
 
-// document.addEventListener('mousemove', updateCursor);
+export function torus_click() {
+  cursor_state-=1;
+  if (cursor_state < 0) {
+    torus_mul = 0;
+    return false;
+  }
+  // torus_mul = cursor_states[cursor_state][0];
 
-window.torus_click = torus_click;
-window.anim1 = anim1;
-window.updateCursor = updateCursor;
+    const finishValue = cursor_states[cursor_state][0]; 
+    var finishDist = Dist;
+    if (cursor_states[cursor_state].length > 2) {
+      finishDist = cursor_states[cursor_state][2]; 
+    }
 
-if(document.all)
-  window.attachEvent('onload',_onload);
-else
-  window.addEventListener("load",_onload,false);
-})();
+
+    let totalSteps = 10;
+    const step = (finishValue - torus_mul) / totalSteps; 
+    const dist_step = (finishDist - Dist) / totalSteps; 
+
+    const interval = setInterval(() => {
+      torus_mul += step; 
+      Dist += dist_step;
+      // if ((step > 0 && torus_mul >= finishValue) || (step < 0 && torus_mul <= finishValue)) {
+      //   torus_mul = finishValue;
+      //   clearInterval(interval); // Stop the interval when finishValue is reached
+      // }
+
+      totalSteps--;
+
+      if (totalSteps == 1) {
+        torus_mul = finishValue;
+        Dist = finishDist; 
+        clearInterval(interval);
+      }
+
+    }, 100);
+  
+
+
+  // if (cursor_states[cursor_state].length > 2) {
+  //   Dist = cursor_states[cursor_state][2];
+  // }
+  updateCursor({clientX: position[0] + pointRect.left, clientY: position[1] + pointRect.top});
+  for (var i = 0; i < 40; i++)
+    particles.add(createParticles());
+  return true;
+};
+
+export function stopAnim() {
+    if(animTmr != undefined) {
+      clearInterval(animTmr);
+      animTmr = undefined;
+    }
+};

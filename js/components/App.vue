@@ -1,7 +1,5 @@
-;(function () {
-
-var app = Vue.createApp({
-  el: '#app',
+<script>
+export default {
   data() {
     return {
       status: 0, // 0 -- torus, 1 -- cv, 2 -- pong, 3 -- cv-slide-down
@@ -131,9 +129,6 @@ var app = Vue.createApp({
       nameItem.style.fontFamily = "'Redaction',sans-serif";
       await new Promise(r => setTimeout(r, 200));
 
-      //document.documentElement.style.setProperty('--myTime', '.65s');
-      //document.documentElement.style.setProperty('--myTransition', 'var(--myEaseOut)');
-
 
       // update font
 
@@ -155,8 +150,6 @@ var app = Vue.createApp({
       await new Promise(r => setTimeout(r, 200));
       
       this.$refs.profile_img.startLoader();
-      //await new Promise(r => setTimeout(r, 150));
-      // await new Promise(r => setTimeout(r, 300));
     },
 
     // End intro animation
@@ -172,13 +165,10 @@ var app = Vue.createApp({
       }
     },
 
-
     skipAnimation: async function() {
-
     },
 
     startTransit: async function() {
-
     },
 
     slideToPong: async function() {
@@ -189,10 +179,6 @@ var app = Vue.createApp({
       this.startPong();
     },
     
-  }
-});
-
-
-window.app = app;
-
-})()
+  },
+};
+</script>

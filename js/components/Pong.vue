@@ -2,10 +2,7 @@
   <div class="canvas-holder">
     <canvas id="canvas" ref="canvas"></canvas>
   </div>
-
 </template>
-
-</script>
 
 <style scoped>
 
@@ -104,16 +101,16 @@ class Paddle {
 
 
 var ball_img = new Image();
-ball_img.src = "./src/pongball.svg";
+ball_img.src = "./media/pongball.svg";
 
 var pravki_img = new Image();
-pravki_img.src = "./src/pravkiball.svg";
+pravki_img.src = "./media/pravkiball.svg";
 
 var intr_img = new Image();
-intr_img.src = "./src/intrestingball.svg";
+intr_img.src = "./media/intrestingball.svg";
 
 var deadline_img = new Image();
-deadline_img.src = "./src/deadlineball.svg";
+deadline_img.src = "./media/deadlineball.svg";
 
 class Ball {
   constructor(x, y, vx, vy, state) {
@@ -388,10 +385,10 @@ class Game {
 export default {
   props: {
     width: {
-      default: window.innerHeight*0.62,
+      default: window.innerHeight*0.6,
     },
     height: {
-      default: window.innerHeight*0.94,
+      default: window.innerHeight*0.9,
     },
   },
   data: function() {
@@ -431,3 +428,4 @@ export default {
     }
   }
 };
+</script>
