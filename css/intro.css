@@ -8,14 +8,14 @@
   --myBack: cubic-bezier(.87,0,.18,1.4);
   --myTest: cubic-bezier(.33,0,1,.66);
 
-  --myTransition: cubic-bezier(1,-0.01,.03,1.33); //var(--easeInOutCubic);
+  --myTransition: cubic-bezier(1,-0.1,.03,1.33); //var(--easeInOutCubic);
   --myTime: 0.66s;
 }
 
 .grid-container {
   display: grid;
-  grid-template-columns: 36% auto 32%;
-  grid-template-rows: min-content auto 16% 6%;
+  grid-template-columns: 35% 35% 30%;
+  grid-template-rows: min-content auto 20% 5%;
   width: 100%;
   height: 100%;
   grid-gap: 0.5px;
@@ -27,8 +27,8 @@
 
 @media screen and (min-width: 1280px) {
   .grid-container { 
-    grid-template-columns: 25% auto 32%;
-    grid-template-rows: min-content auto 16% 3%;
+    grid-template-columns: 25% auto 35%;
+    grid-template-rows: min-content auto 20% 5%;
   }
 }
 
@@ -45,7 +45,7 @@
 .name-item {
   grid-column: 1;
   grid-row: 1;
-  padding-top: 10px;
+  padding: 0;
   letter-spacing: -2px;
   word-wrap: break-word;
   overflow: visible;
@@ -84,8 +84,6 @@
   font-family: 'Redaction 70', sans-serif;
 
   transition: all var(--myTime) var(--myTransition);
-
-
 }
 .contact-item > div {
   margin: -1em auto;
@@ -128,14 +126,18 @@
 
 .image-item > .profile-image {
   position: absolute;
-  right: 8vw;
-  bottom: 7vh;
+  right: 6.66vw;
+  bottom: 6.66vh;
   z-index: 1;
 
   height: 70vh;
   width: 30vw;
 
   transition: all var(--myTime) var(--myTransition);
+}
+
+.third-step .name-item:hover {
+  font-family: 'Redaction 70', sans-serif !important;
 }
 
 /*
@@ -145,12 +147,12 @@
 */
 
 .first-step > .grid-container {
-    grid-template-columns: 94% 3% auto;
-    grid-template-rows: min-content auto 3% 3%;
+    grid-template-columns: 98% 1% auto;
+    grid-template-rows: min-content auto 5% 5%;
 }
 
 .first-step > .grid-container > .name-item {
-  font-size: 15.2vw;
+  font-size: 16vw;
   line-height: 12vw;
   padding-right: 0;
 }
@@ -167,13 +169,13 @@
 
 /*
 //
-// Secont animation
+// Second animation
 //
 */
 
 .second-step > .grid-container {
-  grid-template-columns: 94% 3% auto;
-  grid-template-rows: min-content auto 15% 35%; //10vh auto 15% 35%;
+  grid-template-columns: 90% 5% auto;
+  grid-template-rows: min-content auto 15% 50%; //10vh auto 15% 35%;
   transition: all var(--myTime) var(--myTransition);
 }
 
@@ -210,8 +212,8 @@
 */
 
 .third-step > .grid-container {
-    grid-template-columns: 39% auto 45vh;
-    grid-template-rows: min-content auto 6% 6%;
+    grid-template-columns: 40% auto 45vh;
+    grid-template-rows: min-content auto 5% 5%;
 }
 
 .third-step > .grid-container > .name-item {
@@ -226,12 +228,12 @@
 }
 
 .third-step > .grid-container > .contact-item > div {
-    font-size: 5.4vh;
-    line-height: 6vh;
+    font-size: 5vh;
+    line-height: 5vh;
 }
 
 
 .third-step > .grid-container > .image-item > .profile-image {
-    height: 80vmin;
-    width: 48vmin;
+    height: 90vmin;
+    width: 50vmin;
 }
