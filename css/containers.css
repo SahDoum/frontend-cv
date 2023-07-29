@@ -1,8 +1,35 @@
+:root {
+  --vh: calc(var(--vh-height, 1vh) * 100);
+}
+
+#intro-app {
+  position: relative;
+  scroll-snap-type: y;
+  overflow-y:scroll;
+  max-height: 100vh;
+
+  background-color: white;
+
+}
+
+#intro-app #space,
+#intro-app #intro,
+#intro-app #pong-container {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
 .container {
   position: relative;
-  height: 100vh;
+  min-height: var(--vh);
   width: 100%;
   min-width: 100vw;
+}
+
+@media screen and (min-width: 480px) {
+  .container {
+    height: 100vh;
+  }
 }
 
 .containers-row {
@@ -26,7 +53,7 @@
 #pong-container {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  overflow: hidden;
 
   background-color: var(--dark-color);
 }
@@ -59,14 +86,20 @@
 }
 
 #pong-score {
-  font-family: 'Redaction 20';
-  line-height: 95vh;
-  font-size: 95vh;
-  height: 95vh;
+  position: absolute;
+  bottom: 100px;
+  right: -100px;
+  text-align: center;
+  align-items: flex-end;
+
+
+  font-family: 'Redaction 10';
+  -line-height: 100vh;
+  font-size: 140vh;
+  height: 100vh;
 
   color: var(--light-color);
-  width: 100%;
-  overflow: hidden;
+  -overflow: hidden;
 }
 
 #pong-line {
@@ -88,4 +121,23 @@
 
   font-family: var(--font-family-monospace);
   font-variation-settings: "MONO" .5, "wght" 600;
+  z-index: 10;
+}
+
+.torus-container {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    min-width: 100vw;
+    z-index: 2;
+
+    overflow: hidden;
+
+}
+
+
+
+.disable-scrolling {
+  height: 100vh;
+  overflow: hidden;
 }

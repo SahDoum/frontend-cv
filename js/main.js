@@ -1,22 +1,40 @@
 ;(function () {
   var html = document.documentElement
   var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
+  var isMobile = false;
+  console.log("IS MOBILE");
+  console.log(isMobile);
+  console.log(navigator.userAgent)
+  console.log("IS SAFARI");
+  console.log(isSafari);
 
   function onResize() {
     var width = innerWidth
     var height = innerHeight
+
+    var isMobile = (width < 720);
     charWidth = 10
     charHeight = 19
     var cols = Math.floor(width / charWidth)
     var rows = Math.floor(height / charHeight)
     var lineHeightPx = height / rows
+
+    console.log(rows, lineHeightPx, height, lineHeightPx*rows)
     if (isSafari) {
       lineHeightPx = Math.floor(lineHeightPx);
       rows = Math.ceil(height / lineHeightPx)
     }
 
+    console.log(rows, lineHeightPx, height, lineHeightPx*rows)
+
     var fontSize = charWidth / 0.6 - 0.9
     var letterSpacing = (charWidth / 0.6 - fontSize) * 0.6
+
+    if (isSafari) {
+      var fontSizeRounded = Math.floor(charWidth / 0.6 - 0.3)
+      letterSpacing = (charWidth / 0.6 - fontSizeRounded) * 0.6
+      fontSize = fontSizeRounded
+    }
 
     html.style = `
       --cols: ${cols};
@@ -35,6 +53,7 @@
     window._rows = rows
     window._cols = cols
     window._lineHeight = lineHeightPx
+    window._isMobile = isMobile
   }
   if (!('ontouchstart' in window)) {
     window.addEventListener('resize', onResize)

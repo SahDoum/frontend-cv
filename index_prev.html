@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aleksandr Dumarevskiy</title>
+    <link rel="icon" type="image/x-icon" href="./media/favicon.ico">
+    <link href='https://fonts.googleapis.com/css?family=Roboto Mono' rel='stylesheet'>
+    <link href="https://fonts.cdnfonts.com/css/ubuntu-mono" rel="stylesheet">
+    <link href="css/fonts.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/containers.css">
+    <link rel="stylesheet" href="css/intro.css">
+
+    <script src="js/main.js"></script>
+
+</head>
+<body>
+<div id="app">
+    <div id="torus" class="container">
+        <pre id="d" ref="d" class="unselectable" 
+            @mousedown="e => torusAnim && torusClick(e)" 
+            @mousemove="e => torusAnim && torusMove(e)">
+        </pre>
+    </div>
+    <div id="second-line" class="containers-row container">
+        <div id="intro" class="container">
+            <div class="grid-container">
+                <div class="grid-item name-item"><p>ALEXANDR&nbsp;&nbsp;DUMAREVSKIY</p></div>
+                <div class="grid-item contact-item">
+                  <div>
+                    tg: @achekhonte<br>ig:&nbsp;@sahdoum<br>
+                    <div id="how-button" class="hidden" @mouseup="slideToPong">process...</div>
+                  </div>
+                </div>
+                <div class="grid-item image-item">
+                    <image-loader ref="profile_img" src="./media/profile2.jpg" class="profile-image">
+                    </image-loader>
+                </div>
+
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+            </div>
+        </div>
+        <div id="pong-container" class="container">
+            <pong ref="pong" id="pong" @mouseup="startPong" @mousemove="e => pongStart && movePong(e)">
+            </pong>
+            <div id="pong-line">{{ pongLine }}</div>
+            <div id="pong-score">{{ pongScore }}</div>
+
+        </div>
+        
+    </div>
+
+
+</div>
+
+<script src="dist/bundle.js"></script>
+
+</body>
+</html>
+
+
+

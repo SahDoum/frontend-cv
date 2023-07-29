@@ -8,7 +8,7 @@
   --myBack: cubic-bezier(.87,0,.18,1.4);
   --myTest: cubic-bezier(.33,0,1,.66);
 
-  --myTransition: cubic-bezier(1,-0.1,.03,1.33); //var(--easeInOutCubic);
+  --myTransition: var(--easeInOutCubic);// cubic-bezier(1,-0.1,.03,1.33); //var(--easeInOutCubic);
   --myTime: 0.66s;
 }
 

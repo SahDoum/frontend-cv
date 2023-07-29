@@ -10,8 +10,8 @@ var cursorCoords = Math.ceil(window._cols*2.5) - 8;
 var torus_mul = 1;
 var particles = new Set();
 var animTmr = undefined;
+var clickInterval = undefined;
 var A=0.8, B=0.3;
-var final = 0;
 var pretag;
 
 var cursor_states = [
@@ -142,7 +142,7 @@ function createParticles() {
               var N=0|(8*(dot(normal, light)));
               z[o]=D;
               N = Math.ceil(N)
-              b[o]=".,-~:;=!*#$@"[N>0?(N<12?N:11):0];
+              b[o]=".,^~:;+!&$#@"[N>0?(N<12?N:11):0];
               //  ".,^~:;+!&$#@" custom
               //  ".,-~:;=!*#$@" default 
               //  ".lcuovsxwmag" letters
@@ -183,26 +183,10 @@ function createParticles() {
       }
     }
 
-    if (torus_mul == 0 && final < 0.45) {
-      final += 0.001;
-      var dX = Math.ceil(final*L);
-      var dY = Math.ceil(final*H);
-      for (var x = -dX; x <= dX; x++) {
-        for (var y = -dY; y <= dY; y++) {
-          var o=(x+startX)+L*(y+startY);
-          b[o]='@';
-        }
-      }
-    }
 
     if (cursor_state >= 0) {
       let state = cursor_states[cursor_state][1];
       b.splice(cursorCoords, state.length, '<span style="color:#6d9cbe;">' + state + '</span>');
-      // b.splice(cursorCoords + window._cols - state.length - 2, state.length + 2, ' '.repeat(state.length + 2));
-      // b.splice(cursorCoords - window._cols - 1, state.length + 2, ' '.repeat(state.length + 2));
-      // b.splice(cursorCoords, cursor_states[cursor_state][1].length, cursor_states[cursor_state][1])
-
-      // b.splice(cursorCoords + window._cols, cursor_states[cursor_state][1].length, ' '*cursor_states[cursor_state][1].length)
     }
     pretag.innerHTML = b.join("");
   };
@@ -232,12 +216,15 @@ export function updateCursor(event) {
 
 
 export function torus_click() {
+  console.log("click function");
+  console.log(clickInterval);
+  if (! (clickInterval === undefined )) {return true;}
+
   cursor_state-=1;
   if (cursor_state < 0) {
     torus_mul = 0;
     return false;
   }
-  // torus_mul = cursor_states[cursor_state][0];
 
     const finishValue = cursor_states[cursor_state][0]; 
     var finishDist = Dist;
@@ -250,24 +237,21 @@ export function torus_click() {
     const step = (finishValue - torus_mul) / totalSteps; 
     const dist_step = (finishDist - Dist) / totalSteps; 
 
-    const interval = setInterval(() => {
+    clickInterval = setInterval(() => {
+      console.log("inside interval")
       torus_mul += step; 
       Dist += dist_step;
-      // if ((step > 0 && torus_mul >= finishValue) || (step < 0 && torus_mul <= finishValue)) {
-      //   torus_mul = finishValue;
-      //   clearInterval(interval); // Stop the interval when finishValue is reached
-      // }
 
       totalSteps--;
 
       if (totalSteps == 1) {
         torus_mul = finishValue;
         Dist = finishDist; 
-        clearInterval(interval);
+        clearInterval(clickInterval);
+        clickInterval = undefined;
       }
 
-    }, 100);
-  
+    }, 100);  
 
 
   // if (cursor_states[cursor_state].length > 2) {

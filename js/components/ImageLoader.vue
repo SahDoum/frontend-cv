@@ -23,7 +23,7 @@ export default {
         let canvas = document.createElement("canvas");
         return {
             imageSrc: this.src,
-            isLoading: false,
+            isLoaded: false,
             canvas: canvas,
             ctx: canvas.getContext("2d"),
         };
@@ -36,18 +36,18 @@ export default {
     },
     methods: {
         startLoader: async function() {
+            if (this.isLoaded) return;
             // this.$refs.bitmap.style.display = "none";
             this.$refs.canvas.style.display = "block";
 
             for (var j = 41; j > 0; j-=4) {
                 this.drawCanvas(j);
-                // return;
-                await new Promise(r => setTimeout(r, 40));
-
+                await new Promise(r => setTimeout(r, 20));
             }
 
             this.$refs.canvas.style.display = "none";
             this.$refs.image.style.display = "block";
+            this.isLoaded = true;
         },
 
         revertLoader: function() {

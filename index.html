@@ -12,96 +12,73 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/containers.css">
     <link rel="stylesheet" href="css/intro.css">
+    <link rel="stylesheet" href="css/animation.css">
 
     <script src="js/main.js"></script>
 
 </head>
+
 <body>
-<div id="app">
-    <div id="torus" class="container">
+<div id="intro-app">
+
+    <div id="torus" class="torus-container">
         <pre id="d" ref="d" class="unselectable" 
-            @mousedown="e => torusAnim && torusClick(e)" 
+            @mousedown.prevent="e => torusAnim && torusClick(e)" 
             @mousemove="e => torusAnim && torusMove(e)">
         </pre>
+        <div class="torus-label">Dobro doshli!</div>
     </div>
-    <div id="second-line" class="containers-row container">
-        <div id="intro" class="container">
-            <div class="grid-container">
-                <div class="grid-item name-item"><p>ALEXANDR&nbsp;&nbsp;DUMAREVSKIY</p></div>
-                <div class="grid-item contact-item">
-                  <div>
-                    tg: @achekhonte<br>ig:&nbsp;@sahdoum<br>
-                    <div id="how-button" class="hidden" @mouseup="slideToPong">process...</div>
-                  </div>
-                </div>
-                <div class="grid-item image-item">
-                    <image-loader ref="profile_img" src="./media/profile2.jpg" class="profile-image">
-                    </image-loader>
-                </div>
-
-                <div class="grid-item"></div>
-                <div class="grid-item"></div>
-                <div class="grid-item"></div>
-
-                <div class="grid-item"></div>
-                <div class="grid-item"></div>
-                <div class="grid-item"></div>
-
-                <div class="grid-item"></div>
-                <div class="grid-item"></div>
-                <div class="grid-item"></div>
-            </div>
+    <div id="space" class="container"></div>
+    <div id="intro" class="container" @mousedown.prevent="startIntro" @mousemove="startIntro">
+        <div id="intro-name" @mousemove="startIntro">
+            ALEXANDR<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>DUMAREVSKIY
         </div>
-        <div id="pong-container" class="container">
-            <pong ref="pong" id="pong" @mouseup="startPong" @mousemove="e => pongStart && movePong(e)">
-            </pong>
-            <div id="pong-line">{{ pongLine }}</div>
-            <div id="pong-score">{{ pongScore }}</div>
+
+        <image-loader id="intro-image" ref="profile_img" src="./media/profile2.jpg">
+        </image-loader>
+
+        <div id="intro-contacts">
+            <div class="contact-text text-0">ig: @alexdumarevskiy</div>
+            <div class="contact-line"></div>
+            <div class="contact-text text-1">tg: @alexdumarevskiy</div>
+            <div class="contact-line"></div>
+            <div class="contact-text text-2">web-developer</div>
+            <div class="contact-line line-2"></div>
+            <div class="contact-text text-3">front/back full-stack</div>
+            <div class="contact-line line-3"></div>
+            <div class="contact-text text-4" @mousedown.prevent="slideToPong">- working process</div>
+            <div class="contact-line line-4"></div>
+            <div class="contact-text text-5">- examples</div>
 
         </div>
-        
+        <div id="extra-lines">
+
+            <div class="contact-line"></div>
+            <div class="contact-line"></div>
+            <div class="contact-line back-line"></div>
+            <div class="contact-line back-line"></div>
+
+            <div class="contact-line back-line"></div>
+            <div class="contact-line back-line"></div>
+            <div class="contact-line"></div>
+            <div class="contact-line"></div>
+
+            <div class="contact-line"></div>
+            <div class="contact-line"></div>
+            <div class="contact-line"></div>
+
+
+        </div>
     </div>
 
 
+    <div id="pong-container" class="container">
+        <pong ref="pong" id="pong" @mouseup="startPong" @mousemove="e => pongStart && movePong(e)">
+        </pong>
+        <div id="pong-line">{{ pongLine }}</div>
+        <div id="pong-score">{{ pongScore }}</div>
+    </div>
 </div>
-
-<script src="dist/bundle.js"></script>
-<!--     <script src="js/torus.js"></script>
-        
-
-    <script src="js/app.js"></script>
-    <script type="module">
-        const options = {
-          moduleCache: {
-             vue: Vue,
-          },
-          async getFile(url) {
-            const res = await fetch(url);
-            if ( !res.ok )
-              throw Object.assign(new Error(res.statusText + ' ' + url), { res });
-            return {
-              getContentData: asBinary => asBinary ? res.arrayBuffer() : res.text(),
-            }
-          },
-          addStyle(textContent) {
-            const style = Object.assign(document.createElement('style'), { textContent });
-            const ref = document.head.getElementsByTagName('style')[0] || null;
-            document.head.insertBefore(style, ref);
-          },
-        }
-        const { loadModule } = window['vue3-sfc-loader'];
-        app.component("image-loader", 
-            Vue.defineAsyncComponent( () => loadModule("./js/components/ImageLoader.vue", options) ) 
-            );
-        app.component("pong", 
-            Vue.defineAsyncComponent( () => loadModule("./js/components/Pong.vue", options) ) 
-            );
-
-        app.mount("#app");
-
-    </script> -->
 </body>
-</html>
 
-
-
+<script src="dist/bundle.js" defer></script>
