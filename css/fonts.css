@@ -144,3 +144,15 @@
     font-weight: 700;
     src: local('Redaction 70'), url(https://fonts.cdnfonts.com/s/47238/Redaction70Bold-K7ZJX.woff) format('woff')
 }
+
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('../fonts/FontAwesome/fontawesome-webfont.ttf');
+    src:
+         url('../fonts/FontAwesome/fontawesome-webfont.eot') format('embedded-opentype'),
+         url('../fonts/FontAwesome/fontawesome-webfont.woff2') format('woff2'),
+         url('../fonts/FontAwesome/fontawesome-webfont.woff') format('woff'),
+         url('../fonts/FontAwesome/fontawesome-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examples - Aleksandr Dumarevskiy</title>
+
+    <link rel="icon" type="image/x-icon" href="../media/favicon.ico">
+    <link href='https://fonts.googleapis.com/css?family=Roboto Mono' rel='stylesheet'>
+    <link href="https://fonts.cdnfonts.com/css/ubuntu-mono" rel="stylesheet">
+
+    <link href="../css/fonts.css" rel="stylesheet">
+
+    <!-- <link rel="stylesheet" href="../css/libs/leaflet.css" /> -->
+<!--     <link rel="stylesheet" href="../css/libs/MarkerCluster.css" />
+    <link rel="stylesheet" href="../css/libs/MarkerCluster.Default.css" /> -->
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js" crossorigin=""></script>
+    <!-- <script type="text/javascript" src="../js/libs/leaflet.js"></script> -->
+    <!-- <script type="text/javascript" src="../js/libs/leaflet.markercluster.js"></script> -->
+    <script type="text/javascript" src="../js/libs/Yandex.js"></script>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/containers.css">
+    <link rel="stylesheet" href="../css/map.css">
+
+    <script src="../js/examples/map.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+
+
+
+</head>
+
+<style type="text/css">
+
+.map-container {
+    position: relative;
+    min-height: 100vh;
+    -background: yellow;
+    overflow: hidden;
+}
+.map-title {
+    font-family: 'Redaction 10', sans-serif;
+    font-size: 10.2vw;
+    line-height: 9.5vw;
+    background: white;
+    margin-bottom: 60px;
+}
+
+.back-button {
+    top: calc(10.2vw);
+    left: 20px;
+}
+    
+</style>
+
+<body>
+
+
+<div class="map-title">INTERACTIVE&nbsp;&nbsp;MAP</div>
+<a href="../examples.html"><div class="back-button"><span class="one"><</span><span class="two"><</span><span class="three"><</span>—</div></a>
+
+
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=e5130bc5-0f41-41ce-af2f-b4484c409949&lang=ru-RU" type="text/javascript"></script>
+
+    <div id="map-container">
+      <div id="sidebar-container">
+        <img id="sidebar-image" class="sidebar-img">
+        <div id="sidebar-header"></div>
+        <div class="line"></div>
+ 
+        <div class="line"></div>
+        <div id="sidebar-description"></div>
+        <button aria-label="close sidebar" type="button" class="next-button">
+              <i class="fa-solid fa-person-walking-arrow-right"></i>
+        </button>
+        <button class="scroll-up-button fa"></button>
+        <button class="scroll-down-button fa"></button>
+      </div>
+      <div id="map"></div>
+    </div>
+
+
+    <!-- HOW TO: 1) use your API key. 2) Use initMap for churches init -->
+
+    <script type="text/javascript">
+
+    //   config = {
+    //     minZoom: 4,
+    //     maxZoom: 20,
+    //     zoomControl: false,
+    //     attributionControl: false, // don't remove it
+    //     center: [67.6755, 33.936],
+    //     zoom: 10,
+    //   };
+    // let map = L.map('map', config);
+    // var yandexLayer = new L.yandex();
+    // map.addLayer(yandexLayer);
+    // L.control.zoom({
+    //    position:'topright'
+    // }).addTo(map);
+
+      var map = new Map([
+        {
+          name: "Москва", 
+          desc: "Тут начинается путешествие, начавшееся полтора года назад",
+          type: "main_type",
+          latlon: [55.755864, 37.617698]
+        },
+        {
+          name: "Бухара", 
+          desc: "Это первый город на меом пути, где я задержался на полтора месяца, попивая чай в караван-сарае Олимжон",
+          type: "main_type",
+          latlon: [39.778717, 64.439335]
+        },
+        {
+          name: "Ташкент", 
+          desc: "Я приехал к другу в гости (с другом я познакомился в Бухаре). И две недели мы пробивались строителями на фестиваль, собирали воздущного змея и ходили на барахолку Янгиабад",
+          type: "main_type",
+          latlon: [41.311151, 69.279737]
+        },
+        {
+          name: "Хива", 
+          desc: "Не доехав до фестиваля, мы остановились в Хиве, чтобы заболеть на 3 дня. С видом на старый город!",
+          type: "main_type",
+          latlon: [41.382968, 60.361550]
+        },
+        {
+          name: "Муйнак", 
+          desc: "Тут-то мы и стали строителями на 4 дня, побеждая солено-песчанные бури и собирая столы по технологии противопехотных ежей",
+          type: "main_type",
+          latlon: [43.766605, 59.028055]
+        },
+        {
+          name: "Актау", 
+          desc: "Первый город Казахстана. Пустыня, море и полно свободного времени",
+          type: "main_type",
+          latlon: [43.635588, 51.168245]
+        },
+        {
+          name: "поселок Баутино", 
+          desc: "Наше любимое место в Мангистау -- поселок контрабандистов и браконьеров.",
+          type: "main_type",
+          latlon: [44.539814, 50.259833]
+        },
+        // {
+        //   name: "", 
+        //   desc: "",
+        //   type: "main_type",
+        //   latlon: []
+        // },
+      ]);
+    </script>
+</body>

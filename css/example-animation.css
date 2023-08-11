@@ -1,0 +1,273 @@
+:root {
+    /* настройки времени анимации. Они согласованы с константами в js */
+    --animation-easing: cubic-bezier(.9,0,.1,1);
+    --bar-transition-time: 2s;
+    --introTime: 2.9s;
+    --lineDropTime: 1s;
+    --lineDelay: calc(1s/15);
+
+    /* настройки финального положения линий */
+    --lowestLine: 779px;
+    --lineGap: 20px;
+
+    --time1: calc(var(--introTime)*100/87);
+    --dropDelay: calc(var(--introTime) - 8s/30);
+    --opacityDelay: calc(var(--linesDelay) - 0.1s);
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.fancy-container {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    min-width: 100%;
+}
+
+.disable-scrolling {
+	height: 100vh;
+	overflow: hidden;
+}
+
+.intro-container {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    min-width: 100vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow: hidden;
+
+    justify-content: flex-start;
+    align-items: flex-end;
+
+    background-color: white;
+
+    transition: opacity 1s;
+}
+
+#animation {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+}
+
+.bar {
+    position: relative;
+    background-color: black;
+    width: 10%;
+    height: 100%;
+
+    transition: height var(--bar-transition-time) var(--animation-easing);
+}
+
+@keyframes float0 { 
+    0%   {height: 100%;}
+
+    27%  {height: 25%;}
+    38%  {height: 25%; margin-bottom: 0;}
+    59%  {height: 1px; margin-bottom: 50vh; opacity: 1;}
+    87%  {height: 1px; margin-bottom: 50vh; opacity: 1;}
+    100% {height: 1px; margin-bottom: 50vh; opacity: 0;}
+}
+@keyframes float1 { 
+	0%   {height: 100%;} 
+    4%   {height: 100%;} 
+    31%  {height: 26%;}
+    41%  {height: 26%; margin-bottom: 0;}
+    62%  {height: 1px; margin-bottom: 50vh; opacity: 1;} 
+    87%  {height: 1px; margin-bottom: 50vh; opacity: 1;}
+    100% {height: 1px; margin-bottom: 50vh; opacity: 0;}
+}
+@keyframes float2 { 
+	0%   {height: 100%;} 
+    8%   {height: 100%;} 
+    35%  {height: 27%;}
+    44%  {height: 27%; margin-bottom: 0;}
+    65%  {height: 1px; margin-bottom: 50vh; opacity: 1;}
+    87%  {height: 1px; margin-bottom: 50vh; opacity: 1;}
+    100% {height: 1px; margin-bottom: 50vh; opacity: 0;}
+}
+@keyframes float3 { 
+	0%   {height: 100%;} 
+    12%  {height: 100%;} 
+    39%  {height: 29%;}
+    47%  {height: 29%; margin-bottom: 0;}
+    68%  {height: 1px; margin-bottom: 50vh; opacity: 1;}
+    87%  {height: 1px; margin-bottom: 50vh; opacity: 1;}
+    100% {height: 1px; margin-bottom: 50vh; opacity: 0;}
+}
+@keyframes float4 { 
+	0%   {height: 100%;} 
+    16%  {height: 100%;} 
+    43%  {height: 31%;}
+    50%  {height: 31%; margin-bottom: 0;}
+    71%  {height: 1px; margin-bottom: 50vh; opacity: 1;}
+    87%  {height: 1px; margin-bottom: 50vh; opacity: 1;}
+    100% {height: 1px; margin-bottom: 50vh; opacity: 0;}
+}
+@keyframes float5 { 
+	0%   {height: 100%;} 
+    20%  {height: 100%;} 
+    47%  {height: 36%;}
+    53%  {height: 36%; margin-bottom: 0;}
+    74%  {height: 1px; margin-bottom: 50vh; opacity: 1;}
+    87%  {height: 1px; margin-bottom: 50vh; opacity: 1;}
+    100% {height: 1px; margin-bottom: 50vh; opacity: 0;}
+}
+@keyframes float6 { 
+	0%   {height: 100%;} 
+    24%  {height: 100%;} 
+    51%  {height: 43%;}
+    56%  {height: 43%; margin-bottom: 0;}
+    77%  {height: 1px; margin-bottom: 50vh; opacity: 1;}
+    87%  {height: 1px; margin-bottom: 50vh; opacity: 1;}
+    100% {height: 1px; margin-bottom: 50vh; opacity: 0;}
+}
+@keyframes float7 { 
+	0%   {height: 100%;} 
+    28%  {height: 100%;} 
+    55%  {height: 52%;}
+    59%  {height: 52%; margin-bottom: 0;}
+    80%  {height: 1px; margin-bottom: 50vh; opacity: 1;}
+    87%  {height: 1px; margin-bottom: 50vh; opacity: 1;}
+    100% {height: 1px; margin-bottom: 50vh; opacity: 0;}
+}
+@keyframes float8 { 
+	0%   {height: 100%;} 
+    32%  {height: 100%;} 
+    59%  {height: 68%;}
+    62%  {height: 68%; margin-bottom: 0;}
+    83%  {height: 1px; margin-bottom: 50vh; opacity: 1;}
+    87%  {height: 1px; margin-bottom: 50vh; opacity: 1;}
+    100% {height: 1px; margin-bottom: 50vh; opacity: 0;}
+}
+@keyframes float9 { 
+	0%   {height: 100%;} 
+    36%  {height: 100%;} 
+    63%  {height: 100%;} 
+
+    65%  {height: 100%; margin-bottom: 0;}
+    86%  {height: 1px; margin-bottom: 50vh; opacity: 1;}
+    87%  {height: 1px; margin-bottom: 50vh; opacity: 1;}
+    100% {height: 1px; margin-bottom: 50vh; opacity: 0;}
+}
+
+
+.start-anim .bar {
+	animation-duration: var(--time1); 
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+}
+.start-anim .bar0 { animation-name: float0;}
+.start-anim .bar1 { animation-name: float1;}
+.start-anim .bar2 { animation-name: float2;}
+.start-anim .bar3 { animation-name: float3;}
+.start-anim .bar4 { animation-name: float4;}
+.start-anim .bar5 { animation-name: float5;}
+.start-anim .bar6 { animation-name: float6;}
+.start-anim .bar7 { animation-name: float7;}
+.start-anim .bar8 { animation-name: float8;}
+.start-anim .bar9 { animation-name: float9;}
+
+
+#entry {
+    z-index: -1;
+    
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+
+    transition: opacity 1s;
+}
+
+
+.line {
+    position: absolute;
+    top: calc(50vh - 1px);
+
+    width: 100vw;
+    height: 1px;
+    background-color: black;
+
+    transition-property: top;
+    transition-duration: var(--lineDropTime);
+    transition-timing-function: var(--animation-easing);
+}
+
+.line0  {transition-delay: calc(var(--lineDelay) * 0 );}
+.line1  {transition-delay: calc(var(--lineDelay) * 1 );}
+.line2  {transition-delay: calc(var(--lineDelay) * 2 );}
+.line3  {transition-delay: calc(var(--lineDelay) * 3 );}
+.line4  {transition-delay: calc(var(--lineDelay) * 4 );}
+.line5  {transition-delay: calc(var(--lineDelay) * 5 );}
+.line6  {transition-delay: calc(var(--lineDelay) * 6 );}
+.line7  {transition-delay: calc(var(--lineDelay) * 7 );}
+.line8  {transition-delay: calc(var(--lineDelay) * 8 );}
+.line9  {transition-delay: calc(var(--lineDelay) * 9 );}
+.line10 {transition-delay: calc(var(--lineDelay) * 10 );}
+.line11 {transition-delay: calc(var(--lineDelay) * 11 );}
+.line12 {transition-delay: calc(var(--lineDelay) * 12 );}
+.line13 {transition-delay: calc(var(--lineDelay) * 13 );}
+
+#entry.start-anim {
+    z-index: 3;
+}
+
+/* положения линий после падения  */
+.start-anim .line0  { top: calc(var(--lowestLine) - 0*var(--lineGap));}
+.start-anim .line1  { top: calc(var(--lowestLine) - 1*var(--lineGap));}
+.start-anim .line2  { top: calc(var(--lowestLine) - 2*var(--lineGap));}
+.start-anim .line3  { top: calc(var(--lowestLine) - 3*var(--lineGap));}
+.start-anim .line4  { top: calc(var(--lowestLine) - 4*var(--lineGap));}
+.start-anim .line5  { top: calc(var(--lowestLine) - 5*var(--lineGap));}
+.start-anim .line6  { top: calc(var(--lowestLine) - 6*var(--lineGap));}
+.start-anim .line7  { top: calc(var(--lowestLine) - 7*var(--lineGap));}
+.start-anim .line8  { top: calc(var(--lowestLine) - 8*var(--lineGap));}
+.start-anim .line9  { top: calc(var(--lowestLine) - 9*var(--lineGap));}
+.start-anim .line10 { top: calc(var(--lowestLine) - 10*var(--lineGap));}
+.start-anim .line11 { top: calc(var(--lowestLine) - 11*var(--lineGap));}
+.start-anim .line12 { top: calc(var(--lowestLine) - 12*var(--lineGap));}
+.start-anim .line13 { top: calc(var(--lowestLine) - 13*var(--lineGap));}
+
+
+.image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 50vh;
+
+    overflow: hidden;
+
+    z-index: 1000000000;
+}
+
+.image-container img {
+    position: absolute;
+
+    top: 50vh; /* положение логотипа */
+    left: 20px; 
+
+    width: 114px;
+    height: 62px;
+
+    transition-property: top;
+    transition-duration: var(--lineDropTime);
+    transition-timing-function: var(--animation-easing);
+}
+
+.start-anim .image-container img {
+    top: 20px; /* положение логотипа в конце */
+}
+
+.hide-anim {
+    opacity: 0;
+}

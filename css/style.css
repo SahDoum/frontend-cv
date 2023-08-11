@@ -77,6 +77,44 @@ a {
   margin: 0;
 }
 
+.fa {
+    font-family: FontAwesome;
+}
+
+.back-button {
+    position: absolute;
+    top: calc(15vw);
+    left: 20px;
+
+    font-size: 20px;
+    font-family: 'Redaction 20', sans-serif;
+
+    display: flex;
+
+}
+
+.back-button .one {
+    transform: translateX(200%);
+    transition: 0.5s;
+}
+
+.back-button .two {
+    transform: translateX(100%);
+    transition: 0.5s;
+}
+
+.back-button.three {
+}
+
+
+.back-button:hover .one {
+    transform: translateX(0);
+}
+
+.back-button:hover .two {
+    transform: translateX(0);
+}
+
 /*.container {
   position: relative;
   height: 100vh;
