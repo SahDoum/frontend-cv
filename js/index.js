@@ -1,7 +1,8 @@
 import { createApp } from 'vue';
-import { _onload, updateCursor, torus_click, stopAnim} from './torus.js'
+import { _onload, updateCursor, torus_click, stopAnim, lastAnim} from './torus.js'
 import Pong from './components/Pong.vue'
 import ImageLoader from './components/ImageLoader.vue'
+import TextLoader from './components/TextLoader.vue'
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -281,8 +282,8 @@ const introApp = createApp({
         },
 
         torusFinish: function() {
-            stopAnim();
 
+            lastAnim();
             var spaceDiv = document.getElementById('space');
             var torusDiv = document.getElementById('torus');
             window.scrollTo({top: 0, behavior: 'instant'});
@@ -294,6 +295,7 @@ const introApp = createApp({
             setTimeout(() => {
                 torusDiv.style.display = 'none';
                 document.body.classList.remove('disable-scrolling');
+                stopAnim();
 
             }, 2000);
         },
@@ -351,6 +353,7 @@ const introApp = createApp({
     }
 });
 introApp.component("image-loader", ImageLoader);
+introApp.component("text-loader", TextLoader);
 introApp.component("pong", Pong);
 
 introApp.mount("#intro-app");

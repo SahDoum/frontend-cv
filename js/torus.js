@@ -11,8 +11,10 @@ var torus_mul = 1;
 var particles = new Set();
 var animTmr = undefined;
 var clickInterval = undefined;
-var A=0.8, B=0.3;
+var A=0.8, B=0.3; // init
 var pretag;
+
+var A_delta = 0.06, B_delta = 0.032;
 
 var cursor_states = [
   [0, "CLICK LAST TIME!"],
@@ -34,7 +36,7 @@ function dot(a, b) {
 function lightCalc(x, y) {
   var magnitude = Math.sqrt(x*x+y*y);///3200; // no use of sqrt for perfomance
   if (magnitude === 0) {
-    return [0, 0, -1]; // To handle zero-length vectors
+    return [0, 0, -Math.sqrt(2)]; // To handle zero-length vectors
   }
   const normalizedVector = [x / magnitude, y / magnitude, -1];
   return normalizedVector;
@@ -60,136 +62,184 @@ function createParticles() {
     return par;
   }
 
-  var asciiframe=function() {
-    const L = window._cols;
-    const H = window._rows;
-    const startX = Math.ceil(L/2);
-    const startY = Math.ceil(H/2);
+var asciiframe=function() {
+  const L = window._cols;
+  const H = window._rows;
+  const startX = Math.ceil(L/2);
+  const startY = Math.ceil(H/2);
 
-    var b=[];
-    var z=[];
-    A += 0.06;
-    B += 0.032;
-    var cA=Math.cos(A), sA=Math.sin(A),
-        cB=Math.cos(B), sB=Math.sin(B);
-    for(var k=0;k<L*H;k++) {
-      b[k]=k%L == (L-1) ? "\n" : " ";
-      z[k]=0;
+  var b=[];
+  var z=[];
+  A += A_delta; // init
+  B += B_delta; // init
+  var cA=Math.cos(A), sA=Math.sin(A),
+      cB=Math.cos(B), sB=Math.sin(B);
+  for(var k=0;k<L*H;k++) {
+    b[k]=k%L == (L-1) ? "\n" : " ";
+    z[k]=0;
+  }
+
+  var c1 = -cA*sB,
+      c2 = cA*cB,
+      c3 = sB*sA,
+      c4 = sA*cB;
+
+          // 1   0  0
+          // 0  cA sA
+          // 0 -sA cA
+
+          //  cB sB 0
+          // -sB cB 0
+          //   0  0 1
+
+          //     cB     sB  0
+          // -cA*sB  cA*cB sA
+          //  sA*sB -sA*cB cA
+
+  var light = lightCalc(position[0], position[1]);
+  for(var j=0;j<6.28*torus_mul;j+=0.01) { // j <=> theta
+    var cp=Math.cos(j),sp=Math.sin(j);
+    var prerow = [cp*cB+sp*c3, cp*sB-sp*c4, sp*cA];
+    for(var i=0;i<6.28*5/5;i+=0.01) {   // i <=> phi
+      var st=Math.sin(i),ct=Math.cos(i);
+
+          // var prematrix = [prerow, [-cA*sB*st, cA*cB*st, sA*st]];
+
+          // 0 st 0
+          //
+          // 
+
+          // a11 a12 a13
+          // a21 a22 a23
+          // a31 a32 a33
+
+          // a21*st
+          // a22*st
+          // a32*st
+
+
+          // ct 0 0
+          //
+          // 
+
+          // a11 a12 a13
+          // a21 a22 a23
+          // a31 a32 a33
+
+          // a11*ct
+          // a21*ct
+          // a31*ct
+
+
+          var normal = [ct*prerow[0] + c1*st, ct*prerow[1] + c2*st, ct*prerow[2] + sA*st];
+          var coords = [(normal[0])+R1*prerow[0], normal[1]+R1*prerow[1], normal[2]+R1*prerow[2]];
+
+          D = 1/(coords[2]+Dist);
+          var x=0|(startX+30*D*coords[0]),
+              y=0|(startY+15*D*coords[1]),
+              o=x+L*y;
+
+          if(y<H && y>=0 && x>=0 && x<(L-1) && D>z[o])
+          {
+            var N=0|(8*(dot(normal, light)));
+            z[o]=D;
+            N = Math.ceil(N)
+            b[o]=".,^~:;+!&$#@"[N>0?(N<12?N:11):0];
+            //  ".,^~:;+!&$#@" custom
+            //  ".,-~:;=!*#$@" default 
+            //  ".lcuovsxwmag" letters
+            //  ".,^~:vsxwmag" custom2
+            //  $@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,"^`'.  // whole spectrum
+          }
+    }
+  }
+
+  for(let par of particles) {    
+    par.vy += 0.1; 
+
+    par.x += par.vx; 
+    par.y += par.vy; 
+    par.z += par.vz; 
+    
+    par.status -= 1;
+
+    if (par.status == 0) {
+      particles.delete(par);
+      continue;
     }
 
-    var c1 = -cA*sB,
-        c2 = cA*cB,
-        c3 = sB*sA,
-        c4 = sA*cB;
+    var D = 1/par.z;
+    var x=Math.ceil(par.x),//30*par.x,
+        y=Math.ceil(par.y),//15*par.y,
+        o=x+L*y;
 
-            // 1   0  0
-            // 0  cA sA
-            // 0 -sA cA
-
-            //  cB sB 0
-            // -sB cB 0
-            //   0  0 1
-
-            //     cB     sB  0
-            // -cA*sB  cA*cB sA
-            //  sA*sB -sA*cB cA
-
-    var light = lightCalc(position[0], position[1]);
-    for(var j=0;j<6.28*torus_mul;j+=0.01) { // j <=> theta
-      var cp=Math.cos(j),sp=Math.sin(j);
-      var prerow = [cp*cB+sp*c3, cp*sB-sp*c4, sp*cA];
-      for(var i=0;i<6.28*5/5;i+=0.01) {   // i <=> phi
-        var st=Math.sin(i),ct=Math.cos(i);
-
-            // var prematrix = [prerow, [-cA*sB*st, cA*cB*st, sA*st]];
-
-            // 0 st 0
-            //
-            // 
-
-            // a11 a12 a13
-            // a21 a22 a23
-            // a31 a32 a33
-
-            // a21*st
-            // a22*st
-            // a32*st
+    if (y >= H) {
+      particles.delete(par);
+      continue;
+    }
+    if(y<H && y>=0 && x>=0 && x<(L-1) && D>z[o])
+      {
+        z[o]=D;
+        b[o]="cooikiekccooikiekc"[par.type];
+        //b[o]="coikekecocococ"[par.type];
+    }
+  }
 
 
-            // ct 0 0
-            //
-            // 
+  if (cursor_state >= 0) {
+    let state = cursor_states[cursor_state][1];
+    b.splice(cursorCoords, state.length, '<span style="color:#6d9cbe;">' + state + '</span>');
+  }
+  pretag.innerHTML = b.join("");
+};
 
-            // a11 a12 a13
-            // a21 a22 a23
-            // a31 a32 a33
+var lastframe=function() {
+  const L = window._cols;
+  const H = window._rows;
+  const startX = Math.ceil(L/2);
+  const startY = Math.ceil(H/2);
 
-            // a11*ct
-            // a21*ct
-            // a31*ct
+  var b=[];
+  var z=[];
+  for(var k=0;k<L*H;k++) {
+    b[k]=k%L == (L-1) ? "\n" : " ";
+    z[k]=0;
+  }
 
+  for(let par of particles) {    
+    par.vy += 0.1; 
 
-            var normal = [ct*prerow[0] + c1*st, ct*prerow[1] + c2*st, ct*prerow[2] + sA*st];
-            var coords = [(normal[0])+R1*prerow[0], normal[1]+R1*prerow[1], normal[2]+R1*prerow[2]];
+    par.x += par.vx; 
+    par.y += par.vy; 
+    par.z += par.vz; 
+    
+    par.status -= 1;
 
-            D = 1/(coords[2]+Dist);
-            var x=0|(startX+30*D*coords[0]),
-                y=0|(startY+15*D*coords[1]),
-                o=x+L*y;
-
-            if(y<H && y>=0 && x>=0 && x<(L-1) && D>z[o])
-            {
-              var N=0|(8*(dot(normal, light)));
-              z[o]=D;
-              N = Math.ceil(N)
-              b[o]=".,^~:;+!&$#@"[N>0?(N<12?N:11):0];
-              //  ".,^~:;+!&$#@" custom
-              //  ".,-~:;=!*#$@" default 
-              //  ".lcuovsxwmag" letters
-              //  ".,^~:vsxwmag" custom2
-              //  $@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,"^`'.  // whole spectrum
-            }
-      }
+    if (par.status == 0) {
+      particles.delete(par);
+      continue;
     }
 
-    for(let par of particles) {    
-      par.vy += 0.1; 
+    var D = 1/par.z;
+    var x=Math.ceil(par.x),//30*par.x,
+        y=Math.ceil(par.y),//15*par.y,
+        o=x+L*y;
 
-      par.x += par.vx; 
-      par.y += par.vy; 
-      par.z += par.vz; 
-      
-      par.status -= 1;
-
-      if (par.status == 0) {
-        particles.delete(par);
-        continue;
-      }
-
-      var D = 1/par.z;
-      var x=Math.ceil(par.x),//30*par.x,
-          y=Math.ceil(par.y),//15*par.y,
-          o=x+L*y;
-
-      if (y >= H) {
-        particles.delete(par);
-        continue;
-      }
-      if(y<H && y>=0 && x>=0 && x<(L-1) && D>z[o])
-        {
-          z[o]=D;
-          b[o]="cooikiekccooikiekc"[par.type];
-          //b[o]="coikekecocococ"[par.type];
-      }
+    if (y >= H) {
+      particles.delete(par);
+      continue;
     }
-
-
-    if (cursor_state >= 0) {
-      let state = cursor_states[cursor_state][1];
-      b.splice(cursorCoords, state.length, '<span style="color:#6d9cbe;">' + state + '</span>');
+    if(y<H && y>=0 && x>=0 && x<(L-1) && D>z[o])
+      {
+        z[o]=D;
+        b[o]="cooikiekccooikiekc"[par.type];
+        //b[o]="coikekecocococ"[par.type];
     }
-    pretag.innerHTML = b.join("");
-  };
+  }
+
+  pretag.innerHTML = b.join("");
+}
+
 
 export function startAnim() {
   if(animTmr === undefined) {
@@ -199,6 +249,12 @@ export function startAnim() {
 
 export function _onload() {
   pretag = document.getElementById('d');
+
+  if (window._isMobile) {
+    A=0.8;
+    B=2;
+  }
+
   startAnim();
 }
 
@@ -267,5 +323,14 @@ export function stopAnim() {
     if(animTmr != undefined) {
       clearInterval(animTmr);
       animTmr = undefined;
+    }
+};
+
+export function lastAnim() {
+    if(animTmr != undefined) {
+      for (var i = 0; i < 1000; i++)
+        particles.add(createParticles());
+      clearInterval(animTmr);
+      animTmr = setInterval(lastframe, 50);
     }
 };

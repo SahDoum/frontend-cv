@@ -1,6 +1,5 @@
 :root {
   /*
-  --font-family-serif: "Georgia", serif;
   --font-family-sans-serif: Blanco,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol, Averta,Helvetica,Arial,sans-serif;
   --x: "helvetica neue", Helvetica Neue, 'Calibri', sans-serif;
   */
@@ -41,6 +40,15 @@ body {
   padding: 0;
   margin: 0;
   font-family: var(--font-family-monospace);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  line-height: inherit;
 }
 
 .unselectable {

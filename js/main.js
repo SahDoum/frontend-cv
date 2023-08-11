@@ -9,8 +9,9 @@
   console.log(isSafari);
 
   function onResize() {
-    var width = innerWidth
-    var height = innerHeight
+    console.log("RESIZING");
+    var width = document.body.clientWidth;
+    var height = document.body.clientHeight;
 
     var isMobile = (width < 720);
     charWidth = 10
@@ -19,7 +20,6 @@
     var rows = Math.floor(height / charHeight)
     var lineHeightPx = height / rows
 
-    console.log(rows, lineHeightPx, height, lineHeightPx*rows)
     if (isSafari) {
       lineHeightPx = Math.floor(lineHeightPx);
       rows = Math.ceil(height / lineHeightPx)
@@ -59,5 +59,9 @@
     window.addEventListener('resize', onResize)
   }
   window.addEventListener('orientationchange', onResize)
-  onResize()
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log("DOMContentLoaded")
+    onResize()
+});
+  
 })()

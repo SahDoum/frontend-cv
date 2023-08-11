@@ -2,11 +2,16 @@
   --vh: calc(var(--vh-height, 1vh) * 100);
 }
 
+
 #intro-app {
   position: relative;
-  scroll-snap-type: y;
+  -display: flex;
+  -flex-direction: column;
+  scroll-snap-type: y mandatory;
   overflow-y:scroll;
+  height: 100vh;
   max-height: 100vh;
+  max-height: -webkit-fill-available;
 
   background-color: white;
 
@@ -16,14 +21,16 @@
 #intro-app #intro,
 #intro-app #pong-container {
   scroll-snap-align: start;
-  scroll-snap-stop: always;
+  scroll-snap-stop: normal;
 }
 
 .container {
   position: relative;
-  min-height: var(--vh);
   width: 100%;
   min-width: 100vw;
+  -min-height: var(--vh);
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
 }
 
 @media screen and (min-width: 480px) {

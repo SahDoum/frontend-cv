@@ -1,16 +1,9 @@
 
 :root {
-  --easeInOutCubic: cubic-bezier(0.645, 0.045, 0.355, 1);
-
-  --myEase: cubic-bezier(1,0,.62,.68);
-  --myEaseIn: cubic-bezier(.15,.65,.15,1);
-  --myEaseInOut: cubic-bezier(0.5,0,0,1);
-  --myEaseOut: cubic-bezier(0.19,-0.25,0,.72);
-  --myBack: cubic-bezier(.87,0,.18,1.4);
-  --myTest: cubic-bezier(.33,0,1,.66);
-
   --intro-transition: cubic-bezier(.9,0,1,.1);
 }
+
+/* torus */
 
 #torus {
     z-index: 1000;
@@ -38,7 +31,7 @@
     font-size: 32px;
     font-style: normal;
     font-weight: 400;
-    line-height: 25px; /* 86.775% */
+    line-height: 25px;
     text-transform: uppercase;
 
     opacity: 1;/*
@@ -53,11 +46,15 @@
     -opacity: 0.1;
 }
 
+/* main slide */
+
 #intro {
     position: relative;
     overflow: hidden;
 
 }
+
+/* intro name  */
 
 #intro-name {
     position: absolute;
@@ -65,64 +62,65 @@
     top: 50px;
     width: 100%;
     overflow:visible;
-    transition: all .2s cubic-bezier(.9,0,1,.1);
+    transition: all .2s var(--intro-transition);
 
     text-align: left;
     word-wrap: break-word;
     flex-shrink: 0;
 
-    font-size: 40px;
-    line-height: 40px;
+    /* start position */
+
+    font-size: max(40px, 1vh);
+    line-height: 1em;
     font-family: 'Redaction', sans-serif;
 
     z-index: 1;
 }
 
 #intro-name:hover {
-    font-family: 'Redaction 50', sans-serif;
+    font-family: 'Redaction 35', sans-serif;
 }
-
-#intro-name span {
-    transition: all 0.01s cubic-bezier(.9,0,1,.1);
-}
-
 
 .intro-start #intro-name {
   left: 0;
-  top: 10px;
+  top: .05em;
   width: 100%;
-
-  font-size: 150px; /* 960px  + 110px*/
-  line-height: 110px;  
+  font-size: clamp(20px, 25vh, 14vw);
+  line-height: .66em;  
 
 }
 
 .intro-start #intro-name span {
-    font-size: 150px;
-    letter-spacing: calc((100vw - 1070px - 190px)/8);
+    display: inline;
+    font-size: inherit;
+    height: 10px;
+    letter-spacing: calc( (100vw - 6.25em - .7em) / 2 );
+    line-height: 10px;
 }
+
+/* intro image */
+
 
 #intro-image {
     position: absolute;
     right: 8.43vw;
-    bottom: 8.19vh;
+    top: 15vh;
 
-    --image-height: calc(97vh - 10vw);
-    --image-width: 360px;
+    height: min(77vh, 77vw);
+    aspect-ratio: 2 / 3;
 
-    height: calc(var(--image-width) * 3/2);
-    width: var(--image-width);
-
-  transition: all 0.66s cubic-bezier(.9,0,1,.1);
+    transition: all 0.5s cubic-bezier(.5,0,1,.1);
 }
 
 .intro-start #intro-image:hover {
-    transform: rotate(5deg) scale(1.05);
+    transform: rotate(4deg) scale(1.1);
 }
 
 #intro-image img {
     max-height:100%; max-width:100%;
 }
+
+/* intro contacts */
 
 #intro-contacts {
     display: flex;
@@ -132,23 +130,24 @@
     left: 10vw;
     bottom: 28px;
 
-    transition: all 0.25s cubic-bezier(.9,0,1,.1);
-    transition-delay: 0.01s;
+    font-size: max(24px, 3.8vh);
+
+    transition: all 0.3s var(--intro-transition);
+    transition-delay: 0.4s;
 
 }
 
-.intro-start #intro-contacts {
-    bottom: 80px;
-
-}
+/*.intro-start #intro-contacts {
+    -bottom: 90px;
+}*/
 
 .contact-text {
-    font-size: 24px;
-    height: 28px;
-    font-family: 'Redaction 70', sans-serif;
+    font-size: inherit;
+    height: 1.2em;
+    font-family: 'Redaction 35', sans-serif;
     background: white;
-    max-width: 300px;
-    transition: all 0.3s cubic-bezier(.9,0,1,.1);
+    max-width: 9.5em;
+    transition: all 0.3s var(--intro-transition);
 }
 
 .contact-text:hover {
@@ -158,29 +157,30 @@
 }
 
 .contact-line {
-    background: black;
     height: .5px;
     width: 100vw;
     transform: translateX(-10vw);
-    transition: all 0.3s cubic-bezier(.9,0,1,.1);
+    font-size: inherit;
+    background: black;
+    transition: all .3s var(--intro-transition);
     z-index: 20;
 }
 
-.line-2 {transform: translateY(-28.5px) translateX(-10vw); transition-delay: .85s;}
-.line-3 {transform: translateY(-57px)   translateX(-10vw); transition-delay: .75s;}
-.line-4 {transform: translateY(-85.5px) translateX(-10vw); transition-delay: .65s;}
-
-
-.text-0 {z-index: 1;}
-.text-1 {z-index: 5;}
-.text-2 {z-index: 4; transform: translateY(-28.5px); transition-delay: .95s;}
-.text-3 {z-index: 3; transform: translateY(-57px);   transition-delay: .85s;}
-.text-4 {z-index: 2; transform: translateY(-85.5px); transition-delay: .75s;}
-.text-5 {z-index: 1; transform: translateY(-114px);  transition-delay: .65s;}
+.line-2 {transform: translateY(calc(-1*1.2em - .25px)) translateX(-10vw); transition-delay: .85s;}
+.line-3 {transform: translateY(calc(-2*1.2em - .75px)) translateX(-10vw); transition-delay: .75s;}
+.line-4 {transform: translateY(calc(-3*1.2em - 1.25px)) translateX(-10vw); transition-delay: .65s;}
 
 .intro-start .line-2 {transform: translateX(-10vw);}
 .intro-start .line-3 {transform: translateX(-10vw);}
 .intro-start .line-4 {transform: translateX(-10vw);}
+
+
+.text-0 {z-index: 5;}
+.text-1 {z-index: 5;}
+.text-2 {z-index: 4; transform: translateY(calc(-1*(100% + 2px))); transition-delay: .95s;}
+.text-3 {z-index: 3; transform: translateY(calc(-2*(100% + 2px))); transition-delay: .85s;}
+.text-4 {z-index: 2; transform: translateY(calc(-3*(100% + 2px))); transition-delay: .75s;}
+.text-5 {z-index: 1; transform: translateY(calc(-4*(100% + 2px))); transition-delay: .65s;}
 
 .intro-start .text-2 {transform: none;}
 .intro-start .text-3 {transform: none;}
@@ -191,21 +191,7 @@
     display: none;
 }
 
-
-@media screen and (max-width: 1024px) {
-    .intro-start #intro-name { 
-        font-size: 100px;
-        line-height: 80px;  
-    }
-
-    .intro-start #intro-name span {
-        font-size: 120px;
-        letter-spacing: calc((100vw - 900px)/8);
-
-    }
-}
-
-
+/* mobile */
 @media screen and (max-width: 480px) {
 
     #intro {
@@ -214,7 +200,7 @@
 
     #intro-name { 
         left: 0;
-        top: 0px;
+        top: -1rem;
         font-size: 17vw;
         line-height: 20vw;  
     }
@@ -280,6 +266,7 @@
 
     #extra-lines .contact-line {
         margin-top: calc(13.5vw - 1px);
+        height: 1px;
     }
 
     #extra-lines .back-line {

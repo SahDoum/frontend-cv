@@ -62,7 +62,7 @@ class Paddle {
     this.y = y; // it's paddle center
     this.width = w;
     this.height = h;
-    this.moveDelta = 25;
+    this.moveDelta = 8;
   }
 
   moveByBot(balls, mainBall) {
@@ -92,10 +92,10 @@ class Paddle {
   }
 
   draw(ctx) {
-    ctx.fillStyle = "green";
+    ctx.fillStyle = "#25292F";
     ctx.fillRect(this.x - this.width/2, this.y - this.height/2, this.width, this.height);
-    ctx.fillStyle = "white";
-    ctx.fillRect(this.x - this.width/2 + 1, this.y - this.height/2 + 1, this.width - 2, this.height - 2);
+    // ctx.fillStyle = "white";
+    // ctx.fillRect(this.x - this.width/2 + 1, this.y - this.height/2 + 1, this.width - 2, this.height - 2);
   }
 }
 
@@ -213,9 +213,9 @@ class Game {
     this.height = height;
 
     var pw = 150;
-    var ph = 20;
+    var ph = 10;
     this.playground = new Playground(width, height);
-    this.paddle = new Paddle(width/2, height - ph/2 - 10, 100, ph);
+    this.paddle = new Paddle(width/2, height - ph/2 - 10, 150, ph);
     this.botPaddle = new Paddle(width/2, ph/2 + 10, 150, ph);
 
     this.balls;// = new Set();
@@ -226,7 +226,6 @@ class Game {
   }
 
   start() {
-    console.log("HELLO")
     if (this.state == 1) return;
 
     this.state = 1;
@@ -237,16 +236,27 @@ class Game {
     this.parent.printLine(events[0][1])
 
     this.balls = new Set();
-    this.mainBall = new Ball(this.width/2, 60, 4, 6, 0)
+    this.mainBall = new Ball(this.width/2, 60, 3, 4, 0)
     this.balls.add(this.mainBall);
 
-    console.log("HELLO")
     this.animloop();
   }
 
   restart() {
-    this.mainBall = new Ball(this.width/2, 60, 4, 8, 0);
-    this.balls = new Set([ this.mainBall]);
+    this.mainBall = new Ball(this.width/2, 60, 3, 4, 0);
+    this.balls = new Set([this.mainBall]);
+  }
+
+  restartMainBall() {
+    //delete this.mainBall;
+    let newBall = new Ball(this.width/2, 60, 3, 4, 0);
+    this.balls.delete(this.mainBall);
+    this.mainBall = newBall;
+    this.balls.add(newBall);
+
+    console.log("restart");
+    console.log(this.mainBall);
+    console.log(this.balls);
   }
 
   stop() {
@@ -286,14 +296,6 @@ class Game {
     this.score += 1;
     this.parent.updateScore(this.score);
 
-    // increase speed
-    if(this.score % 7 == 3) {
-      if(Math.abs(this.mainBall.vx) < 15) {
-        this.mainBall.vx += (this.mainBall.vx < 0) ? -1 : 1;
-        this.mainBall.vy += (this.mainBall.vy < 0) ? -2 : 2;
-      }
-    }
-
     if(this.score % 6 == 2) {
       this.event += 1;
       if (this.event >= events.length) {
@@ -302,8 +304,16 @@ class Game {
       }
       var ballType = events[this.event][0];
       var message = events[this.event][1];
-      this.balls.add(new Ball(this.width/2, 60, 2, 4, ballType))
+      this.balls.add(new Ball(this.width/2, 60, 4, 5, ballType))
       this.parent.printLine(message)
+    }
+
+    // increase speed
+    if(this.score == 45) {
+      if(Math.abs(this.mainBall.vx) < 15) {
+        this.mainBall.vx += (this.mainBall.vx < 0) ? -1 : 1;
+        this.mainBall.vy += (this.mainBall.vy < 0) ? -2 : 2;
+      }
     }
   }
 
@@ -314,7 +324,8 @@ class Game {
     if(this.lives < 0)
       this.gameOver();
 
-    if (ball.state == 0) this.restart();
+    console.log(ball.state)
+    if (ball.state == 0) this.restartMainBall();
   }
 
   win(ball) {
@@ -350,18 +361,19 @@ class Game {
     this.playground.draw(ctx);
     this.paddle.draw(ctx);
     this.botPaddle.draw(ctx);
-    this.balls.forEach(ball => {
-      ball.draw(ctx);
-    });
+    if(this.balls) {
+      this.balls.forEach(ball => {
+        ball.draw(ctx);
+      });
+    }
 
-    ctx.font = "32px Arial, sans-serif";
+    ctx.font = "32px Roboto Mono, monospace";
     ctx.textAlign = "left";
     ctx.textBaseline = "top";
     var mytext = "❤"
     ctx.fillStyle = "red";
 
     ctx.fillText(mytext.repeat(this.lives), this.width - 100, 20);
-
 
     // ctx.font = "16px Arial, sans-serif";
     // ctx.textAlign = "left";
@@ -401,6 +413,7 @@ export default {
     this.$refs.canvas.width = this.width;
     this.$refs.canvas.height = this.height;
     this.game = new Game(this.width, this.height, this.$refs.canvas, this);
+    this.game.draw();
   },
   methods: {
     start() {
