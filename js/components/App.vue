@@ -172,9 +172,7 @@ export default {
     },
 
     slideToPong: async function() {
-      const row = document.querySelector(".containers-row");
       const pong = document.getElementById("pong-container");
-      row.classList.add("show-pong");
       pong.scrollIntoView({ behavior: "smooth",});
       this.startPong();
     },

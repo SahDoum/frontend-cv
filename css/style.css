@@ -1,11 +1,6 @@
 :root {
-  /*
-  --font-family-sans-serif: Blanco,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol, Averta,Helvetica,Arial,sans-serif;
-  --x: "helvetica neue", Helvetica Neue, 'Calibri', sans-serif;
-  */
-  --font-family-monospace: "Roboto Mono", 'Ubuntu Mono',monospace;
 
-                                                
+  --font-family-monospace: "Roboto Mono", 'Ubuntu Mono',monospace;                              
 
   --dark-color: #25292F;
   --light-color: #DBDCE8;
@@ -13,15 +8,14 @@
     --white-rgb: 255, 255, 255;
     --black-rgb: 22, 22, 21;
     --highlight-rgb: 230, 230, 230;
+
+    --white: rgb(var(--white-rgb));
+
     --font-size: 16px;
     --line-height: 21px;
     --letter-spacing: 0.54px;
     --char-width: 10px;
     --vh: calc(var(--vh-height, 1vh) * 100);
-    --white: rgb(var(--white-rgb));
-    --black: rgb(var(--black-rgb));
-    --green: rgb(var(--green-rgb));
-    --highlight: #e8eeb3;
     --char-ratio: 0.6;
 }
 
@@ -29,17 +23,17 @@
 html {
     font-size: var(--char-width);
     background-color: var(--white);
-    --line: var(--line-height);
+/*    --line: var(--line-height);
     --column: calc((100vw - 9rem) / 8);
     --column-double: calc((100vw - 5rem) / 4);
-    --page-margin:calc(var(--line-height) * 4);
+    --page-margin:calc(var(--line-height) * 4);*/
 }
 
 body {
-  letter-spacing: var(--letter-spacing);
   padding: 0;
   margin: 0;
   font-family: var(--font-family-monospace);
+  letter-spacing: var(--letter-spacing);
 }
 
 a {
@@ -61,63 +55,34 @@ a {
 }
 
 
-#d {
-
-  font-family: var(--font-family-monospace);
-  font-variation-settings: "MONO" .5, "wght" 600;
-  cursor: pointer;
-
-  -background-color: hsl(0 0% 20%); 
-  background-color: var(--dark-color);
-  color: var(--light-color); 
-  font-size: var(--font-size);
-  line-height: var(--line-height);
-
-  padding: 0;
-  margin: 0;
+.disable-scrolling {
+  height: 100vh;
+  overflow: hidden;
 }
 
-.fa {
-    font-family: FontAwesome;
-}
+
+
+/* back button style */
 
 .back-button {
-    position: absolute;
-    top: calc(15vw);
-    left: 20px;
-
-    font-size: 20px;
-    font-family: 'Redaction 20', sans-serif;
-
     display: flex;
+    flex-wrap: nowrap;
 
+    font-size: minmax(20px, 3.2vh);
+    font-family: 'Redaction 20', sans-serif;
 }
 
-.back-button .one {
+.back-button span:first-child {
     transform: translateX(200%);
     transition: 0.5s;
 }
 
-.back-button .two {
+.back-button span:nth-child(2) {
     transform: translateX(100%);
     transition: 0.5s;
 }
 
-.back-button.three {
-}
 
-
-.back-button:hover .one {
+.back-button:hover span {
     transform: translateX(0);
 }
-
-.back-button:hover .two {
-    transform: translateX(0);
-}
-
-/*.container {
-  position: relative;
-  height: 100vh;
-  width: 100%;
-  max-width: 100vw;
-}*/

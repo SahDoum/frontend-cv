@@ -24,85 +24,51 @@
 
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/containers.css">
+    <link rel="stylesheet" href="../css/examples.css">
     <link rel="stylesheet" href="../css/map.css">
 
     <script src="../js/examples/map.js"></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
-
-
 
 </head>
 
-<style type="text/css">
-
-.map-container {
-    position: relative;
-    min-height: 100vh;
-    -background: yellow;
-    overflow: hidden;
-}
-.map-title {
-    font-family: 'Redaction 10', sans-serif;
-    font-size: 10.2vw;
-    line-height: 9.5vw;
-    background: white;
-    margin-bottom: 60px;
-}
-
-.back-button {
-    top: calc(10.2vw);
-    left: 20px;
-}
-    
-</style>
-
 <body>
+<div class="ex-container scroll-container">
+  <div class="ex-title map-title">INTERACTIVE&nbsp;&nbsp;MAP</div>
+  <div class="ex-back-button">
+    <a href="./index.html">
+        <div class="back-button">
+            <span><</span><span><</span><span><</span>——
+        </div>
+    </a>
+  </div>
 
+  <p>Это первый абзац, смотрю, как работают стили</p>
 
-<div class="map-title">INTERACTIVE&nbsp;&nbsp;MAP</div>
-<a href="../examples.html"><div class="back-button"><span class="one"><</span><span class="two"><</span><span class="three"><</span>—</div></a>
+  <script src="https://api-maps.yandex.ru/2.1/?apikey=e5130bc5-0f41-41ce-af2f-b4484c409949&lang=ru-RU" type="text/javascript"></script>
 
+  <div id="map-container">
+    <div id="sidebar-container">
+      <img id="sidebar-image" class="sidebar-img">
+      <div id="sidebar-header"></div>
+      <div class="line"></div>
 
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=e5130bc5-0f41-41ce-af2f-b4484c409949&lang=ru-RU" type="text/javascript"></script>
-
-    <div id="map-container">
-      <div id="sidebar-container">
-        <img id="sidebar-image" class="sidebar-img">
-        <div id="sidebar-header"></div>
-        <div class="line"></div>
- 
-        <div class="line"></div>
-        <div id="sidebar-description"></div>
-        <button aria-label="close sidebar" type="button" class="next-button">
-              <i class="fa-solid fa-person-walking-arrow-right"></i>
-        </button>
-        <button class="scroll-up-button fa"></button>
-        <button class="scroll-down-button fa"></button>
-      </div>
-      <div id="map"></div>
+      <div class="line"></div>
+      <div id="sidebar-description"></div>
+      <button aria-label="close sidebar" type="button" class="next-button">
+            <i class="fa-solid fa-person-walking-arrow-right"></i>
+      </button>
+      <button class="scroll-up-button fa"></button>
+      <button class="scroll-down-button fa"></button>
     </div>
+    <div id="map"></div>
+  </div>
 
+</div>
 
     <!-- HOW TO: 1) use your API key. 2) Use initMap for churches init -->
 
     <script type="text/javascript">
-
-    //   config = {
-    //     minZoom: 4,
-    //     maxZoom: 20,
-    //     zoomControl: false,
-    //     attributionControl: false, // don't remove it
-    //     center: [67.6755, 33.936],
-    //     zoom: 10,
-    //   };
-    // let map = L.map('map', config);
-    // var yandexLayer = new L.yandex();
-    // map.addLayer(yandexLayer);
-    // L.control.zoom({
-    //    position:'topright'
-    // }).addTo(map);
 
       var map = new Map([
         {
@@ -147,12 +113,6 @@
           type: "main_type",
           latlon: [44.539814, 50.259833]
         },
-        // {
-        //   name: "", 
-        //   desc: "",
-        //   type: "main_type",
-        //   latlon: []
-        // },
       ]);
     </script>
 </body>

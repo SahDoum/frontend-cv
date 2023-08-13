@@ -1,4 +1,13 @@
 
+.map-title {
+    font-size: 10.2vw;
+}
+
+@media screen and (max-width: 320px) { 
+    .map-title {
+        font-size: 16vw;
+    }
+}
 
 
   /*

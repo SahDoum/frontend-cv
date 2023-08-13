@@ -1,0 +1,113 @@
+
+
+/* Examples main */
+
+
+.ex-container {
+    position: relative;
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-rows: auto auto minmax(0, 1fr);
+    min-height: auto;
+
+    font-size: max(20px, 3.2vh);;
+
+    min-height: 100vh;
+}
+    
+.ex-title {
+    width: 100vw;
+    font-family: 'Redaction 10', sans-serif;
+    line-height: 0.7em;
+    margin-top: 0.7rem;
+    background: white;
+    word-wrap: break-word;
+}
+
+.ex-back-button {
+    padding-left: 20px;
+    margin-bottom: 1em;
+    width: 10em;
+    height: 1em;
+}
+
+p {
+    font-size: 20px;
+    margin: 1em 10%;
+    font-family: font-family: var(--font-family-monospace);
+}
+
+/* index page */
+
+.index-title {
+    font-size: 18vw;
+}
+
+@media screen and (max-width: 320px) { 
+    .index-title {
+        font-size: 32vw;
+    }
+}
+
+.lines-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.lines-container div {
+    background: black;
+    height: .5px;
+    width: 100vw;
+    margin-bottom: calc(1.25em - .5px);
+    
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0.5px;
+}
+
+.ex-blocks {
+    position: relative;
+    overflow: hidden;
+}
+
+.ex-grid {
+    display: grid;
+    align-items: center;
+    grid-auto-flow: row;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 33%));
+    align-items: start;
+    margin-left: 10%;
+}
+
+.example {
+    display: block;
+    font-family: 'Redaction 10', sans-serif;
+    line-height: 1.25em;
+    -margin-bottom: 1.25em;
+    width: clamp(20vw, 250px, 80vw);
+}
+
+.example:nth-child(1) {margin-left: 0%; padding-top: 0em;}
+.example:nth-child(2) {margin-left: 0%; padding-top:  2.5em;}
+.example:nth-child(3) {margin-left: 10%; padding-top:  1.25em;}
+.example:nth-child(4) {margin-left: 30%; padding-top: 2.50em;}
+.example:nth-child(5) {margin-left: 30%; padding-top: 1.25em;}
+
+
+@media screen and (max-width: 320px) { 
+    .ex-title {
+        font-size: 32vw;
+        word-wrap: break-word;
+        line-height: 22vw;
+        margin-top: 1rem;
+    }
+
+    .example:nth-child(4) {margin-left: 7%; }
+    .example:nth-child(5) {margin-left: 14%; }
+}

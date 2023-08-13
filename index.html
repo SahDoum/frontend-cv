@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/containers.css">
     <link rel="stylesheet" href="css/animation.css">
+    <link rel="stylesheet" href="css/pong.css">
 
     <script src="js/main.js"></script>
 
@@ -22,14 +23,13 @@
 <body>
 <div id="intro-app">
 
-    <div id="torus" class="torus-container">
+    <div id="torus" class="torus-container container">
         <pre id="d" ref="d" class="unselectable" 
             @mousedown.prevent="e => torusAnim && torusClick(e)" 
             @mousemove="e => torusAnim && torusMove(e)">
         </pre>
         <div class="torus-label">Dobro doshli!</div>
     </div>
-    <div id="space" class="container"></div>
     <div id="intro" class="container" @mousedown.prevent="startIntro" @mousemove="startIntro">
         <div id="intro-name" @mousemove="startIntro">
             ALEXANDR<span>&nbsp;&nbsp;</span>DUMAREVSKIY
@@ -51,7 +51,7 @@
             <div class="contact-line line-3"></div>
             <div class="contact-text text-4" @mousedown.prevent="slideToPong">* working process *</div>
             <div class="contact-line line-4"></div>
-            <div class="contact-text text-5"><a href="./examples.html">* examples *</a></div>
+            <div class="contact-text text-5"><a href="./examples/index.html">* examples *</a></div>
 
         </div>
         <div id="extra-lines">

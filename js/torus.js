@@ -1,5 +1,5 @@
 let position = [0, 200];
-const pointRect = {
+const pointRect = { // WHAAAAAAT
   left: 40*16,
   top: 24*16
 };
@@ -253,12 +253,19 @@ export function _onload() {
   if (window._isMobile) {
     A=0.8;
     B=2;
+    updateCursor();
   }
 
   startAnim();
 }
 
 export function updateCursor(event) {
+  if (window._isMobile) {
+    cursorCoords = Math.ceil((window._cols * 9 - cursor_states[cursor_state][1].length) / 2);
+    console.log(pointRect, pointRect.width)
+    position = [-pointRect.left, -pointRect.left];
+    return;
+  }
   const mouseX = event.clientX - pointRect.left;
   const mouseY = event.clientY - pointRect.top;  
   position = [mouseX, mouseY];
@@ -272,8 +279,6 @@ export function updateCursor(event) {
 
 
 export function torus_click() {
-  console.log("click function");
-  console.log(clickInterval);
   if (! (clickInterval === undefined )) {return true;}
 
   cursor_state-=1;
@@ -294,7 +299,6 @@ export function torus_click() {
     const dist_step = (finishDist - Dist) / totalSteps; 
 
     clickInterval = setInterval(() => {
-      console.log("inside interval")
       torus_mul += step; 
       Dist += dist_step;
 
@@ -307,12 +311,8 @@ export function torus_click() {
         clickInterval = undefined;
       }
 
-    }, 100);  
+    }, 66);  
 
-
-  // if (cursor_states[cursor_state].length > 2) {
-  //   Dist = cursor_states[cursor_state][2];
-  // }
   updateCursor({clientX: position[0] + pointRect.left, clientY: position[1] + pointRect.top});
   for (var i = 0; i < 40; i++)
     particles.add(createParticles());

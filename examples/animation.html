@@ -17,29 +17,30 @@
 
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/containers.css">
+    <link rel="stylesheet" href="../css/examples.css">
 
     <!-- <link rel="stylesheet" href="railscasts.css"> -->
     <!-- <script src="highlight.js"></script> -->
 
 <style type="text/css">
-    
-.back-button {
-    top: calc(15vw);
-    left: initial;
-    right: 90px !important;
-}
 
 .animation-title {
-    font-family: 'Redaction 10', sans-serif;
     font-size: 17vw;
-    line-height: 15vw;
-    background: white;
-    margin-bottom: 60px;
+}
+
+
+@media screen and (max-width: 320px) { 
+    .animation-title {
+        font-size: 28vw;
+    }
 }
 
 </style>
 
 <body>
+
+<div class="ex-container scroll-container">
+
 
     <!-- Я вижу, ты решил посмотреть код страницы. Вот тут все для стартовой анимации -->
 
@@ -85,10 +86,14 @@
     </div>
 
     <div class="start-anim fancy-container" style="scroll-snap-align: start;">
-        <div class="animation-title">ANIMATION</div>
-
-
-        <a href="../examples.html"><div class="back-button"><span class="one"><</span><span class="two"><</span><span class="three"><</span>—</div></a>
+        <div class="ex-title animation-title">ANIMATION</div>
+        <div class="ex-back-button">
+        <a href="./index.html">
+            <div class="back-button">
+                <span><</span><span><</span><span><</span>——
+            </div>
+        </a>
+        </div>
 
         <div class="start-anim line line0"></div>
         <div class="start-anim line line1"></div>
@@ -108,7 +113,7 @@
 
     <!-- Заканчивается скрином, ну, для наглядности -->
 
-
+</div>
 </body>
 <script src="../js/examples/animation.js"></script>
 

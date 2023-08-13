@@ -5,10 +5,6 @@ import ImageLoader from './components/ImageLoader.vue'
 import TextLoader from './components/TextLoader.vue'
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    _onload();
-});
-
 
 // const app = createApp({
 //     data() {
@@ -246,9 +242,7 @@ const introApp = createApp({
         },
 
         slideToPong: async function() {
-            // const row = document.querySelector(".containers-row");
             const pong = document.getElementById("pong-container");
-            // row.classList.add("show-pong");
             pong.scrollIntoView({ behavior: "smooth",});
             this.startPong();
         },
@@ -284,12 +278,10 @@ const introApp = createApp({
         torusFinish: function() {
 
             lastAnim();
-            var spaceDiv = document.getElementById('space');
             var torusDiv = document.getElementById('torus');
             window.scrollTo({top: 0, behavior: 'instant'});
             document.body.classList.add('disable-scrolling');
 
-            spaceDiv.style.display="none";
             torusDiv.classList.add('torus-hide');            
 
             setTimeout(() => {
@@ -356,7 +348,11 @@ introApp.component("image-loader", ImageLoader);
 introApp.component("text-loader", TextLoader);
 introApp.component("pong", Pong);
 
-introApp.mount("#intro-app");
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("index onload")
+    introApp.mount("#intro-app");
+    _onload();
+});
 
 // {
 //   el: '#app',
