@@ -1,0 +1,252 @@
+
+.scroll-title {
+    font-size: 17vw;
+}
+
+
+@media screen and (max-width: 320px) { 
+    .scroll-title {
+        font-size: 28vw;
+    }
+}
+
+:root {
+    --gap: 1px;
+    --bw: calc((100vw - 8*var(--gap))/9);
+    --bh: calc(20vh - var(--gap)*4/5);
+
+    /* --s#_text -- захардкожено прямо в html разметке. Начинается в 40 процентов (найстраивается в js-файле) */
+
+    --s1: 0;
+    --s1_out: 11vw;
+    --s1_text: 50%;
+
+    --s2_text: 50%;
+    --s2_out: calc(200vw/9);
+
+    --s3: 0;
+    --s3_text: 50%;
+    --s4: 0;
+    --s4_text: 50%;
+}
+
+.i-card {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.i-card_thumb {
+    flex: 1 1 350px;
+}
+
+.i-card_desc {
+    flex: 2 1 550px;
+}
+
+
+
+/* стили для точечек */
+
+.number_text-dot{
+    position: absolute;
+    transform: translate(-7.5px, -7.5px);
+    content: '';
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.number_text-dot1 {
+    background-color: orange;
+    top: calc(var(--bh) + var(--gap));
+    left: calc(2*var(--bw) + var(--gap));
+}
+
+.number_text-dot2 {
+    background-color: orangered;
+    top: calc(2*var(--bh) + 2*var(--gap));
+    left: calc(6*var(--bw) + 5*var(--gap));
+}
+
+.number_text-dot3 {
+    background-color: darkorange;
+    top: calc(3*var(--bh) + 3*var(--gap));
+    left: calc(4*var(--bw) + 3*var(--gap));
+}
+
+.number_text-dot4 {
+    background-color: coral;
+    top: calc(4*var(--bh) + 4*var(--gap));
+    left: calc(var(--bw));
+}
+
+/* стили для надписей */
+
+.big-number {
+    font-size: 16vh;
+    line-height: 16vh;
+    display:inline-block;
+}
+.small-text {
+    font-size: 10px;
+    display:inline-block;
+}
+
+/* иерархия слайдеров, сложнее понять, чем принцип квантового туннелирования */
+
+.slider-container {
+    grid-gap: var(--gap);
+    background-color: black !important;
+}
+
+.second-outer-slider,
+.slider-container-main {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.second-outer-slider div,
+.slider-container-main div {
+    overflow: hidden;
+    background-color: white;
+}
+
+.slider-container-main {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+
+    display: grid;
+    grid-template-columns: calc(2*var(--bw) + var(--gap)) repeat(4, 1fr) calc(3*var(--bw) + 2*var(--gap));
+    grid-template-rows: repeat(5, var(--bh));
+}
+
+.first-slider {
+    position: relative;
+    overflow: hidden;
+
+    grid-row: 1 / 1;
+    grid-column: 2 / 5;
+
+    display: grid;
+    grid-template-columns: calc(var(--s1)*(var(--bw)*3 + var(--gap)*3) + var(--bw)) 1fr 1fr;
+    grid-template-rows: 1;
+}
+
+.second-slider {
+    position: relative;
+    overflow: hidden;
+
+    grid-row: 2 / 3;
+    grid-column: 6 / 6;
+
+    display: grid;
+    grid-template-columns: 1;
+    grid-template-rows: 1;
+}
+
+.third-slider {
+    position: relative;
+    overflow: hidden;
+
+    grid-row: 3 / span 3;
+    grid-column: 4 / 7;
+
+    display: grid;
+    grid-template-columns: calc(var(--s3)*(2*var(--bw) + 4*var(--gap)) + var(--bw)) 
+                           calc(var(--s3)*var(--bw)*2 + var(--bw))  
+                           1fr 
+                           1fr 
+                           1fr;
+    grid-template-rows: var(--bh) 
+                        calc((1 + var(--s3)) * var(--bh) + var(--gap)) 
+                        calc((1 - var(--s3)) * var(--bh));
+}
+
+.fourth-slider {
+    position: relative;
+    overflow: hidden;
+
+    grid-row: 2 / span 4;
+    grid-column: 1 / 4;
+
+    align-self: flex-end;
+
+
+    display: grid;
+    gap: var(--gap);
+    grid-template-columns: calc(var(--s4)*(var(--bw)*2 + 2*var(--gap)) + 2*var(--bw) + var(--gap)) 1fr 1fr;
+    grid-template-rows: calc( (1 - var(--s4)) * (var(--bh))) 
+                        calc((var(--s4) + 1) * (var(--bh) + var(--gap)) - var(--gap)) 
+                        var(--bh) 
+                        var(--bh);
+}
+
+.first-outer-slider {
+    position: absolute;
+    top: 0;
+    left: var(--s1_out);
+
+    height: 60vh;
+    width: 1px;
+    background-color: black;
+}
+
+.second-outer-slider {
+    position: absolute;
+    overflow: hidden;
+
+    right: calc(-4*var(--gap));
+    top: 0;
+    height: 100vh;
+    border-left: 1px solid black;
+
+    z-index: 2;
+
+    width: calc(var(--s2_out) + 2*var(--gap));
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+}
+
+.fourt-outer-slider {
+    position: absolute;
+    top: 60vh;
+    left: 11vw;
+
+    height: 40vh;
+    width: 1px;
+    background-color: black;
+
+}
+
+.fourth-outer-top-slider {
+    position: absolute;
+    top: calc(var(--bh) + var(--gap)*8/9);
+    left: 0;
+
+    height: var(--gap);
+    width: calc(5*var(--bw));
+    background-color: black;
+
+}
+
+.number_text-container {
+    position: relative;
+    overflow: visible;
+}
+
+.number_text-container div {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+}

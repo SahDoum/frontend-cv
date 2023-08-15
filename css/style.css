@@ -82,6 +82,16 @@ a {
     transition: 0.5s;
 }
 
+.back-button span:last-child {
+    transform: translateX(-200%);
+    transition: 0.5s;
+}
+
+.back-button span:nth-last-child(2) {
+    transform: translateX(-100%);
+    transition: 0.5s;
+}
+
 
 .back-button:hover span {
     transform: translateX(0);

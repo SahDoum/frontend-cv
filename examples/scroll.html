@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-snap-type: y mandatory;">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examples - Scroll</title>
+
+
+    <link rel="icon" type="image/x-icon" href="../media/favicon.ico">
+    <link href='https://fonts.googleapis.com/css?family=Roboto Mono' rel='stylesheet'>
+    <link href="https://fonts.cdnfonts.com/css/ubuntu-mono" rel="stylesheet">
+
+    <link href="../css/fonts.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/containers.css">
+    <link rel="stylesheet" href="../css/examples.css">
+    <link rel="stylesheet" href="../css/scroll.css">
+
+    <link rel="stylesheet" href="../css/code.css">
+    <link rel="stylesheet" href="../css/railscasts.css">
+    <script src="../js/libs/highlight.js"></script>
+</head>
+<body>
+
+<div class="ex-container scroll-container">
+    <div class="ex-title scroll-title">SCROLL</div>
+    <div class="ex-back-button">
+        <a href="./index.html">
+            <div class="back-button">
+                <span><</span>
+                <span><</span>
+                <span><</span>
+                <span>—</span>
+                <span>—</span>
+                <span>—</span>
+            </div>
+        </a>
+    </div>
+
+    <div class="i-card">
+        <div class="i-card_thumb">
+            <p>
+                До слайдера надо домотать, поэтому в этом примере будет разобрано стихотворение Кавафиса Итака:
+            </p>
+        </div>
+        <div class="i-card_desc">
+            <p>
+Отправляясь на Итаку, молись, чтобы путь был длинным, 
+полным открытий, радости, приключений.
+Не страшись ни циклопов, ни лестригонов,
+не бойся разгневанного Посейдона.
+Помни: ты не столкнешься с ними,
+покуда душой ты бодр и возвышен мыслью,
+покуда возвышенное волненье
+владеет тобой и питает сердце.
+Ни циклопы, ни лестригоны,
+ни разгневанный Посейдон не в силах
+остановить тебя – если только
+у тебя самого в душе они не гнездятся,
+если твоя душа не вынудит их возникнуть.
+Молись, чтоб путь оказался длинным,
+с множеством летних дней, когда,
+трепеща от счастья и предвкушенья,
+на рассвете ты будешь вплывать впервые
+в незнакомые гавани. Медли на Финикийских
+базарах, толкайся в лавчонках, щупай
+ткани, янтарь, перламутр, кораллы,
+вещицы, сделанные из эбена,
+скупай благовонья и притиранья,
+притиранья и благовония всех сортов;
+странствуй по городам Египта,
+учись, все время учись у тех, кто обладает знаньем.
+Постоянно помни про Итаку – ибо это
+цель твоего путешествия. Не старайся
+сократить его. Лучше наоборот
+дать растянуться ему на годы,
+чтоб достигнуть острова в старости обогащенным
+опытом странствий, не ожидая
+от Итаки никаких чудес.
+Итака тебя привела в движенье.
+Не будь ее, ты б не пустился в путь.
+Больше она дать ничего не может.
+Даже крайне убогой ты Итакой не обманут.
+Умудренный опытом, всякое повидавший,
+ты легко догадаешься, что Итака эта значит.
+            </p>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="slider-container-main slider-container">
+            <div class="first-slider slider-container">
+                <div class="number_text-container">
+                    <div style="top: var(--s1_text);">
+                        <span class="big-number">50%</span>
+                        <span class="small-text">ежегодного роста</span>
+                    </div>
+                </div>
+                <div></div>
+                <div></div>
+            </div>
+
+            <div class="second-slider slider-container">
+                <div class="number_text-container">
+                    <div style="top: var(--s2_text);">
+                        <span class="big-number">>90%</span>
+                        <span class="small-text">точность прогноза</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="third-slider slider-container">
+                <div class="number_text-container">
+                    <div style="top: var(--s3_text);">
+                        <span class="big-number">>100</span>
+                        <span class="small-text">Экономических моделей в год</span>
+                    </div>
+                </div>
+                <div></div>
+                <div style="grid-row: 1;grid-column: 3/6"></div>
+                <div style="grid-row: 2;grid-column: 3/6"></div>
+                <div style="grid-row: 3;grid-column: 3/6"></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="fourth-slider slider-container">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div class="number_text-container">
+                    <div style="top: var(--s4_text); left: 11vw;">
+                        <span class="big-number">8</span>
+                        <span class="small-text">лет в бизнесе</span>
+                    </div>
+                </div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+
+        </div>
+        <div class="first-outer-slider"></div>
+        <div class="second-outer-slider slider-container">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="fourt-outer-slider"></div>
+
+        <div class="fourth-outer-top-slider"></div>
+        
+        <div class="number_text-dot number_text-dot1"></div>
+        <div class="number_text-dot number_text-dot2"></div>
+        <div class="number_text-dot number_text-dot3"></div>
+        <div class="number_text-dot number_text-dot4"></div>
+    </div>
+
+
+    <p>Дальше весь код про слайдер. В css-файле комментариеми отмечены стили, в которых настраивается вид: это тексты с буковками и точки.</p>
+
+    <p>Скриптик для слайдера:</p>
+    <div class="file-code" data-file="../demo/slider-demo.html"></div>
+
+</div>
+</body>
+<script src="../js/examples/scroll.js"></script>
+<script src="../js/code.js"></script>
+
+</html>

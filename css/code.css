@@ -1,0 +1,105 @@
+:root {
+    --color-background-offset-light: hsl(220deg, 17%, 25%);
+
+    --lightGray: #fafafa;
+    --medBlue: #9baecf;
+    --char: #292929;
+    --color-border: hsl(220deg 12% 40%);
+    --color-text: hsl(218deg 27% 94%);
+    --color-background: hsl(220deg 17% 22%);
+    --color-background-offset-dark: #2b2b2b;
+    --color-primary: hsl(92deg 28% 65%);
+
+}
+
+.code-pre {
+    position: relative;
+    display: block;
+    
+    background: var(--color-background-offset-dark);
+    border: 1px solid var(--color-border);
+    border-left: 3px solid #f36d33;
+    color: var(--color-text);
+    page-break-inside: avoid;
+    font-family: monospace;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 1.6em;
+
+    
+    display: block;
+    word-wrap: break-word;
+
+    max-width: 80%;
+
+    min-width: 100px;
+    font-size: 16px;
+    line-height: 1.75;
+
+    -overflow-x: scroll;
+    display: block;
+    border-radius: 8px;
+
+    margin: 0 auto;
+    margin-bottom: 40px;
+
+    white-space:normal;
+
+
+
+}
+
+.code-pre code {
+    display: block;
+    overflow-y: auto !important;
+    overflow-x: auto !important;
+    max-height: 300px;
+    white-space:pre;
+
+    margin-top: 3em !important;
+    padding-top: 0 !important;
+}
+
+.code-pre button{
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    background-color: var(--color-background);
+    align-self: end;
+    padding: 0.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    margin: 0.25rem 0;
+    color: var(--color-text);
+    cursor: pointer;
+    font-size: 0.9rem;
+    justify-self: end;
+
+  /* more stuff */
+}
+
+.code-pre:before {
+    display: block;
+    border-block-end: 1px solid var(--color-primary);
+
+
+    position: absolute;
+    top: 5px;
+    left: 15px;
+    background-color: none;
+    align-self: end;
+    padding: 0.5rem;
+
+    font-family: MD Primer Bold,Rubik,Lato,Lucida Grande,Lucida Sans Unicode,Tahoma,Sans-Serif;
+    font-style: normal;
+    content: attr(data-language);
+    font-size: 0.9rem;
+    height: 15px;
+}
+
+.code-description {
+    max-width: 80%;
+    margin: auto;
+    margin-top: 20px;
+    font-size: 24px;
+}
