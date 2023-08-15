@@ -1,6 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-<svg fill="#000000" width="800px" height="800px" viewBox="5 2 14 20" id="file-alert-left" data-name="Flat Line" xmlns="http://www.w3.org/2000/svg" class="icon flat-line">
+<?xml version="1.0" encoding="utf-8"?>
 
-<path id="secondary" d="M18,21a1,1,0,0,0,1-1V4a1,1,0,0,0-1-1H9L5,7V20a1,1,0,0,0,1,1Z" style="fill: rgb(44, 169, 188); stroke-width: 2;"></path><path id="primary" d="M12,8v3m6,10a1,1,0,0,0,1-1V4a1,1,0,0,0-1-1H9L5,7V20a1,1,0,0,0,1,1Z" style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path>
-
-<line id="primary-upstroke" x1="11.95" y1="15.5" x2="12.05" y2="15.5" style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2.5;"></line></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="113" height="113" viewBox="0 0 113 113" fill="none">
+  <g filter="url(#filter0_d_243_111)">
+    <path d="M90 99.5V13H44.5L26 31.5V99.5H90Z" fill="#FF6240"/>
+  </g>
+  <path d="M58.0258 34.5009V54.0002M90.7827 105.979C92.2306 105.979 96.2422 105.979 96.2422 105.979C96.2422 105.979 96.2422 101.939 96.2422 100.481V12.5074C96.2422 11.0492 96.2422 7.00885 96.2422 7.00885C96.2422 7.00885 92.2306 7.00906 90.7827 7.00906H41.6474L19.8095 29.0025V100.481V105.979H25.269H90.7827Z" stroke="#394240" stroke-width="13.7187" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M58 80V80" stroke="#394240" stroke-width="15.3047" stroke-linecap="round" stroke-linejoin="round"/>
+  <defs>
+    <filter id="filter0_d_243_111" x="22" y="13" width="72" height="94.5" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="4"/>
+      <feGaussianBlur stdDeviation="2"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_243_111"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_243_111" result="shape"/>
+    </filter>
+  </defs>
+</svg>

@@ -1,5 +1,5 @@
 <template>
-  <div class="canvas-holder">
+  <div class="canvas-holder" ref="canvas_holder">
     <canvas id="canvas" ref="canvas"></canvas>
   </div>
 </template>
@@ -7,12 +7,14 @@
 <style scoped>
 
 .canvas-holder {
-  position: relative;
+/*  position: relative;
   padding-left: 0;
   padding-right: 0;
   display: block;
   align-content: center;
-  width: fit-content;
+  width: fit-content;*/
+
+
 }
 
 canvas {
@@ -119,7 +121,7 @@ class Ball {
     this.vx = vx;
     this.vy = vy;
 
-    this.r = 20;
+    this.r = 25;
 
     this.state = state; // 0 -- common, 1 -- pravki, 2 -- intresting free projусе, 3 -- deadline
     if (state == 1) {
@@ -200,10 +202,11 @@ var events = [
 ];
 
 class Game {
-  constructor(width, height, canvas, parent) {
+  constructor(width, height, canvas, real_canvas, parent) {
     this.state = 0;
     this.loop;
     this.canvas = canvas;
+    this.real_canvas = real_canvas;
     this.parent = parent;
 
     this.score = 0;
@@ -381,6 +384,16 @@ class Game {
     // ctx.fillStyle = "black";
 
     // ctx.fillText("Score: " + this.score, 20, 20 );
+
+    //scale canvas
+
+    console.log("put on real canvas")
+    let el = document.getElementById("canvas").parentNode;
+    console.log("parent", el, el.clientWidth, el.clientHeight);
+
+    this.real_canvas.width = el.clientWidth;
+    this.real_canvas.height = el.clientHeight;
+    this.real_canvas.getContext("2d").drawImage(this.canvas, 0, 0, this.width, this.height, 0, 0, el.clientWidth, el.clientHeight);
   }
 
   mouseEvent(x, y) {
@@ -397,10 +410,10 @@ class Game {
 export default {
   props: {
     width: {
-      default: window.innerHeight*0.6,
+      default: 600,
     },
     height: {
-      default: window.innerHeight*0.9,
+      default: 900,
     },
   },
   data: function() {
@@ -410,9 +423,17 @@ export default {
     }
   },
   mounted: function() {
-    this.$refs.canvas.width = this.width;
-    this.$refs.canvas.height = this.height;
-    this.game = new Game(this.width, this.height, this.$refs.canvas, this);
+    // this.$refs.canvas.width = this.width;
+    // this.$refs.canvas.height = this.height;
+
+    this.$refs.canvas.width = this.$refs.canvas_holder.offsetWidth;
+    this.$refs.canvas.height = this.$refs.canvas_holder.offsetHeight; 
+
+    this.game_canvas = document.createElement('canvas');
+    this.game_canvas.width = this.width;
+    this.game_canvas.height = this.height;
+
+    this.game = new Game(this.width, this.height, this.game_canvas, this.$refs.canvas, this);
     this.game.draw();
   },
   methods: {
@@ -420,6 +441,10 @@ export default {
       this.game.start();
     },
     move(x, y) {
+
+      x *= this.width / this.$refs.canvas_holder.offsetWidth;
+      y *= this.height / this.$refs.canvas_holder.offsetHeight;
+
       this.game.mouseEvent(x, y);
     },
     printLine(string) {

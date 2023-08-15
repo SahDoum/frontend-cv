@@ -1,67 +1,105 @@
 
+#pong-container {
+  display: grid;
+  grid-template-columns: 66vh 1fr;
+  grid-template-rows: 5fr 1fr;
+  overflow: hidden;
 
-.pong-cell {
-    grid-column: 3 / 6;
-    grid-row: 3 / 7;
+  background-color: var(--dark-color);
+
+  font-size: 20px;
 }
 
-.control-cell {
-    grid-column: 2;
-    grid-row: 1;
-}
+#pong {
 
-.event-cell {
-    grid-column: 3 / 6;
-    grid-row: 2;
-    background-color: var(--dark-color);
-    color: var(--light-color);
-    border-bottom: 2px solid var(--light-color);
+  grid-row: 1 / span 2;
+  grid-column: 1 / 1;
 
-}
+  margin: 2vh;
 
-
-.canvas-holder {
-  margin-top: 5vh;
-  margin-left: 5vh;
-  margin-right: 20vw;
+  font-size: inherit;
 }
 
 #pong-score {
-  position: absolute;
-  bottom: 100px;
-  right: -100px;
-  text-align: center;
-  align-items: flex-end;
+  grid-row: 1 / span 2;
+  grid-column: 2;
 
+  line-height: .7em;
+  height: 10px;
+
+  place-self: start center;
+  pointer-events: none;
 
   font-family: 'Redaction 10';
-  -line-height: 100vh;
-  font-size: 140vh;
-  height: 100vh;
-
+  font-size: calc( (100vw - 60vh) * 1.5 );
   color: var(--light-color);
-  -overflow: hidden;
+  text-align: right;
 }
 
 #pong-line {
-  position: absolute;
-  left: calc(60vh + 10vw);
-  top: 40vh;
 
-  height: 25vh;
-  width: 30vw;
+  grid-row: 2;
+  grid-column: 2;
 
-  padding: 5px;
+  width: max(100px, 90%);
+
+  margin-bottom: 2vh;
+
+  font-size: inherit;
+
+  min-height: 10em;
+
+  z-index: 2;
 
   color: var(--dark-color);
   background-color: var(--light-color);
-
   border: 2px solid black;
+  word-wrap: break-word;
 
-  font-size: 20px;
+  margin-bottom: 10em;
 
-  font-family: var(--font-family-monospace);
-  font-variation-settings: "MONO" .5, "wght" 600;
-  z-index: 10;
 }
 
+@media screen and (max-width: 700px) {
+
+
+  #pong-container {
+    grid-template-columns: 1fr 20%;
+    grid-template-rows: fit-content(1px) auto;
+  }
+
+  #pong {
+    grid-row: 1 / span 1;
+    grid-column: 1 / span 2;
+
+
+    height: min(146vw, calc(100vh - 6em));
+    width: min(146vw * 2/3, calc((100vh - 6em) * 2/3 ));
+
+    place-self: start;
+
+    margin: 2vw;
+
+  }
+
+  #pong-score {
+    grid-row: 1;
+    grid-column: 2;
+
+    place-self: center;
+    font-size: 40vw;
+  }
+
+  #pong-line {
+    grid-row: 2;
+    grid-column: 1 / span 2;
+
+    margin-left: 1vw;
+    margin-right: 1vw;
+    width: 98vw;
+
+    min-height: 4em;
+    height: 66%;
+    margin-bottom: 0;
+  }
+}

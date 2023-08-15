@@ -41,13 +41,10 @@
 /* torus */
 
 .torus-container {
-    -position: absolute;
-    -height: 100vh;
-    -width: 100vw;
-    -min-width: 100vw;
     z-index: 2;
-
     overflow: hidden;
+  
+    background-color: var(--dark-color);
 }
 
 #d {
@@ -70,12 +67,4 @@
 .pong-container-hidden {
   height: 0 !important;
   overflow: hidden;
-}
-
-#pong-container {
-  display: flex;
-  flex-direction: row;
-  overflow: hidden;
-
-  background-color: var(--dark-color);
 }
