@@ -2,12 +2,8 @@
   var html = document.documentElement
   var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent)
   var isMobile = false;
-  console.log(navigator.userAgent)
-  console.log("IS SAFARI");
-  console.log(isSafari);
 
   function onResize() {
-    console.log("RESIZING");
     var width = document.body.clientWidth;
     var height = document.body.clientHeight;
 
@@ -28,9 +24,6 @@
       charWidth = width / cols;
     }
 
-    console.log(rows, lineHeightPx, height, lineHeightPx*rows)
-    console.log("width: ", width)
-
     var fontSize = charWidth / 0.6 - 0.9
     var letterSpacing = (charWidth / 0.6 - fontSize) * 0.6
 
@@ -49,11 +42,7 @@
       --font-size:${fontSize}px;
       --screen-height: ${screen.availHeight};
       --half-rows: ${Math.floor(rows / 2)};
-      --vh-height: ${height * 0.01}px;
     `
-
-    console.log("IS MOBILE");
-    console.log(isMobile);
 
 
     window._charWidth = charWidth
@@ -68,7 +57,6 @@
   }
   window.addEventListener('orientationchange', onResize)
   document.addEventListener('DOMContentLoaded', () => {
-    console.log("DOMContentLoaded")
     onResize()
 });
   

@@ -30,7 +30,6 @@ export default {
           let elem = entry.target;
 
           if (entry.isIntersecting) {
-            console.log("Intersection!");
             this.animateIntro();
           }
         }

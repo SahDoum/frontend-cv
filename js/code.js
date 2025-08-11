@@ -10,7 +10,6 @@ function handleFileCode() {
         let pre = createPreElement(fileText, fileLanguage);
         div.parentNode.replaceChild(pre, div);
         addCopyButton(pre);
-        console.log("file added");
         hljs.highlightAll();
 
 
@@ -64,5 +63,4 @@ async function copyCode(element) {
 
 // Usage example:
 handleFileCode();
-console.log("finish")
 hljs.highlightAll();

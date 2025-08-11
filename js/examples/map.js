@@ -22,7 +22,6 @@
 
 var ICONS = {
   checkin_group_function: function(cluster) {
-    console.log("group icon")
     return L.divIcon({
       className: 'group-icon',
       html: cluster.getChildCount(),
@@ -68,7 +67,6 @@ class Map {
     }).addTo(map);
     this.map = map;
 
-    console.log("HELLO")
     this._initMarkers();
     this._initHandlers();
 
@@ -88,7 +86,6 @@ class Map {
   }
 
   markerClick(marker, zoom = this.checkinZoom) {
-    console.log(zoom)
     let newZoom = Math.max(zoom, this.map.getZoom());
     if(!this.map.hasLayer(marker)) {
       newZoom = this.clusterZoom;
@@ -105,11 +102,8 @@ class Map {
     let markerGroup = L.markerClusterGroup(this.clusterConfig);
     let markers = Array(this.checkins.length);
 
-    console.log(this.checkins);
-
     this.checkins.forEach((checkin, index) => {
 
-      console.log(checkin);
       var marker = L.marker(
         checkin.latlon,
         {
@@ -120,8 +114,6 @@ class Map {
       markerGroup.addLayer(marker);
       markers[index] = marker;
     });
-
-    console.log(markers);
 
 
     markerGroup.on('clusterclick', function (a) {
@@ -138,16 +130,13 @@ class Map {
     markerGroup.on('clustermouseover', function(event) {
       var marker = event.layer;
       if (marker && marker._icon && marker._icon.style) {
-        console.log(marker._icon.style.zIndex);
         marker._icon.style.zIndex = 99;
       }
     });
 
     markerGroup.on('clustermouseout', function(event) {
         var marker = event.layer;
-        console.log(marker._icon.style);
         if (marker && marker._icon && marker._icon.style) {
-          console.log(marker._icon.style.zIndex);
 
           marker._icon.style.zIndex = 9;
         }

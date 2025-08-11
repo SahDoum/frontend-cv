@@ -1,5 +1,6 @@
 <template>
-    <div class="text-loader-containew" ref=text>
+    <div ref=text>
+        <slot></slot>
     </div>
 </template>
 
@@ -15,29 +16,32 @@ export default {
         };
     },
     mounted: function() {
-        this.$refs.text.innerText = this.text;
-        this.$refs.text.style.fontFamily = "'Redaction 70',sans-serif";
+        this.$refs.text.style.fontFamily = "'Redaction 100',sans-serif";
     },
     methods: {
-        startLoader: async function() {
+        load: async function() {
             if (this.isLoaded) return;
 
             var textDiv = this.$refs.text;
 
+            //await new Promise(r => setTimeout(r, 100));
+            textDiv.style.fontFamily = "'Redaction 70',sans-serif";
+            await new Promise(r => setTimeout(r, 50));
+            textDiv.style.fontFamily = "'Redaction 50',sans-serif";
             await new Promise(r => setTimeout(r, 50));
             textDiv.style.fontFamily = "'Redaction 35',sans-serif";
-            await new Promise(r => setTimeout(r, 100));
+            await new Promise(r => setTimeout(r, 50));
             textDiv.style.fontFamily = "'Redaction 20',sans-serif";
-            await new Promise(r => setTimeout(r, 100));
+            await new Promise(r => setTimeout(r, 50));
             textDiv.style.fontFamily = "'Redaction 10',sans-serif";
-            await new Promise(r => setTimeout(r, 100));
+            await new Promise(r => setTimeout(r, 50));
             textDiv.style.fontFamily = "'Redaction',sans-serif";
-            await new Promise(r => setTimeout(r, 300));
+            // await new Promise(r => setTimeout(r, 300));
 
             this.isLoaded = true;
         },
 
-        revertLoader: function() {
+        revert: function() {
             var textDiv = this.$refs.text;
             textDiv.style.fontFamily = "'Redaction 70',sans-serif";
             this.isLoaded = false;

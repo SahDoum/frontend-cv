@@ -5,9 +5,12 @@
   grid-template-rows: 5fr 1fr;
   overflow: hidden;
 
-  background-color: var(--dark-color);
+  background-color: var(--white);
 
   font-size: 20px;
+
+    font-family: 'Roboto';
+
 }
 
 #pong {
@@ -27,12 +30,12 @@
   line-height: .7em;
   height: 10px;
 
-  place-self: start center;
+  place-self: start end;
+  -justify-content: end;
   pointer-events: none;
 
-  font-family: 'Redaction 10';
   font-size: calc( (100vw - 60vh) * 1.5 );
-  color: var(--light-color);
+  color: var(--black);
   text-align: right;
 }
 
@@ -51,8 +54,8 @@
 
   z-index: 2;
 
-  color: var(--dark-color);
-  background-color: var(--light-color);
+  color: var(--black);
+  background-color: var(--white);
   border: 2px solid black;
   word-wrap: break-word;
 

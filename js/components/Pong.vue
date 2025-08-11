@@ -1,23 +1,14 @@
 <template>
-  <div class="canvas-holder" ref="canvas_holder">
+  <div ref="canvas_holder">
     <canvas id="canvas" ref="canvas"></canvas>
   </div>
 </template>
 
 <style scoped>
 
-.canvas-holder {
-/*  position: relative;
-  padding-left: 0;
-  padding-right: 0;
-  display: block;
-  align-content: center;
-  width: fit-content;*/
-
-
-}
-
 canvas {
+  position: relative;
+  z-index: 100;
 }
 
 </style>
@@ -32,7 +23,7 @@ window.requestAnimFrame = (function(){
     window.oRequestAnimationFrame      || 
     window.msRequestAnimationFrame     ||  
     function( callback ){
-      return window.setTimeout(callback, 1000 / 120);
+      return window.setTimeout(callback, 1000 / 180);
     };
 })();
 
@@ -53,8 +44,8 @@ class Playground {
   }
 
   draw(ctx) {
-    ctx.fillStyle = "white";//"#25292F";//"#ACDA54"//"#9ACD32"//"white";//"#ACE1AF";
-    ctx.fillRect(0, 0, this.width, this.height);
+    // ctx.fillStyle = "black";//"#25292F";//"#ACDA54"//"#9ACD32"//"white";//"#ACE1AF";
+    ctx.clearRect(0, 0, this.width, this.height);
   }
 }
 
@@ -94,7 +85,7 @@ class Paddle {
   }
 
   draw(ctx) {
-    ctx.fillStyle = "#25292F";
+    ctx.fillStyle = "white";//"#25292F";
     ctx.fillRect(this.x - this.width/2, this.y - this.height/2, this.width, this.height);
     // ctx.fillStyle = "white";
     // ctx.fillRect(this.x - this.width/2 + 1, this.y - this.height/2 + 1, this.width - 2, this.height - 2);
@@ -256,10 +247,6 @@ class Game {
     this.balls.delete(this.mainBall);
     this.mainBall = newBall;
     this.balls.add(newBall);
-
-    console.log("restart");
-    console.log(this.mainBall);
-    console.log(this.balls);
   }
 
   stop() {
@@ -327,7 +314,6 @@ class Game {
     if(this.lives < 0)
       this.gameOver();
 
-    console.log(ball.state)
     if (ball.state == 0) this.restartMainBall();
   }
 
@@ -387,9 +373,7 @@ class Game {
 
     //scale canvas
 
-    console.log("put on real canvas")
     let el = document.getElementById("canvas").parentNode;
-    console.log("parent", el, el.clientWidth, el.clientHeight);
 
     this.real_canvas.width = el.clientWidth;
     this.real_canvas.height = el.clientHeight;

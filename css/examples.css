@@ -18,7 +18,7 @@
     font-family: 'Redaction 10', sans-serif;
     line-height: 0.7em;
     margin-top: 0.05em;
-    background: white;
+    background-color: var(--white);
     word-wrap: break-word;
 }
 
@@ -49,7 +49,7 @@ p {
 
 .lines-container {
     position: absolute;
-    top: 0;
+    top: calc(1.25em - .5px);
     left: 0;
 
     display: flex;
@@ -69,6 +69,18 @@ p {
     flex-basis: 0.5px;
 }
 
+.lines-container div:nth-child(3n + 2) {
+    margin-bottom: calc((1.25em - .5px) * 2);
+}
+
+.lines-container div:nth-child(3n) {
+    margin-bottom: calc((1.25em - .5px) + 5px);
+}
+
+.lines-container div:nth-child(3n+1) {
+    margin-bottom: calc((1.25em - .5px) - 5px);
+}
+
 .ex-blocks {
     position: relative;
     overflow: hidden;
@@ -80,7 +92,7 @@ p {
     display: grid;
     align-items: center;
     grid-auto-flow: row;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 33%));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 33%));
     align-items: start;
     margin-left: 10%;
 }
@@ -91,6 +103,22 @@ p {
     line-height: 1.25em;
     -margin-bottom: 1.25em;
     width: clamp(20vw, 250px, 80vw);
+}
+
+.example * {
+    transition: transform .2s ease-in-out;
+}
+
+.example:hover .example-title {
+    transform: translateX(6px);
+}
+
+.example:hover .example-desc {
+    transform: translateX(-8px);
+}
+
+.example:hover .example-click {
+    transform: translateX(-3px);
 }
 
 .example:nth-child(1) {margin-left: 0%; padding-top: 0em;}

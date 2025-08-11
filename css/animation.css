@@ -23,8 +23,8 @@
     transform: translateX(-50%) translateY(-50%);
     padding: 5px;
 
-    background-color: white;
-    color: #000;
+    background-color: var(--white);
+    color: var(--black);
     text-align: center;
 
     font-size: 32px;
@@ -33,9 +33,7 @@
     line-height: 25px;
     text-transform: uppercase;
 
-    opacity: 1;/*
-    transition: opacity 10s ease;
-    transition-delay: 10s;*/*/
+    opacity: 1;
 
     z-index: 1001;
 }
@@ -86,10 +84,6 @@
     z-index: 1;
 }
 
-#intro-name:hover {
-    font-family: 'Redaction 35', sans-serif;
-}
-
 .intro-start #intro-name {
   left: 0;
   top: .05em;
@@ -122,7 +116,7 @@
 }
 
 .intro-start #intro-image:hover {
-    transform: rotate(4deg) scale(1.1);
+    transform: rotate(1.5deg) scale(1.1);
 }
 
 #intro-image img {
@@ -154,7 +148,7 @@
     font-size: inherit;
     height: 1.2em;
     font-family: 'Redaction 35', sans-serif;
-    background: white;
+    background: var(--white);
     max-width: 9.5em;
     transition: all 0.3s var(--intro-transition);
 }

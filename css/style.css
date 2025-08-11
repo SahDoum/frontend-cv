@@ -5,28 +5,25 @@
   --dark-color: #25292F;
   --light-color: #DBDCE8;
 
-    --white-rgb: 255, 255, 255;
-    --black-rgb: 22, 22, 21;
+    --white-rgb: 251, 252, 248;
+    --black-rgb: 37, 41, 47;
     --highlight-rgb: 230, 230, 230;
 
     --white: rgb(var(--white-rgb));
+    --black: rgb(var(--black-rgb));
+    --accent-color: #6d9cbe;
 
     --font-size: 16px;
     --line-height: 21px;
     --letter-spacing: 0.54px;
     --char-width: 10px;
-    --vh: calc(var(--vh-height, 1vh) * 100);
-    --char-ratio: 0.6;
 }
 
 
 html {
     font-size: var(--char-width);
     background-color: var(--white);
-/*    --line: var(--line-height);
-    --column: calc((100vw - 9rem) / 8);
-    --column-double: calc((100vw - 5rem) / 4);
-    --page-margin:calc(var(--line-height) * 4);*/
+    color: var(--black);
 }
 
 body {
@@ -60,8 +57,6 @@ a {
   overflow: hidden;
 }
 
-
-
 /* back button style */
 
 .back-button {
@@ -72,24 +67,25 @@ a {
     font-family: 'Redaction 20', sans-serif;
 }
 
+.back-button > * {
+    transition: transform 0.5s;
+}
+
 .back-button span:first-child {
     transform: translateX(200%);
-    transition: 0.5s;
+    
 }
 
 .back-button span:nth-child(2) {
     transform: translateX(100%);
-    transition: 0.5s;
 }
 
 .back-button span:last-child {
     transform: translateX(-200%);
-    transition: 0.5s;
 }
 
 .back-button span:nth-last-child(2) {
     transform: translateX(-100%);
-    transition: 0.5s;
 }
 
 

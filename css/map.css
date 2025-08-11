@@ -1,85 +1,73 @@
-
 .map-title {
-    font-size: 10vw;
+  font-size: 10vw;
 }
 
-@media screen and (max-width: 320px) { 
-    .map-title {
-        font-size: 16vw;
-    }
-}
-
-
-  /*
-  //
-  // Some icon classes
-  //
-  // .leaflet-marker-icon: for every marker
-  // .active-icon: active marker
-  // .big-icon: for cluster group
-  // other: different church types
-  // 
-  // outline style shoul be !importatn
-  //
-  */
-
-  .leaflet-marker-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    line-height: 1;
-    font-size: 12px;
-  }
-
-  .active-icon {
-    width: 64px !important;
-    height: 95px !important;
-    left: -32px !important;
-    top: -95px !important;
-  }
-
-  .group-icon {
-    width: 54px;
-    height: 54px;
-
-    background: linear-gradient(180deg, #3E80C2 0%, #72A9E0 100%);
-    border: 3px solid #FFFFFF;
-    border-radius: 50%;
-
-/*    @include title-base();*/
-    font-size: 38px;
-    color: white;
-    padding-top: 5px;
-
-    z-index: 9;
-  }
-
-  .church-icon {
-    width: 36px;
-    height: 54px; 
-    left: -18px;
-    top: -54px;
-
-    background-position: 50% 50%;
-    background-size: contain;
-    background-repeat: no-repeat;
-  }
-
-  .church_live-icon {
-    background-image: url(../media/marker_bronze.svg);
-  }
-
-  .church_save-icon {
-    background-image: url(../media/marker_blue.svg);
-  }
-
-  .church_keepers-icon {
-    background-image: url(../media/marker_yellow.svg);
+@media screen and (max-width: 320px) {
+  .map-title {
+    font-size: 16vw;
   }
 }
+/*
+//
+// Some icon classes
+//
+// .leaflet-marker-icon: for every marker
+// .active-icon: active marker
+// .big-icon: for cluster group
+// other: different church types
+// 
+// outline style shoul be !importatn
+//
+*/
+.leaflet-marker-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+  font-size: 12px;
+}
 
+.active-icon {
+  width: 64px !important;
+  height: 95px !important;
+  left: -32px !important;
+  top: -95px !important;
+}
 
+.group-icon {
+  width: 54px;
+  height: 54px;
+  background: linear-gradient(180deg, #3E80C2 0%, #72A9E0 100%);
+  border: 3px solid #FFFFFF;
+  border-radius: 50%;
+  /*    @include title-base();*/
+  font-size: 38px;
+  color: white;
+  padding-top: 5px;
+  z-index: 9;
+}
 
+.church-icon {
+  width: 36px;
+  height: 54px;
+  left: -18px;
+  top: -54px;
+  background-position: 50% 50%;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.church_live-icon {
+  background-image: url(../media/marker_bronze.svg);
+}
+
+.church_save-icon {
+  background-image: url(../media/marker_blue.svg);
+}
+
+.church_keepers-icon {
+  background-image: url(../media/marker_yellow.svg);
+}
 
 /*
 //
@@ -88,15 +76,10 @@
 // Setup map, icons, sidebar
 // 
 */
-
 .map_title {
   text-align: center;
   margin-bottom: 18px;
 }
-
-
-
-
 
 #map-container {
   width: 100%;
@@ -104,161 +87,145 @@
   position: relative;
 }
 
-  #map {
-    width: 100%;
-    height: 100%;
-  }
+#map {
+  width: 100%;
+  height: 100%;
+}
 
-  #sidebar-container {
-    position: absolute;
-    display: none;
-    left: 0;
-    top: 0;
-
-    width: 342px;
-    height: 100%;
-    z-index: 499;
-
-    background: grey;
-    color: white;
-
-    box-shadow: 0px 0px 22px -11px rgba(66, 68, 90, 1);
-    border-radius: 0px 0px 50px 0px;
-
-
-
-    font-family: 'Literata';
-    font-style: normal;
-
-/*    @include upto(medium-screens) {
-      width: 100%;
-      max-width: 320px;
-    }*/
-  }
-
-    .sidebar-img {
-      display: block;
-      width: 100%;
-      height: 183px;
-      object-fit: cover;
-    }
-
-    #sidebar-header {
-      padding: 20px 22px 13px 21px ;
-
-      font-weight: 700;
-      font-size: 21px;
-      line-height: 22px;
-      text-align: center;
-
-      z-index: 1;
-
-    }
-
-    .address-container {
-      position: relative;
-      display: flex;
-      margin: 13px 25px 13px 24px;
-    }
-
-    .address-logo {
-      position: absolute;
-      left: 0px;
-      top: 0px;
-    }
-    .address-logo  svg {
-        fill:white;
-      }
-
-    #sidebar-region {
-      margin-left: 20px;
-      margin-top: 0px;
-
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 18px;
-
-      z-index: 1;
-
-    }
-
-    #sidebar-description {
-      margin: 13px 25px 10px 24px;
-
-      overflow: auto;
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 21px;
-
-      z-index: 1;
-
-    }
-
-    .next-button {
-      cursor: pointer;
-      position: absolute;
-      bottom: 60px;
-      right: 100px;
-      height: 0px;
-      z-index: 1;
-
-
-      background-color: transparent;
-      color: white;
-      border: none;
-/*      @include upto(medium-screens) {
-        color: $yellow;
+#sidebar-container {
+  position: absolute;
+  display: none;
+  left: 0;
+  top: 0;
+  width: 342px;
+  height: 100%;
+  z-index: 499;
+  background: grey;
+  color: white;
+  box-shadow: 0px 0px 22px -11px rgb(66, 68, 90);
+  border-radius: 0px 0px 50px 0px;
+  font-family: "Literata";
+  font-style: normal;
+  /*    @include upto(medium-screens) {
+        width: 100%;
+        max-width: 320px;
       }*/
+}
 
-    }
-    .next-button   i {
-        position: relative;
-        font-size: 60px;
-        line-height: 38px;
-        text-align: center;
-        padding: 0;
-    }
+.sidebar-img {
+  display: block;
+  width: 100%;
+  height: 183px;
+  object-fit: cover;
+}
 
-    .line {
-      margin-left: 24px;
-      margin-right: 29px;
-      margin-top: 2px;
+#sidebar-header {
+  padding: 20px 22px 13px 21px;
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 22px;
+  text-align: center;
+  z-index: 1;
+}
 
-      height: 0px;
-      border: 1px solid bronze !important;
-      z-index: 1;
-    }
+.address-container {
+  position: relative;
+  display: flex;
+  margin: 13px 25px 13px 24px;
+}
 
-    .scroll-up-button,
-    .scroll-down-button {
-      position: absolute;
-      cursor: pointer;
-      display: none;
-      background: none;
+.address-logo {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
 
-      width: 289px;
-      height: 25px;
-      bottom: 3px;
-      left: 24px;
+.address-logo svg {
+  fill: white;
+}
 
-      text-align: center;
-      font-size: 14px;
-      line-height: 18px;
-      color: yellow;
-    }
-  
+#sidebar-region {
+  margin-left: 20px;
+  margin-top: 0px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  z-index: 1;
+}
+
+#sidebar-description {
+  margin: 13px 25px 10px 24px;
+  overflow: auto;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  z-index: 1;
+}
+
+.next-button {
+  cursor: pointer;
+  position: absolute;
+  bottom: 60px;
+  right: 100px;
+  height: 0px;
+  z-index: 1;
+  background-color: transparent;
+  color: white;
+  border: none;
+  /*      @include upto(medium-screens) {
+          color: $yellow;
+        }*/
+}
+
+.next-button i {
+  position: relative;
+  font-size: 60px;
+  line-height: 38px;
+  text-align: center;
+  padding: 0;
+}
+
+.line {
+  margin-left: 24px;
+  margin-right: 29px;
+  margin-top: 2px;
+  height: 0px;
+  border: 1px solid bronze !important;
+  z-index: 1;
+}
+
+.scroll-up-button,
+.scroll-down-button {
+  position: absolute;
+  cursor: pointer;
+  display: none;
+  background: none;
+  width: 289px;
+  height: 25px;
+  bottom: 3px;
+  left: 24px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 18px;
+  color: yellow;
+}
 
 /*  .sidebar-container-with-no-image {
     padding-top: 60px;
   }*/
+/*
+//
+// Leaflet control classes
+//
+*/
+.leaflet-control-layers {
+  z-index: 500;
+}
 
+.leaflet-top {
+  z-index: 500;
+}
 
-  /*
-  //
-  // Leaflet control classes
-  //
-  */
-
-.leaflet-control-layers{ z-index: 500; } 
-.leaflet-top { z-index: 500; }
-.legend { z-index: 100; }
+.legend {
+  z-index: 100;
+}

@@ -17,14 +17,11 @@ var pretag;
 var A_delta = 0.06, B_delta = 0.032;
 
 var cursor_states = [
-  [0, "CLICK LAST TIME!"],
-  [0.75, "YEAH, GREAT, COOL, YOU ARE THE BEST <3", 4.5],
+  [0.5, "YEAH, GREAT, COOL, YOU ARE THE BEST <3", 4.5],
   [1, "NOT LIKE THIS!", 10],
   [1, "OOOPS... TRY AGAIN"],
   [0.1, "CLICK(ONE MORE!)"],
-  [0.33, "CLICK(2)"],
-  [0.66, "CLICK(3)"],
-  [1, "CLICK(4)"],
+  [1, "CLICK"],
 ];
 
 var cursor_state = cursor_states.length - 1;
@@ -188,7 +185,7 @@ var asciiframe=function() {
 
   if (cursor_state >= 0) {
     let state = cursor_states[cursor_state][1];
-    b.splice(cursorCoords, state.length, '<span style="color:#6d9cbe;">' + state + '</span>');
+    b.splice(cursorCoords, state.length, '<span class="torus__cursor">' + state + '</span>');
   }
   pretag.innerHTML = b.join("");
 };
@@ -248,7 +245,7 @@ export function startAnim() {
 };
 
 export function _onload() {
-  pretag = document.getElementById('d');
+  pretag = document.getElementById('torus__text');
 
   if (window._isMobile) {
     A=0.8;
@@ -262,7 +259,6 @@ export function _onload() {
 export function updateCursor(event) {
   if (window._isMobile) {
     cursorCoords = Math.ceil((window._cols * 9 - cursor_states[cursor_state][1].length) / 2);
-    console.log(pointRect, pointRect.width)
     position = [-pointRect.left, -pointRect.left];
     return;
   }
