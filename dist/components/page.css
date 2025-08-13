@@ -1,0 +1,28 @@
+/* BLOCK Page */
+.page {
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  grid-template-areas: "title right" "nav  right" "left  right";
+  grid-template-rows: auto auto 1fr;
+  grid-template-columns: 50% 50%;
+  font-size: 20px;
+  font-family: "Redaction 20", sans-serif;
+}
+.page__nav {
+  grid-area: nav;
+  z-index: 10;
+  padding-left: 2em;
+}
+.page__title {
+  grid-area: title;
+  overflow: scroll;
+}
+.page__left-content {
+  grid-area: left;
+  background-color: green;
+}
+.page__right-content {
+  grid-area: right;
+  background-color: blue;
+}

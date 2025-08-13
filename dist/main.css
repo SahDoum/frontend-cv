@@ -1,0 +1,732 @@
+/** == Reset (_reset.scss) == **/
+*,
+*:after,
+*:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: 0;
+}
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, q, s, samp, small, strike, strong, sub, sup, var, b, u, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, embed, figure, figcaption, footer, header, hgroup, menu, nav, section, time, audio, video {
+  vertical-align: baseline;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  background: #fff;
+}
+
+a {
+  text-decoration: none;
+  outline: none;
+}
+a:hover {
+  text-decoration: none;
+}
+
+a,
+a:focus,
+a:hover,
+a:visited,
+a:active {
+  outline: 0;
+  outline: none;
+  color: inherit;
+}
+
+article,
+aside,
+figcaption,
+figure,
+footer,
+header,
+nav,
+section,
+iframe {
+  display: block;
+}
+
+audio,
+canvas,
+video {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+
+audio:not([controls]) {
+  display: none;
+}
+
+[hidden] {
+  display: none;
+}
+
+sub,
+sup {
+  font-size: 75%;
+  height: 0;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  bottom: 1ex;
+}
+
+sub {
+  top: 0.5ex;
+}
+
+img {
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+  vertical-align: bottom;
+  max-width: 100%;
+  height: auto;
+}
+
+img[alt] {
+  font-size: 10px;
+  line-height: inherit;
+  color: #666;
+  font-family: inherit;
+}
+
+a img {
+  border: 0;
+  vertical-align: middle;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+/** forms **/
+button,
+input,
+select,
+textarea {
+  font-size: 100%; /* Corrects font size not being inherited in all browsers */
+  margin: 0; /* Addresses margins set differently in IE6/7, F3/4, S5, Chrome */
+  vertical-align: baseline; /* Improves appearance and consistency in all browsers */
+  *vertical-align: middle;
+}
+
+button,
+input {
+  line-height: normal;
+  *overflow: visible;
+}
+
+button,
+input[type=button],
+input[type=reset],
+input[type=submit] {
+  -webkit-appearance: button; /* Corrects inability to style clickable 'input' types in iOS */
+  cursor: pointer;
+}
+
+input[type=checkbox],
+input[type=radio] {
+  padding: 0; /* Addresses excess padding in IE8/9 */
+}
+
+input[type=search]::-webkit-search-decoration { /* Corrects inner padding displayed oddly in S5, Chrome on OSX */
+  -webkit-appearance: none;
+}
+
+input[type=search] {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+input[type=search]::-webkit-search-decoration,
+input[type=search]::-webkit-search-cancel-button,
+input[type=search]::-webkit-search-results-button,
+input[type=search]::-webkit-search-results-decoration {
+  display: none;
+}
+
+input[type=text]::-ms-clear {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+input[type=text]::-ms-reveal {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner { /* Corrects inner padding and border displayed oddly in FF3/4 www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/ */
+  border: 0;
+  padding: 0;
+}
+
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=url]:focus,
+input[type=password]:focus,
+input[type=search]:focus,
+textarea:focus {
+  outline: none;
+}
+
+textarea {
+  overflow: auto; /* Removes default vertical scrollbar in IE6/7/8/9 */
+  padding-left: 3px;
+  vertical-align: top; /* Improves readability and alignment in all browsers */
+  width: 100%;
+}
+
+@font-face {
+  font-family: redaction;
+  font-style: normal;
+  font-weight: 400;
+  src: local("Redaction"), url(https://fonts.cdnfonts.com/s/47238/Redaction-mL8P5.woff) format("woff");
+}
+@font-face {
+  font-family: redaction;
+  font-style: italic;
+  font-weight: 400;
+  src: local("Redaction"), url(https://fonts.cdnfonts.com/s/47238/RedactionItalic-lgB8w.woff) format("woff");
+}
+@font-face {
+  font-family: redaction;
+  font-style: normal;
+  font-weight: 700;
+  src: local("Redaction"), url(https://fonts.cdnfonts.com/s/47238/RedactionBold-d9yOZ.woff) format("woff");
+}
+@font-face {
+  font-family: "redaction 10";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Redaction 10"), url(https://fonts.cdnfonts.com/s/47238/Redaction10-1GX2v.woff) format("woff");
+}
+@font-face {
+  font-family: "redaction 100";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Redaction 100"), url(https://fonts.cdnfonts.com/s/47238/Redaction100-vmXR9.woff) format("woff");
+}
+@font-face {
+  font-family: "redaction 20";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Redaction 20"), url(https://fonts.cdnfonts.com/s/47238/Redaction20-YzPy2.woff) format("woff");
+}
+@font-face {
+  font-family: "redaction 35";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Redaction 35"), url(https://fonts.cdnfonts.com/s/47238/Redaction35-BWXjw.woff) format("woff");
+}
+@font-face {
+  font-family: "redaction 50";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Redaction 50"), url(https://fonts.cdnfonts.com/s/47238/Redaction50-8Mg4n.woff) format("woff");
+}
+@font-face {
+  font-family: "redaction 70";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Redaction 70"), url(https://fonts.cdnfonts.com/s/47238/Redaction70-RpXqE.woff) format("woff");
+}
+@font-face {
+  font-family: "redaction 10";
+  font-style: italic;
+  font-weight: 400;
+  src: local("Redaction 10"), url(https://fonts.cdnfonts.com/s/47238/Redaction10Italic-nRYrO.woff) format("woff");
+}
+@font-face {
+  font-family: "redaction 100";
+  font-style: italic;
+  font-weight: 400;
+  src: local("Redaction 100"), url(https://fonts.cdnfonts.com/s/47238/Redaction100Italic-rgDrK.woff) format("woff");
+}
+@font-face {
+  font-family: "redaction 20";
+  font-style: italic;
+  font-weight: 400;
+  src: local("Redaction 20"), url(https://fonts.cdnfonts.com/s/47238/Redaction20Italic-K7ZJe.woff) format("woff");
+}
+@font-face {
+  font-family: "redaction 35";
+  font-style: italic;
+  font-weight: 400;
+  src: local("Redaction 35"), url(https://fonts.cdnfonts.com/s/47238/Redaction35Italic-rgDrB.woff) format("woff");
+}
+@font-face {
+  font-family: "redaction 50";
+  font-style: italic;
+  font-weight: 400;
+  src: local("Redaction 50"), url(https://fonts.cdnfonts.com/s/47238/Redaction50Italic-2ODWo.woff) format("woff");
+}
+@font-face {
+  font-family: "redaction 70";
+  font-style: italic;
+  font-weight: 400;
+  src: local("Redaction 70"), url(https://fonts.cdnfonts.com/s/47238/Redaction70Italic-MV3Lv.woff) format("woff");
+}
+@font-face {
+  font-family: "redaction 10";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Redaction 10"), url(https://fonts.cdnfonts.com/s/47238/Redaction10Bold-w1gB6.woff) format("woff");
+}
+@font-face {
+  font-family: "redaction 100";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Redaction 100"), url(https://fonts.cdnfonts.com/s/47238/Redaction100Bold-7BE64.woff) format("woff");
+}
+@font-face {
+  font-family: "redaction 20";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Redaction 20"), url(https://fonts.cdnfonts.com/s/47238/Redaction20Bold-2ODWX.woff) format("woff");
+}
+@font-face {
+  font-family: "redaction 35";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Redaction 35"), url(https://fonts.cdnfonts.com/s/47238/Redaction35Bold-MV3LP.woff) format("woff");
+}
+@font-face {
+  font-family: "redaction 50";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Redaction 50"), url(https://fonts.cdnfonts.com/s/47238/Redaction50Bold-vmXRL.woff) format("woff");
+}
+@font-face {
+  font-family: "redaction 70";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Redaction 70"), url(https://fonts.cdnfonts.com/s/47238/Redaction70Bold-K7ZJX.woff) format("woff");
+}
+:root {
+  --accent-color: #6d9cbe;
+}
+
+html {
+  font-size: var(--char-width);
+}
+
+body {
+  background-color: rgb(251, 252, 248);
+  color: rgb(37, 41, 47);
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: -webkit-fill-available;
+}
+
+.scroll-container {
+  position: relative;
+  width: 100%;
+  min-width: 100vw;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+
+.app {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100vh;
+  max-height: 100vh;
+  max-height: -webkit-fill-available;
+  background-color: var(--white);
+}
+.app__container {
+  position: relative;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* pong container  */
+.pong-container-hidden {
+  height: 0 !important;
+  overflow: hidden;
+}
+
+.block--border {
+  border: 4px solid rgb(37, 41, 47);
+}
+.block--full {
+  height: 100%;
+  width: 100%;
+}
+.block--no-overflow {
+  overflow: hidden;
+}
+.block--border {
+  border: 4px solid rgb(37, 41, 47);
+}
+.block--centered {
+  margin-left: 12.5%;
+  margin-top: 7.5%;
+}
+.block--small {
+  height: min(25vh, 25vw);
+  margin-left: 12.5%;
+  margin-top: 7.5%;
+}
+.block--medium {
+  height: min(50vh, 50vw);
+  margin-left: -12.5%;
+  margin-top: -7.5%;
+}
+.block--big {
+  height: min(75vh, 75vw);
+  margin-left: 12.5%;
+  margin-top: 7.5%;
+}
+
+.block-column {
+  display: flex;
+  flex-direction: column;
+}
+.block-column .block__tile {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.block-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.block-row .block__tile {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.block-image img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+}
+.block-image--portrait {
+  aspect-ratio: 2/3;
+}
+.block-image--hover {
+  transition: all 0.5s cubic-bezier(0.5, 0, 1, 0.1);
+}
+.block-image--hover:hover {
+  transform: rotate(1.5deg) scale(1.1);
+}
+
+.block-preview {
+  overflow: hidden;
+  padding: 0 2em;
+}
+.block-preview .preview__title {
+  transition: transform 0.2s ease-in-out;
+}
+.block-preview .preview__description {
+  transition: transform 0.2s ease-in-out;
+}
+.block-preview .preview__click {
+  transition: transform 0.2s ease-in-out;
+}
+.block-preview:hover .preview__title {
+  transform: translateX(6px);
+}
+.block-preview:hover .preview__description {
+  transform: translateX(-8px);
+}
+.block-preview:hover .preview__click {
+  transform: translateX(-3px);
+}
+
+.font--normal, .page, .block, .block-column, .block-row, .block-image, .block-preview {
+  font-size: max(24px, 3.8vh);
+}
+.font--small, .nav {
+  font-size: max(20px, 3.2vh);
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  min-height: 1em;
+  text-align: center;
+  font-family: "Redaction 20", sans-serif;
+  color: rgb(37, 41, 47);
+}
+.nav__link {
+  min-width: 5em;
+  text-decoration-line: underline;
+}
+.nav__text {
+  min-width: 5em;
+}
+.nav__space {
+  width: 2em;
+}
+.nav__back-button {
+  display: flex;
+  flex-wrap: nowrap;
+}
+.nav__back-button * {
+  transition: transform 0.5s;
+}
+.nav__back-button span:first-child {
+  transform: translateX(200%);
+}
+.nav__back-button span:nth-child(2) {
+  transform: translateX(100%);
+}
+.nav__back-button span:last-child {
+  transform: translateX(-200%);
+}
+.nav__back-button span:nth-last-child(2) {
+  transform: translateX(-100%);
+}
+.nav__back-button:hover span {
+  transform: translateX(0);
+}
+.nav--accent {
+  color: #6d9cbe;
+}
+
+/* BLOCK Page */
+.page {
+  max-width: 100%;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  display: grid;
+  grid-template-areas: "title right" "nav  right" "left  right";
+  grid-template-rows: auto auto 1fr;
+  grid-template-columns: 50% 50%;
+  overflow: hidden;
+  font-size: 20px;
+  font-family: "Redaction 20", sans-serif;
+  background: rgb(251, 252, 248);
+  color: rgb(37, 41, 47);
+}
+.page__nav {
+  grid-area: nav;
+  z-index: 10;
+  padding-left: 2em;
+}
+.page__title {
+  grid-area: title;
+  overflow: scroll;
+}
+.page__left {
+  grid-area: left;
+}
+.page__right {
+  grid-area: right;
+}
+.page--overflow-visible {
+  overflow-y: visible;
+}
+.page--extra-left {
+  grid-template-columns: 75% 25%;
+}
+.page__block--full-height {
+  height: 100%;
+}
+.page__block--centered {
+  justify-self: center;
+  align-self: center;
+}
+.page__block--float-right {
+  justify-self: right;
+  align-self: center;
+  width: 40%;
+}
+
+.pong {
+  --height: min(88vh, 88vw);
+  height: var(--height);
+  width: calc(0.6666666667 * var(--height));
+  transition: all 0.5s cubic-bezier(0.5, 0, 1, 0.1);
+  font-size: inherit;
+  background-color: black;
+}
+
+.pong-line {
+  width: 100%;
+  border: 2px solid black;
+  border-left: none;
+  word-wrap: break-word;
+  background-color: rgb(251, 252, 248);
+  font-size: inherit;
+  height: 8em;
+  z-index: 10;
+}
+
+.tile, .tile-preview, .tile-line, .tile-space, .tile-text, .block-preview .preview__title, .block-preview .preview__description, .block-preview .preview__click {
+  font-size: inherit;
+}
+.tile--accent, .block-preview .preview__click {
+  align-self: flex-end;
+  color: #6d9cbe;
+}
+
+.tile-text, .block-preview .preview__title, .block-preview .preview__description, .block-preview .preview__click {
+  height: 1.25em;
+  min-height: 1.25em;
+  font-family: "Redaction 35", sans-serif;
+  background: rgb(251, 252, 248);
+  transition: all 0.3s cubic-bezier(0.9, 0, 1, 0.1);
+}
+.tile-text .tile--hover:hover, .block-preview .preview__title .tile--hover:hover, .block-preview .preview__description .tile--hover:hover, .block-preview .preview__click .tile--hover:hover {
+  font-family: "Redaction", sans-serif;
+  padding-left: 10px;
+  transition-delay: 0.1s;
+}
+
+.tile-space {
+  height: 1.2em;
+  min-height: 1.2em;
+}
+
+.tile-line {
+  height: 1px;
+  background: rgb(37, 41, 47);
+  transition: all 0.3s cubic-bezier(0.9, 0, 1, 0.1);
+  z-index: 20;
+  align-self: flex-end;
+  width: 100vw;
+}
+
+.tile-preview {
+  height: 6em;
+  min-width: 10em;
+  border: 1px solid black;
+  background: yellow;
+}
+
+.title, .title-map, .title-examples, .title-pong, .title-intro-name {
+  overflow: visible;
+  text-align: left;
+  word-wrap: break-word;
+  flex-shrink: 0;
+  text-transform: uppercase;
+  font-family: "Redaction 10", sans-serif;
+  font-size: max(40px, 1vh);
+  line-height: 0.7em;
+  margin-top: 0.05em;
+  z-index: 1;
+}
+
+.title-intro-name {
+  font-size: clamp(20px, 25vh, 14vw);
+  width: 100vw;
+  line-height: 0.66em;
+}
+.title-intro-name span {
+  display: inline;
+  font-size: inherit;
+  height: 10px;
+  letter-spacing: calc((100vw - 6.25em - 0.7em) / 2);
+  line-height: 10px;
+}
+
+.title-pong {
+  height: 0;
+  width: 0;
+  font-family: "Roboto";
+  font-size: 140vh;
+  line-height: 80vh;
+  word-wrap: normal;
+  pointer-events: none;
+  transform: translateY(80%);
+}
+
+.title-examples {
+  font-size: 18vw;
+  width: 100vw;
+}
+
+.title-map {
+  font-size: 10.3vw;
+  width: 100vw;
+}
+
+/* torus */
+.torus {
+  z-index: 1000;
+  transition: opacity 1s ease;
+  transition-delay: 1s;
+  grid-column-start: 1;
+  grid-row-start: 1;
+  background-color: rgb(37, 41, 47);
+  color: rgb(251, 252, 248);
+  min-height: 100vh;
+}
+.torus__text {
+  font-family: "Roboto Mono", "Ubuntu Mono", monospace;
+  font-variation-settings: "MONO" 0.5, "wght" 600;
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  cursor: pointer;
+}
+.torus__label {
+  display: none;
+  position: absolute;
+  top: 50vh;
+  left: 50%;
+  width: 300px;
+  transform: translateX(-50%) translateY(-50%);
+  padding: 5px;
+  background-color: rgb(251, 252, 248);
+  color: rgb(37, 41, 47);
+  text-align: center;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 25px;
+  text-transform: uppercase;
+  opacity: 1;
+  z-index: 1001;
+}
+.torus__cursor {
+  color: #6d9cbe;
+}
+.torus--hide {
+  opacity: 0;
+}
+.torus--hide .torus__label {
+  display: block;
+}
+.torus--hide + .app__container {
+  grid-column-start: 1;
+  grid-row-start: 1;
+}

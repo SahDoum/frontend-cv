@@ -1,0 +1,12 @@
+.content {
+  min-height: 50%;
+  width: 50%;
+}
+.content--centered {
+  justify-self: center;
+  align-self: center;
+}
+.content--right {
+  justify-self: right;
+  align-self: center;
+}

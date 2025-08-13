@@ -1,0 +1,17 @@
+.nav {
+  display: flex;
+  flex-direction: row;
+  min-height: 1em;
+  text-align: center;
+  font-family: Redaction 20;
+}
+.nav__link {
+  min-width: 5em;
+  text-decoration-line: underline;
+}
+.nav__text {
+  min-width: 5em;
+}
+.nav__space {
+  width: 2em;
+}

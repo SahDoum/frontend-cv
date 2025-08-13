@@ -1,0 +1,24 @@
+.title, .title-intro-name {
+  overflow: visible;
+  text-align: left;
+  word-wrap: break-word;
+  flex-shrink: 0;
+  font-family: "Redaction 10", sans-serif;
+  font-size: max(40px, 1vh);
+  line-height: 0.7em;
+  margin-top: 0.05em;
+  z-index: 1;
+}
+
+.title-intro-name {
+  font-size: clamp(20px, 25vh, 14vw);
+  width: 100vw;
+  line-height: 0.7em;
+}
+.title-intro-name span {
+  display: inline;
+  font-size: inherit;
+  height: 10px;
+  letter-spacing: calc((100vw - 6.25em - 0.7em) / 2);
+  line-height: 10px;
+}
