@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aleksandr Dumarevskiy</title>
+    
+    <link rel="icon" type="image/x-icon" href="./media/favicon.ico">
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto Mono' rel='stylesheet'>
+    <link href="https://fonts.cdnfonts.com/css/ubuntu-mono" rel="stylesheet">
+    <link href="css/fonts.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/containers.css">
+    <link rel="stylesheet" href="css/animation.css">
+    <link rel="stylesheet" href="css/pong.css">
+
+    <script src="js/main.js"></script>
+
+</head>
+
+<body>
+<div id="intro-app">
+    <div id="pong-container" class="container">
+        <pong ref="pong" id="pong" @mouseup="startPong" @mousemove="e => pongStart && movePong(e)">
+        </pong>
+        <div id="pong-line">{{ pongLine }}</div>
+        <div id="pong-score">{{ pongScore }}</div>
+    </div>
+</div>
+</body>
+<script src="dist/bundle.js" defer></script>

@@ -1,0 +1,150 @@
+.block {
+	@extend .font--normal;
+
+	// elements
+
+	&__tile {
+
+	}
+
+	&__preview {
+
+	}
+
+	// modifs
+
+	&--border {
+		border: 4px solid $black;
+	}
+
+	&--full {
+		height: 100%;
+		width: 100%;
+	}
+
+	&--no-overflow {
+		overflow: hidden;
+	}
+
+	&--begin {
+	}
+
+	&--border {
+		border: 4px solid $black;
+	}
+
+
+	// alignments outer geometry?????
+
+    &--centered {
+
+	    margin-left: 12.5%;
+	    margin-top: 7.5%;
+    }
+
+    &--small {
+	    height: min(25vh, 25vw);
+
+
+	    margin-left: 12.5%;
+	    margin-top: 7.5%;
+    }
+
+    &--medium {
+	    height: min(50vh, 50vw);
+
+	    margin-left: -12.5%;
+	    margin-top: -7.5%;
+    }
+
+    &--big {
+	    height: min(75vh, 75vw);
+
+	    margin-left: 12.5%;
+	    margin-top: 7.5%;
+    }
+
+}
+
+.block-column {
+	$root: '.block';
+	@extend .block;
+
+	display: flex;
+	flex-direction: column;
+
+	#{$root}__tile {
+		flex-grow: 0;
+    	flex-shrink: 0;
+	}
+}
+
+.block-row {
+	$root: '.block';
+	@extend .block;
+
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+
+	#{$root}__tile {
+		flex-grow: 0;
+    	flex-shrink: 0;
+	}
+}
+
+.block-image {
+	$root: '.block';
+	@extend .block;
+
+    & img {
+    	max-height:100%; max-width:100%;
+		object-fit: cover;
+    }
+
+    &--portrait {
+    	aspect-ratio: 2 / 3;
+    }
+
+    &--hover {
+    	transition: all 0.5s $slow-easing;
+	    &:hover {
+	    	transform: rotate(1.5deg) scale(1.1);
+	    }
+
+    }
+}
+
+.block-preview {
+	$root: '.block';
+	@extend .block;
+
+	overflow: hidden;
+	padding: 0 2em;
+
+	.preview__title {
+		@extend .tile-text;
+		transition: transform .2s ease-in-out;
+	}
+	.preview__description {
+		@extend .tile-text;
+		transition: transform .2s ease-in-out;
+	}
+	.preview__click {
+		@extend .tile-text;
+		@extend .tile--accent;
+		transition: transform .2s ease-in-out;
+	}
+
+	&:hover {
+		.preview__title{
+			transform: translateX(6px);
+		}
+		.preview__description{
+			transform: translateX(-8px);
+		}
+		.preview__click{
+			transform: translateX(-3px);
+		}
+	}
+}

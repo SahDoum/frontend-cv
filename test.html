@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aleksandr Dumarevskiy</title>
+    
+    <link rel="icon" type="image/x-icon" href="./media/favicon.ico">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    
+    <link href='https://fonts.googleapis.com/css?family=Roboto Mono' rel='stylesheet'>
+    <link href="https://fonts.cdnfonts.com/css/ubuntu-mono" rel="stylesheet">
+    <link href="dist/main.css" rel="stylesheet">
+    <script src="js/main.js"></script>
+
+
+</head>
+
+<body>
+<div id="app" class="app">
+
+    <div id="torus" class="app__container torus">
+        <pre id="torus__text" ref="d" class="torus__text unselectable" 
+            @mousedown.prevent="e => torusAnim && torusClick(e)" 
+            @mousemove="e => torusAnim && torusMove(e)">
+        </pre>
+        <div class="torus__label">Dobro doshli!</div>
+    </div>
+
+    <div id="main-container" class="app__container page" @mousedown.prevent="startIntro" @mousemove="startIntro">
+        <div class="page__title title-intro-name">ALEXANDR<span>&nbsp;&nbsp;</span>DUMAREVSKIY</div>
+        <div class="page__nav nav">
+            <span class="nav__text nav--accent">hello</span>
+            <span class="nav__space"></span>
+            <a href="./examples/" class="nav__link">examples</a>
+            <span class="nav__link">contacts</span>
+        </div>
+        <div class="page__left page__block--float-right block-column font--small">
+            <div class="block__tile tile-space"></div>
+            <div class="block__tile tile-space"></div>
+            <div class="block__tile tile-space"></div>
+
+            <div class="block__tile tile-text">
+                <a href="https://instagram.com/sahdoum" target="_blank">ig:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@sahdoum</a>
+            </div>
+            <div class="block__tile tile-line"></div>
+            <div class="block__tile tile-text">
+                <a href="https://t.me/AChekhonte" target="_blank">tg:&nbsp;&nbsp;@achekhonte</a>
+            </div>
+            <div class="block__tile tile-line"></div>
+            <div class="block__tile tile-text">web-developer</div>
+            <div class="block__tile tile-line"></div>
+            <div class="block__tile tile-text">front/back full-stack</div>
+            <div class="block__tile tile-line"></div>
+            <div class="block__tile tile-text">modern css, vue,</div>
+            <div class="block__tile tile-line"></div>
+            <div class="block__tile tile-text">python, django</div>
+            <div class="block__tile tile-line"></div>
+            <div class="block__tile tile-text tile--accent" @mousedown.prevent="slideToPong">* working process *</div>
+
+        </div>
+        <image-loader 
+            class="page__right page__block--centered block-image block--big block-image--portrait" 
+            id="intro-image" comment="only one handler for mobile"
+            ref="profile_img"  src="./media/profile2.jpg">
+        </image-loader>
+    </div>
+
+    <div id="pong-container" class="app__container page page--overflow-visible">
+        <div id="pong-score" 
+            class="page__title title-pong">{{ pongScore }}</div>
+        <div class="page__nav nav"></div>
+        <div id="pong-line" class="page__left page__block--centered block--border pong-line">{{ pongLine }}
+        </div>
+        <pong ref="pong" id="pong" 
+            class="page__right page__block--centered pong"
+            @mouseup="startPong" @mousemove="e => pongStart && movePong(e)">
+        </pong>
+    </div>
+</div>
+
+</body>
+
+<script src="dist/bundle.js" defer></script>

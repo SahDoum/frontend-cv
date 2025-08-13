@@ -1,0 +1,27 @@
+.pong {
+
+  --height: min(88vh, 88vw);
+
+    height: var(--height);
+    width: calc(2/3*var(--height));
+    transition: all 0.5s cubic-bezier(.5,0,1,.1);
+
+  font-size: inherit;
+
+  background-color: black;
+}
+
+.pong-line {
+
+  width: 100%;
+  border: 2px solid black;
+  border-left: none;
+  word-wrap: break-word;
+
+  background-color: $white;
+
+  font-size: inherit;
+
+  height: 8em;
+  z-index: 10;
+}

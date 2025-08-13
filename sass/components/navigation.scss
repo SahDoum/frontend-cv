@@ -1,0 +1,61 @@
+
+
+.nav {
+	display: flex;
+	flex-direction: row;
+
+	min-height: 1em;
+	text-align: center;
+
+	@extend .font--small;
+	font-family: 'Redaction 20', sans-serif;
+	color: $black;
+
+	&__link {
+		min-width: 5em;
+		text-decoration-line: underline;
+	}
+	&__text {
+		min-width: 5em;
+	}
+
+	&__button {
+
+	}
+
+	&__space {
+		width: 2em;
+	}
+
+	&__back-button {
+	    display: flex;
+	    flex-wrap: nowrap;
+
+	 * {
+    	transition: transform 0.5s;
+	}
+
+	span:first-child {
+		    transform: translateX(200%);
+		    
+		}
+
+	span:nth-child(2) {
+		    transform: translateX(100%);
+		}
+
+	span:last-child {
+		    transform: translateX(-200%);
+		}
+
+	span:nth-last-child(2) {
+		    transform: translateX(-100%);
+		}
+
+	&:hover span {transform: translateX(0);}
+	}
+
+	&--accent {
+		color: $accent-color
+	}
+}

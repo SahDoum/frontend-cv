@@ -1,0 +1,28 @@
+.map {
+	container-type: inline-size;
+
+	display: flex;
+	flex-direction: row-reverse;
+
+	// grid-template-areas: "trip" "trip" "map"
+	// 		   "place" "place" "map"
+	// 		   "description" "description" "map"
+	// 		   "nav-trip" "nav-next" "map";
+
+	// grid-template-rows: auto auto 1fr auto;
+	// grid-template-columns: auto 1fr;
+
+	@container (max-width: 400px) {
+		flex-direction: column;
+	}
+
+
+	&__trip {}
+	&__place {}
+	&__description {}
+	&__nav-trip {}
+	&__nav-next {}
+	&__map {}
+}
+
+

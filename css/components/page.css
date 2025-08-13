@@ -1,0 +1,31 @@
+/* BLOCK Page */
+.page {
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  grid-template-areas: "title left" "nav  left" "right  left";
+  grid-template-rows: 50px 1fr 30px;
+  grid-template-columns: auto auto 1fr;
+}
+.page__nav {
+  grid-area: nav;
+}
+.page__title {
+  grid-area: title;
+}
+.page__left {
+  grid-area: left;
+  background: green;
+}
+.page__right {
+  grid-area: right;
+  background: blue;
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+}
+.title {
+  --ratio: 1;
+}

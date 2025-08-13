@@ -1,0 +1,62 @@
+.title {
+    overflow:visible;
+
+    text-align: left;
+    word-wrap: break-word;
+    flex-shrink: 0;
+    text-transform: uppercase;
+
+    font-family: 'Redaction 10', sans-serif;
+    font-size: max(40px, 1vh);
+    line-height: .7em;
+    margin-top: 0.05em;
+
+    z-index: 1;
+}
+
+.title-intro-name {
+    @extend .title;
+    font-size: clamp(20px, 25vh, 14vw);
+    width: 100vw;
+    line-height: .66em;  
+
+    span {
+        display: inline;
+        font-size: inherit;
+        height: 10px;
+        letter-spacing: calc( (100vw - 6.25em - .7em) / 2 );
+        line-height: 10px;
+    }
+}
+
+
+.title-pong {
+    @extend .title;
+
+    height: 0;
+    width: 0;
+
+
+    font-family: 'Roboto';
+    font-size: 140vh;
+    line-height: 80vh;
+    word-wrap: normal;
+
+    pointer-events: none;
+    transform: translateY(80%); // not good style
+
+}
+
+.title-examples {
+    @extend .title;
+
+    font-size: 18vw;
+    width: 100vw;
+}
+
+.title-map {
+    @extend .title;
+
+    font-size: 10.3vw;
+    width: 100vw;
+}

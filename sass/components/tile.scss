@@ -1,0 +1,61 @@
+.tile {
+	font-size: inherit;
+
+	&--accent {
+		align-self: flex-end; 
+		color: $accent-color;
+	}
+}
+
+.tile-text {
+	$root: '.tile';
+	@extend .tile;
+
+	height: 1.25em;
+	min-height: 1.25em;
+	
+	font-family: 'Redaction 35', sans-serif;
+	background: $white;
+	   
+	transition: all 0.3s $main-easing;
+
+	#{$root}--hover {
+	    &:hover {
+	    	font-family: 'Redaction', sans-serif;
+		    padding-left: 10px;
+		    transition-delay: 0.1s;
+	    }
+	}
+}
+
+.tile-space {
+	$root: '.tile';
+	@extend .tile;
+
+
+	height: 1.2em;
+	min-height: 1.2em;
+}
+
+.tile-line {
+	$root: '.tile';
+	@extend .tile;
+
+	height: 1px;
+    background: $black;
+    transition: all .3s $main-easing;
+    z-index: 20;
+
+	align-self: flex-end; // modificator
+	width: 100vw; // modif
+}
+
+.tile-preview {
+	$root: '.tile';
+	@extend .tile;
+
+	height: 6em;
+	min-width: 10em;
+	border: 1px solid black;
+	background: yellow;
+}

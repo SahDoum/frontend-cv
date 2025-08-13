@@ -1,0 +1,24 @@
+// colors
+
+$white: rgb(251, 252, 248);
+$black: rgb(37, 41, 47);
+$accent-color: #6d9cbe;
+
+// transitions
+
+$main-easing: cubic-bezier(.9,0,1,.1);
+$slow-easing: cubic-bezier(.5,0,1,.1);
+
+
+:root {
+	--accent-color: #{$accent-color};
+}
+
+html {
+    font-size: var(--char-width);
+}
+
+body {
+	background-color: $white;
+	color: $black;
+}
