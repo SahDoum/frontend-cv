@@ -286,7 +286,7 @@ class Game {
     this.score += 1;
     this.parent.updateScore(this.score);
 
-    if(this.score % 6 == 2) {
+    if(this.score % 3 == 2) {
       this.event += 1;
       if (this.event >= events.length) {
         this.gameWon();
